@@ -88,7 +88,7 @@ const RELEASE_NOTES: ReleaseNote[] = [
         changed: [],
         fixed: [
             'Fixed getting stuck in list pane in single pane mode when multi-selecting tags or properties in navigation pane.',
-            'Date filters now parse years before 1000 correctly.'
+            'Date filters now parse years before year 1000 correctly.'
         ]
     },
     {
