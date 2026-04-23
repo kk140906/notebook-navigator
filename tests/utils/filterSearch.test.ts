@@ -28,6 +28,13 @@ import { foldSearchText } from '../../src/utils/recordUtils';
 
 const sortTokens = (values: string[]) => [...values].sort();
 
+const createLocalDate = (year: number, monthIndex: number, day: number): Date => {
+    const date = new Date(0);
+    date.setFullYear(year, monthIndex, day);
+    date.setHours(0, 0, 0, 0);
+    return date;
+};
+
 describe('parseFilterSearchTokens', () => {
     it('returns neutral tokens for blank queries', () => {
         const tokens = parseFilterSearchTokens('');
@@ -296,6 +303,28 @@ describe('parseFilterSearchTokens', () => {
         expect(range.endMs).toBe(new Date(2027, 0, 1).getTime());
     });
 
+    it('parses three-digit year date tokens with @ prefix', () => {
+        const tokens = parseFilterSearchTokens('@999');
+        expect(tokens.mode).toBe('filter');
+        expect(tokens.dateRanges).toHaveLength(1);
+        expect(tokens.excludeDateRanges).toEqual([]);
+
+        const range = tokens.dateRanges[0];
+        expect(range.field).toBe('default');
+        expect(range.startMs).toBe(createLocalDate(999, 0, 1).getTime());
+        expect(range.endMs).toBe(createLocalDate(1000, 0, 1).getTime());
+    });
+
+    it('parses zero-padded pre-1000 year date tokens with @ prefix', () => {
+        const tokens = parseFilterSearchTokens('@0999');
+        expect(tokens.mode).toBe('filter');
+        expect(tokens.dateRanges).toHaveLength(1);
+
+        const range = tokens.dateRanges[0];
+        expect(range.startMs).toBe(createLocalDate(999, 0, 1).getTime());
+        expect(range.endMs).toBe(createLocalDate(1000, 0, 1).getTime());
+    });
+
     it('parses year/month date tokens with @ prefix', () => {
         const tokens = parseFilterSearchTokens('@2026-02');
         expect(tokens.mode).toBe('filter');
@@ -306,6 +335,17 @@ describe('parseFilterSearchTokens', () => {
         expect(range.field).toBe('default');
         expect(range.startMs).toBe(new Date(2026, 1, 1).getTime());
         expect(range.endMs).toBe(new Date(2026, 2, 1).getTime());
+    });
+
+    it('parses pre-1000 year/month date tokens with @ prefix', () => {
+        const tokens = parseFilterSearchTokens('@999-02');
+        expect(tokens.mode).toBe('filter');
+        expect(tokens.dateRanges).toHaveLength(1);
+        expect(tokens.excludeDateRanges).toEqual([]);
+
+        const range = tokens.dateRanges[0];
+        expect(range.startMs).toBe(createLocalDate(999, 1, 1).getTime());
+        expect(range.endMs).toBe(createLocalDate(999, 2, 1).getTime());
     });
 
     it('parses year/week date tokens with @ prefix', () => {
@@ -354,6 +394,17 @@ describe('parseFilterSearchTokens', () => {
         expect(range.field).toBe('default');
         expect(range.startMs).toBe(new Date(2026, 1, 13).getTime());
         expect(range.endMs).toBe(new Date(2026, 1, 14).getTime());
+    });
+
+    it('parses pre-1000 day date tokens with separators', () => {
+        const tokens = parseFilterSearchTokens('@999-02-13');
+        expect(tokens.mode).toBe('filter');
+        expect(tokens.dateRanges).toHaveLength(1);
+        expect(tokens.excludeDateRanges).toEqual([]);
+
+        const range = tokens.dateRanges[0];
+        expect(range.startMs).toBe(createLocalDate(999, 1, 13).getTime());
+        expect(range.endMs).toBe(createLocalDate(999, 1, 14).getTime());
     });
 
     it('parses date ranges using .. with open ends', () => {
@@ -895,6 +946,16 @@ describe('fileMatchesDateFilterTokens', () => {
                 { created: 0, modified: new Date(2026, 1, 5, 12, 0, 0).getTime(), defaultField: 'modified' },
                 tokens
             )
+        ).toBe(false);
+    });
+
+    it('matches timestamps inside three-digit year filters', () => {
+        const tokens = parseFilterSearchTokens('@999');
+        const timestamp = createLocalDate(999, 6, 1).getTime();
+
+        expect(fileMatchesDateFilterTokens({ created: 0, modified: timestamp, defaultField: 'modified' }, tokens)).toBe(true);
+        expect(
+            fileMatchesDateFilterTokens({ created: 0, modified: createLocalDate(1000, 0, 1).getTime(), defaultField: 'modified' }, tokens)
         ).toBe(false);
     });
 
