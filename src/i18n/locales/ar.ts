@@ -1413,11 +1413,16 @@ export const STRINGS_AR = {
                     dailyNote: 'ملاحظة يومية',
                     weeklyNote: 'ملاحظة أسبوعية',
                     monthlyNote: 'ملاحظة شهرية',
-                    quarterlyNote: 'ملاحظة ربع سنوية'
+                    quarterlyNote: 'ملاحظة ربع سنوية',
+                    yearlyNote: 'ملاحظة سنوية'
                 },
                 file: {
                     name: 'ملف بدء التشغيل',
                     empty: 'لم يتم اختيار ملف'
+                },
+                createMissing: {
+                    name: 'إنشاء ملاحظة إذا كانت مفقودة',
+                    desc: 'إنشاء الملاحظة الدورية عند بدء التشغيل أو عبر الأمر إذا لم تكن موجودة.'
                 }
             },
             excludedNotes: {

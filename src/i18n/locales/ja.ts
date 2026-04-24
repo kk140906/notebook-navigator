@@ -1459,11 +1459,16 @@ export const STRINGS_JA = {
                     dailyNote: 'デイリーノート',
                     weeklyNote: 'ウィークリーノート',
                     monthlyNote: 'マンスリーノート',
-                    quarterlyNote: 'クォータリーノート'
+                    quarterlyNote: 'クォータリーノート',
+                    yearlyNote: 'イヤリーノート'
                 },
                 file: {
                     name: '起動ファイル',
                     empty: 'ファイルが選択されていません'
+                },
+                createMissing: {
+                    name: 'ノートが存在しない場合に作成',
+                    desc: '起動時またはコマンド実行時に、定期ノートが存在しなければ作成します。'
                 }
             },
             showFileDate: {

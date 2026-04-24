@@ -1415,11 +1415,16 @@ export const STRINGS_ID = {
                     dailyNote: 'Catatan harian',
                     weeklyNote: 'Catatan mingguan',
                     monthlyNote: 'Catatan bulanan',
-                    quarterlyNote: 'Catatan kuartalan'
+                    quarterlyNote: 'Catatan kuartalan',
+                    yearlyNote: 'Catatan tahunan'
                 },
                 file: {
                     name: 'File awal',
                     empty: 'Tidak ada file dipilih'
+                },
+                createMissing: {
+                    name: 'Buat catatan jika tidak ada',
+                    desc: 'Membuat catatan berkala saat startup atau perintah jika belum ada.'
                 }
             },
             excludedNotes: {

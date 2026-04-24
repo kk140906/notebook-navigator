@@ -77,9 +77,10 @@ export interface ReleaseNote {
  */
 const RELEASE_NOTES: ReleaseNote[] = [
     {
-        version: '2.5.9',
+        version: '2.6.0',
         date: '2026-04-24',
         showOnUpdate: true,
+        bannerUrl: true,
         new: [
             '==Variable line height for title and preview text in list pane==. If you chooose 3 lines for title or preview, notes will display without spacing with variable lines.',
             'New style setting: Calendar > ==Active day outline thickness==.',

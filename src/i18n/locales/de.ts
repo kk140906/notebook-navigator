@@ -1463,11 +1463,16 @@ export const STRINGS_DE = {
                     dailyNote: 'Tagesnotiz',
                     weeklyNote: 'Wochennotiz',
                     monthlyNote: 'Monatsnotiz',
-                    quarterlyNote: 'Quartalsnotiz'
+                    quarterlyNote: 'Quartalsnotiz',
+                    yearlyNote: 'Jahresnotiz'
                 },
                 file: {
                     name: 'Startdatei',
                     empty: 'Keine Datei ausgewählt'
+                },
+                createMissing: {
+                    name: 'Notiz erstellen, falls nicht vorhanden',
+                    desc: 'Erstellt die periodische Notiz beim Start oder per Befehl, falls sie nicht existiert.'
                 }
             },
             showFileDate: {

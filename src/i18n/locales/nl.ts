@@ -1417,11 +1417,16 @@ export const STRINGS_NL = {
                     dailyNote: 'Dagnotitie',
                     weeklyNote: 'Weeknotitie',
                     monthlyNote: 'Maandnotitie',
-                    quarterlyNote: 'Kwartaalnotitie'
+                    quarterlyNote: 'Kwartaalnotitie',
+                    yearlyNote: 'Jaarnotitie'
                 },
                 file: {
                     name: 'Opstartbestand',
                     empty: 'Geen bestand geselecteerd'
+                },
+                createMissing: {
+                    name: 'Notitie aanmaken als deze ontbreekt',
+                    desc: 'Maakt de periodieke notitie aan bij opstarten of via opdracht als deze niet bestaat.'
                 }
             },
             excludedNotes: {

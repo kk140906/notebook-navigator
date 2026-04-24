@@ -1465,11 +1465,16 @@ export const STRINGS_FR = {
                     dailyNote: 'Note quotidienne',
                     weeklyNote: 'Note hebdomadaire',
                     monthlyNote: 'Note mensuelle',
-                    quarterlyNote: 'Note trimestrielle'
+                    quarterlyNote: 'Note trimestrielle',
+                    yearlyNote: 'Note annuelle'
                 },
                 file: {
                     name: 'Fichier de démarrage',
                     empty: 'Aucun fichier sélectionné'
+                },
+                createMissing: {
+                    name: 'Créer la note si absente',
+                    desc: "Crée la note périodique au démarrage ou via la commande si elle n'existe pas."
                 }
             },
             showFileDate: {

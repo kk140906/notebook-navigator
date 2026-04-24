@@ -1416,11 +1416,16 @@ export const STRINGS_VI = {
                     dailyNote: 'Ghi chú hàng ngày',
                     weeklyNote: 'Ghi chú hàng tuần',
                     monthlyNote: 'Ghi chú hàng tháng',
-                    quarterlyNote: 'Ghi chú hàng quý'
+                    quarterlyNote: 'Ghi chú hàng quý',
+                    yearlyNote: 'Ghi chú hàng năm'
                 },
                 file: {
                     name: 'Tệp khởi động',
                     empty: 'Chưa chọn tệp'
+                },
+                createMissing: {
+                    name: 'Tạo ghi chú nếu thiếu',
+                    desc: 'Tạo ghi chú định kỳ khi khởi động hoặc qua lệnh nếu chưa tồn tại.'
                 }
             },
             excludedNotes: {

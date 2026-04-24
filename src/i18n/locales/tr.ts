@@ -1415,11 +1415,16 @@ export const STRINGS_TR = {
                     dailyNote: 'Günlük not',
                     weeklyNote: 'Haftalık not',
                     monthlyNote: 'Aylık not',
-                    quarterlyNote: 'Çeyreklik not'
+                    quarterlyNote: 'Çeyreklik not',
+                    yearlyNote: 'Yıllık not'
                 },
                 file: {
                     name: 'Başlangıç dosyası',
                     empty: 'Dosya seçilmedi'
+                },
+                createMissing: {
+                    name: 'Not yoksa oluştur',
+                    desc: 'Başlangıçta veya komutla, periyodik not yoksa oluşturur.'
                 }
             },
             excludedNotes: {

@@ -1412,11 +1412,16 @@ export const STRINGS_UK = {
                     dailyNote: 'Щоденна нотатка',
                     weeklyNote: 'Щотижнева нотатка',
                     monthlyNote: 'Щомісячна нотатка',
-                    quarterlyNote: 'Щоквартальна нотатка'
+                    quarterlyNote: 'Щоквартальна нотатка',
+                    yearlyNote: 'Щорічна нотатка'
                 },
                 file: {
                     name: 'Файл запуску',
                     empty: 'Файл не вибрано'
+                },
+                createMissing: {
+                    name: 'Створити нотатку, якщо її немає',
+                    desc: 'Створює періодичну нотатку під час запуску або за командою, якщо її не існує.'
                 }
             },
             excludedNotes: {

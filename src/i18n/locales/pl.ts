@@ -1418,11 +1418,16 @@ export const STRINGS_PL = {
                     dailyNote: 'Notatka dzienna',
                     weeklyNote: 'Notatka tygodniowa',
                     monthlyNote: 'Notatka miesięczna',
-                    quarterlyNote: 'Notatka kwartalna'
+                    quarterlyNote: 'Notatka kwartalna',
+                    yearlyNote: 'Notatka roczna'
                 },
                 file: {
                     name: 'Plik startowy',
                     empty: 'Nie wybrano pliku'
+                },
+                createMissing: {
+                    name: 'Utwórz notatkę, jeśli jej brak',
+                    desc: 'Tworzy notatkę okresową podczas uruchamiania lub po wywołaniu polecenia, jeśli nie istnieje.'
                 }
             },
             excludedNotes: {

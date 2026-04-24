@@ -1452,11 +1452,16 @@ export const STRINGS_ZH_CN = {
                     dailyNote: '日记',
                     weeklyNote: '周记',
                     monthlyNote: '月记',
-                    quarterlyNote: '季度笔记'
+                    quarterlyNote: '季度笔记',
+                    yearlyNote: '年度笔记'
                 },
                 file: {
                     name: '启动文件',
                     empty: '未选择文件'
+                },
+                createMissing: {
+                    name: '不存在时创建笔记',
+                    desc: '启动或执行命令时，如果定期笔记不存在则创建。'
                 }
             },
             showFileDate: {

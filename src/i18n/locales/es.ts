@@ -1463,11 +1463,16 @@ export const STRINGS_ES = {
                     dailyNote: 'Nota diaria',
                     weeklyNote: 'Nota semanal',
                     monthlyNote: 'Nota mensual',
-                    quarterlyNote: 'Nota trimestral'
+                    quarterlyNote: 'Nota trimestral',
+                    yearlyNote: 'Nota anual'
                 },
                 file: {
                     name: 'Archivo de inicio',
                     empty: 'Ningún archivo seleccionado'
+                },
+                createMissing: {
+                    name: 'Crear nota si no existe',
+                    desc: 'Crea la nota periódica al iniciar o mediante el comando si no existe.'
                 }
             },
             showFileDate: {

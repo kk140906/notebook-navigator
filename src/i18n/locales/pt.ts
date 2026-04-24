@@ -1417,11 +1417,16 @@ export const STRINGS_PT = {
                     dailyNote: 'Nota diária',
                     weeklyNote: 'Nota semanal',
                     monthlyNote: 'Nota mensal',
-                    quarterlyNote: 'Nota trimestral'
+                    quarterlyNote: 'Nota trimestral',
+                    yearlyNote: 'Nota anual'
                 },
                 file: {
                     name: 'Ficheiro de arranque',
                     empty: 'Nenhum ficheiro selecionado'
+                },
+                createMissing: {
+                    name: 'Criar nota se não existir',
+                    desc: 'Cria a nota periódica ao iniciar ou através do comando se não existir.'
                 }
             },
             excludedNotes: {

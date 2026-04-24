@@ -1415,11 +1415,16 @@ export const STRINGS_FA = {
                     dailyNote: 'یادداشت روزانه',
                     weeklyNote: 'یادداشت هفتگی',
                     monthlyNote: 'یادداشت ماهانه',
-                    quarterlyNote: 'یادداشت فصلی'
+                    quarterlyNote: 'یادداشت فصلی',
+                    yearlyNote: 'یادداشت سالانه'
                 },
                 file: {
                     name: 'فایل راه‌اندازی',
                     empty: 'فایلی انتخاب نشده'
+                },
+                createMissing: {
+                    name: 'ایجاد یادداشت در صورت عدم وجود',
+                    desc: 'در صورت عدم وجود، یادداشت دوره‌ای را هنگام راه‌اندازی یا با فرمان ایجاد می‌کند.'
                 }
             },
             excludedNotes: {

@@ -1280,6 +1280,10 @@ export default class NotebookNavigatorPlugin extends Plugin implements ISettings
         return this.homepageController?.resolveHomepageFile() ?? null;
     }
 
+    public canOpenHomepage(): boolean {
+        return this.homepageController?.canOpenHomepage() ?? false;
+    }
+
     public async openHomepage(trigger: 'startup' | 'command'): Promise<boolean> {
         return this.homepageController?.open(trigger) ?? false;
     }

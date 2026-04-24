@@ -16,11 +16,13 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { describe, expect, it, vi } from 'vitest';
-import type { WorkspaceLeaf } from 'obsidian';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+import { TFolder, type WorkspaceLeaf } from 'obsidian';
 import type NotebookNavigatorPlugin from '../../src/main';
 import HomepageController from '../../src/services/workspace/HomepageController';
 import type WorkspaceCoordinator from '../../src/services/workspace/WorkspaceCoordinator';
+import { DEFAULT_SETTINGS } from '../../src/settings/defaultSettings';
+import { resetMomentApiCacheForTests } from '../../src/utils/moment';
 import { createTestTFile } from '../utils/createTestTFile';
 
 vi.mock('obsidian', async importOriginal => {
@@ -32,6 +34,55 @@ vi.mock('obsidian', async importOriginal => {
         ...actual,
         FileView
     };
+});
+
+function createMomentApiForYear(year: number) {
+    class TestMoment {
+        constructor(private readonly value: number) {}
+
+        clone(): TestMoment {
+            return new TestMoment(this.value);
+        }
+
+        format(format?: string): string {
+            if (!format) {
+                return this.value.toString();
+            }
+            return format.replace(/YYYY/g, this.value.toString());
+        }
+
+        isValid(): boolean {
+            return true;
+        }
+
+        locale(): TestMoment {
+            return this;
+        }
+
+        startOf(): TestMoment {
+            return this;
+        }
+    }
+
+    const momentApi = vi.fn((input?: string) => {
+        if (typeof input === 'string') {
+            const parsedYear = Number.parseInt(input.slice(0, 4), 10);
+            return new TestMoment(Number.isFinite(parsedYear) ? parsedYear : year);
+        }
+        return new TestMoment(year);
+    });
+
+    return Object.assign(momentApi, {
+        locales: () => ['en'],
+        locale: () => 'en',
+        fn: {},
+        utc: vi.fn()
+    });
+}
+
+afterEach(() => {
+    resetMomentApiCacheForTests();
+    vi.unstubAllGlobals();
 });
 
 describe('HomepageController', () => {
@@ -67,7 +118,8 @@ describe('HomepageController', () => {
             settings: {
                 homepage: {
                     source: 'file',
-                    file: file.path
+                    file: file.path,
+                    createMissingPeriodicNote: false
                 },
                 autoRevealActiveFile: true,
                 startView: 'navigation'
@@ -93,5 +145,113 @@ describe('HomepageController', () => {
             preserveNavigationFocus: true
         });
         expect(openLinkText).not.toHaveBeenCalled();
+    });
+
+    it('does not create a missing periodic homepage when creation is disabled', async () => {
+        const momentApi = createMomentApiForYear(2026);
+        vi.stubGlobal('window', { moment: momentApi });
+        resetMomentApiCacheForTests();
+
+        const root = new TFolder();
+        root.path = '/';
+        const createNewMarkdownFile = vi.fn();
+        const openLinkText = vi.fn().mockResolvedValue(undefined);
+        const app = {
+            vault: {
+                getAbstractFileByPath: vi.fn(() => null),
+                getRoot: () => root,
+                createFolder: vi.fn()
+            },
+            fileManager: {
+                createNewMarkdownFile
+            },
+            workspace: {
+                getLeavesOfType: vi.fn(() => []),
+                openLinkText
+            }
+        };
+
+        const settings = structuredClone(DEFAULT_SETTINGS);
+        settings.homepage = {
+            source: 'yearly-note',
+            file: null,
+            createMissingPeriodicNote: false
+        };
+
+        const plugin = {
+            app,
+            settings,
+            isShuttingDown: () => false
+        } as unknown as NotebookNavigatorPlugin;
+
+        const workspaceCoordinator = {
+            revealFileInNearestFolder: vi.fn()
+        } as unknown as WorkspaceCoordinator;
+
+        const controller = new HomepageController(plugin, workspaceCoordinator);
+
+        const result = await controller.open('startup');
+
+        expect(result).toBe(false);
+        expect(createNewMarkdownFile).not.toHaveBeenCalled();
+        expect(openLinkText).not.toHaveBeenCalled();
+    });
+
+    it('creates and opens a missing yearly homepage when creation is enabled', async () => {
+        const momentApi = createMomentApiForYear(2026);
+        vi.stubGlobal('window', { moment: momentApi });
+        resetMomentApiCacheForTests();
+
+        const root = new TFolder();
+        root.path = '/';
+        const files = new Map<string, ReturnType<typeof createTestTFile>>();
+        const openLinkText = vi.fn().mockResolvedValue(undefined);
+        const createNewMarkdownFile = vi.fn(async (_folder: TFolder, baseName: string) => {
+            const file = createTestTFile(`${baseName}.md`);
+            files.set(file.path, file);
+            return file;
+        });
+        const app = {
+            vault: {
+                getAbstractFileByPath: vi.fn((path: string) => files.get(path) ?? null),
+                getRoot: () => root,
+                createFolder: vi.fn()
+            },
+            fileManager: {
+                createNewMarkdownFile
+            },
+            workspace: {
+                getLeavesOfType: vi.fn(() => []),
+                openLinkText
+            }
+        };
+
+        const settings = structuredClone(DEFAULT_SETTINGS);
+        settings.homepage = {
+            source: 'yearly-note',
+            file: null,
+            createMissingPeriodicNote: true
+        };
+        settings.calendarCustomYearPattern = 'YYYY';
+
+        const plugin = {
+            app,
+            settings,
+            isShuttingDown: () => false
+        } as unknown as NotebookNavigatorPlugin;
+
+        const workspaceCoordinator = {
+            revealFileInNearestFolder: vi.fn()
+        } as unknown as WorkspaceCoordinator;
+
+        const controller = new HomepageController(plugin, workspaceCoordinator);
+
+        expect(controller.canOpenHomepage()).toBe(true);
+
+        const result = await controller.open('startup');
+
+        expect(result).toBe(true);
+        expect(createNewMarkdownFile).toHaveBeenCalledWith(root, '2026');
+        expect(openLinkText).toHaveBeenCalledWith('2026.md', '', false);
     });
 });

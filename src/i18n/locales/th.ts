@@ -1411,11 +1411,16 @@ export const STRINGS_TH = {
                     dailyNote: 'บันทึกรายวัน',
                     weeklyNote: 'บันทึกรายสัปดาห์',
                     monthlyNote: 'บันทึกรายเดือน',
-                    quarterlyNote: 'บันทึกรายไตรมาส'
+                    quarterlyNote: 'บันทึกรายไตรมาส',
+                    yearlyNote: 'บันทึกรายปี'
                 },
                 file: {
                     name: 'ไฟล์เริ่มต้น',
                     empty: 'ไม่ได้เลือกไฟล์'
+                },
+                createMissing: {
+                    name: 'สร้างบันทึกหากไม่มี',
+                    desc: 'สร้างบันทึกเป็นระยะเมื่อเริ่มต้นหรือเมื่อใช้คำสั่ง หากยังไม่มี'
                 }
             },
             excludedNotes: {

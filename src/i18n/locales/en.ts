@@ -1411,11 +1411,16 @@ export const STRINGS_EN = {
                     dailyNote: 'Daily note',
                     weeklyNote: 'Weekly note',
                     monthlyNote: 'Monthly note',
-                    quarterlyNote: 'Quarterly note'
+                    quarterlyNote: 'Quarterly note',
+                    yearlyNote: 'Yearly note'
                 },
                 file: {
                     name: 'Startup file',
                     empty: 'No file selected'
+                },
+                createMissing: {
+                    name: 'Create note if missing',
+                    desc: 'Create the periodic note on startup or command if it does not exist.'
                 }
             },
             excludedNotes: {

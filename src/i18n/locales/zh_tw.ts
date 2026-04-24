@@ -1452,11 +1452,16 @@ export const STRINGS_ZH_TW = {
                     dailyNote: '日記',
                     weeklyNote: '週記',
                     monthlyNote: '月記',
-                    quarterlyNote: '季度筆記'
+                    quarterlyNote: '季度筆記',
+                    yearlyNote: '年度筆記'
                 },
                 file: {
                     name: '啟動檔案',
                     empty: '未選擇檔案'
+                },
+                createMissing: {
+                    name: '不存在時建立筆記',
+                    desc: '啟動或執行命令時，如果定期筆記不存在則建立。'
                 }
             },
             showFileDate: {

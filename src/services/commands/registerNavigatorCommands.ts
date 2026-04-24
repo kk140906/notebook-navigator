@@ -654,8 +654,7 @@ export default function registerNavigatorCommands(plugin: NotebookNavigatorPlugi
         id: 'open-homepage',
         name: strings.commands.openHomepage,
         checkCallback: (checking: boolean) => {
-            const homepageFile = plugin.resolveHomepageFile();
-            if (!homepageFile) {
+            if (!plugin.canOpenHomepage()) {
                 return false;
             }
 
