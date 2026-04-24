@@ -27,7 +27,7 @@ import { getDBInstanceOrNull, isShutdownInProgress, waitForDatabaseInitializatio
 import { runAsyncAction } from '../../utils/async';
 import { getCalendarCustomWeekAnchorUnit } from '../../utils/calendarCustomNotePatterns';
 import { getDailyNoteFile, getDailyNoteSettings as getCoreDailyNoteSettings } from '../../utils/dailyNotes';
-import { getMomentApi, resolveCalendarLocales, type MomentInstance } from '../../utils/moment';
+import { getMomentApi, resolveCalendarLocales, resolveDailyNoteLocale, type MomentInstance } from '../../utils/moment';
 import { useFileOpener } from '../../hooks/useFileOpener';
 import { useLocalDayKey } from '../../hooks/useLocalDayKey';
 import { extractFrontmatterName } from '../../utils/metadataExtractor';
@@ -404,6 +404,7 @@ export function Calendar({
         () => resolveCalendarLocales(settings.calendarLocale, momentApi, currentLanguage),
         [currentLanguage, momentApi, settings.calendarLocale]
     );
+    const dailyNoteLocale = resolveDailyNoteLocale(momentApi);
 
     useEffect(() => {
         setCursorDate(previousCursorDate => previousCursorDate?.clone().locale(displayLocale) ?? previousCursorDate);
@@ -480,6 +481,7 @@ export function Calendar({
         customCalendarRootFolderSettings,
         dailyNoteSettings,
         dayNoteResolverContext,
+        dailyNoteLocale,
         calendarRulesLocale,
         momentApi,
         settings.calendarIntegrationMode,
@@ -507,7 +509,7 @@ export function Calendar({
                     momentApi
                 });
             } else if (settings.calendarIntegrationMode === 'daily-notes' && dailyNoteSettings) {
-                existingFile = getDailyNoteFile(app, date.clone().locale(calendarRulesLocale), dailyNoteSettings);
+                existingFile = getDailyNoteFile(app, date.clone().locale(dailyNoteLocale), dailyNoteSettings);
             }
 
             dayNoteFileLookupCacheRef.current.set(iso, existingFile);
@@ -518,6 +520,7 @@ export function Calendar({
             canResolveCustomDayNotes,
             customCalendarRootFolderSettings,
             dailyNoteSettings,
+            dailyNoteLocale,
             dayNoteResolverContext,
             calendarRulesLocale,
             momentApi,
@@ -541,7 +544,7 @@ export function Calendar({
 
                 const folderPattern = escapeMomentLiteralPath(dailyNoteSettings.folder);
                 const fullPattern = folderPattern ? `${folderPattern}/${dailyNoteSettings.format}` : dailyNoteSettings.format;
-                const parsedDate = momentApi(pathWithoutExtension, fullPattern, calendarRulesLocale, true);
+                const parsedDate = momentApi(pathWithoutExtension, fullPattern, dailyNoteLocale, true);
                 if (!parsedDate.isValid()) {
                     return null;
                 }
@@ -584,6 +587,7 @@ export function Calendar({
             canResolveCustomDayNotes,
             customCalendarRootFolderSettings.calendarCustomRootFolder,
             dailyNoteSettings,
+            dailyNoteLocale,
             dayNoteResolverContext.momentPattern,
             calendarRulesLocale,
             getExistingDayNoteFile,
@@ -1035,6 +1039,7 @@ export function Calendar({
             settings,
             dailyNoteSettings,
             momentApi,
+            dailyNoteLocale,
             calendarLocale: calendarRulesLocale,
             weekLocale: calendarRulesLocale,
             customCalendarRootFolderSettings,

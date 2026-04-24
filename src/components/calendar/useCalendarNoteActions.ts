@@ -47,6 +47,7 @@ interface UseCalendarNoteActionsOptions {
     settings: NotebookNavigatorSettings;
     dailyNoteSettings: DailyNoteSettings | null;
     momentApi: MomentApi | null;
+    dailyNoteLocale: string;
     calendarLocale: string;
     weekLocale: string;
     customCalendarRootFolderSettings: CalendarNoteRootFolderSettings;
@@ -73,6 +74,7 @@ export function useCalendarNoteActions({
     settings,
     dailyNoteSettings,
     momentApi,
+    dailyNoteLocale,
     calendarLocale,
     weekLocale,
     customCalendarRootFolderSettings,
@@ -207,7 +209,7 @@ export function useCalendarNoteActions({
                     return;
                 }
 
-                const localizedDate = date.clone().locale(calendarLocale);
+                const localizedDate = date.clone().locale(dailyNoteLocale);
                 const filename = getDailyNoteFilename(localizedDate, resolvedDailySettings);
 
                 const createFile = async () => {
@@ -243,8 +245,8 @@ export function useCalendarNoteActions({
         },
         [
             app,
-            calendarLocale,
             collapseNavigationIfMobile,
+            dailyNoteLocale,
             dailyNoteSettings,
             onVaultChange,
             openFile,

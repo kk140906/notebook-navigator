@@ -77,7 +77,7 @@ export interface ReleaseNote {
  */
 const RELEASE_NOTES: ReleaseNote[] = [
     {
-        version: '2.6.0',
+        version: '2.6.1',
         date: '2026-04-24',
         showOnUpdate: true,
         bannerUrl: true,
@@ -94,6 +94,7 @@ const RELEASE_NOTES: ReleaseNote[] = [
         fixed: [
             'Fixed getting stuck in list pane in single pane mode when multi-selecting tags or properties in navigation pane.',
             'Date filters now parse years before year 1000 correctly.',
+            'Core Daily Notes lookup and creation now use the current Moment locale instead of Calendar > Locale.',
             'Metadata cleanup now preserves metadata for hidden tags and nested tag separators.',
             'Settings: General > Show tooltips now also works for shortcuts and recent files.'
         ]

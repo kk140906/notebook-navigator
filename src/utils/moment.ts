@@ -189,3 +189,8 @@ export function resolveCalendarLocales(
         calendarRulesLocale: resolvedCalendarRulesLocale
     };
 }
+
+export function resolveDailyNoteLocale(momentApi: MomentApi | null): string {
+    const fallbackLocale = momentApi?.locale() || 'en';
+    return resolveMomentLocale(fallbackLocale, momentApi, fallbackLocale);
+}

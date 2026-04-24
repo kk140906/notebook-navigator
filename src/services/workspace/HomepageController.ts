@@ -33,7 +33,7 @@ import {
 } from '../../utils/calendarNotes';
 import { createDailyNote, getDailyNoteFile, getDailyNoteSettings } from '../../utils/dailyNotes';
 import { getCurrentLanguage } from '../../i18n';
-import { getMomentApi, resolveCalendarLocales } from '../../utils/moment';
+import { getMomentApi, resolveCalendarLocales, resolveDailyNoteLocale } from '../../utils/moment';
 import { getActiveVaultProfile } from '../../utils/vaultProfiles';
 import type { HomepageSource } from '../../settings/types';
 
@@ -302,7 +302,7 @@ export default class HomepageController {
 
         const currentLanguage = getCurrentLanguage();
         const { calendarRulesLocale } = resolveCalendarLocales(this.plugin.settings.calendarLocale, momentApi, currentLanguage);
-        const date = momentApi().startOf('day').locale(calendarRulesLocale);
+        const date = momentApi().startOf('day');
 
         if (kind === 'day' && this.plugin.settings.calendarIntegrationMode === 'daily-notes') {
             const dailyNoteSettings = getDailyNoteSettings(this.plugin.app);
@@ -310,7 +310,7 @@ export default class HomepageController {
                 return null;
             }
 
-            return getDailyNoteFile(this.plugin.app, date, dailyNoteSettings);
+            return getDailyNoteFile(this.plugin.app, date.clone().locale(resolveDailyNoteLocale(momentApi)), dailyNoteSettings);
         }
 
         const config = getCalendarNoteConfig(kind, this.plugin.settings);
@@ -339,7 +339,7 @@ export default class HomepageController {
 
         const currentLanguage = getCurrentLanguage();
         const { calendarRulesLocale } = resolveCalendarLocales(this.plugin.settings.calendarLocale, momentApi, currentLanguage);
-        const date = momentApi().startOf('day').locale(calendarRulesLocale);
+        const date = momentApi().startOf('day');
 
         if (kind === 'day' && this.plugin.settings.calendarIntegrationMode === 'daily-notes') {
             const dailyNoteSettings = getDailyNoteSettings(this.plugin.app);
@@ -347,7 +347,7 @@ export default class HomepageController {
                 return null;
             }
 
-            return createDailyNote(this.plugin.app, date, dailyNoteSettings);
+            return createDailyNote(this.plugin.app, date.clone().locale(resolveDailyNoteLocale(momentApi)), dailyNoteSettings);
         }
 
         const config = getCalendarNoteConfig(kind, this.plugin.settings);

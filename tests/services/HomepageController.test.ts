@@ -80,6 +80,46 @@ function createMomentApiForYear(year: number) {
     });
 }
 
+function createMomentApiForDailyNoteLocale() {
+    class TestMoment {
+        constructor(private readonly localeId: string = 'en-gb') {}
+
+        clone(): TestMoment {
+            return new TestMoment(this.localeId);
+        }
+
+        format(format?: string): string {
+            if (!format) {
+                return '';
+            }
+
+            const monthName = this.localeId === 'uk' ? 'квітень' : 'April';
+            return format.replace(/YYYY/g, '2026').replace(/MMMM/g, monthName).replace(/MM/g, '04').replace(/DD/g, '24');
+        }
+
+        isValid(): boolean {
+            return true;
+        }
+
+        locale(locale: string): TestMoment {
+            return new TestMoment(locale);
+        }
+
+        startOf(): TestMoment {
+            return this;
+        }
+    }
+
+    const momentApi = vi.fn(() => new TestMoment());
+
+    return Object.assign(momentApi, {
+        locales: () => ['en-gb', 'uk'],
+        locale: () => 'en-gb',
+        fn: {},
+        utc: vi.fn()
+    });
+}
+
 afterEach(() => {
     resetMomentApiCacheForTests();
     vi.unstubAllGlobals();
@@ -253,5 +293,68 @@ describe('HomepageController', () => {
         expect(result).toBe(true);
         expect(createNewMarkdownFile).toHaveBeenCalledWith(root, '2026');
         expect(openLinkText).toHaveBeenCalledWith('2026.md', '', false);
+    });
+
+    it('resolves core Daily Notes using the current moment locale instead of the selected calendar locale', async () => {
+        const momentApi = createMomentApiForDailyNoteLocale();
+        vi.stubGlobal('window', { moment: momentApi });
+        resetMomentApiCacheForTests();
+
+        const file = createTestTFile('Daily/2026-April-24.md');
+        const getAbstractFileByPath = vi.fn((path: string) => (path === file.path ? file : null));
+        const openLinkText = vi.fn().mockResolvedValue(undefined);
+        const app = {
+            internalPlugins: {
+                getPluginById: vi.fn((pluginId: string) =>
+                    pluginId === 'daily-notes'
+                        ? {
+                              enabled: true,
+                              instance: {
+                                  options: {
+                                      folder: 'Daily',
+                                      format: 'YYYY-MMMM-DD',
+                                      template: ''
+                                  }
+                              }
+                          }
+                        : undefined
+                )
+            },
+            vault: {
+                getAbstractFileByPath
+            },
+            workspace: {
+                getLeavesOfType: vi.fn(() => []),
+                openLinkText
+            }
+        };
+
+        const settings = structuredClone(DEFAULT_SETTINGS);
+        settings.calendarIntegrationMode = 'daily-notes';
+        settings.calendarLocale = 'uk';
+        settings.homepage = {
+            source: 'daily-note',
+            file: null,
+            createMissingPeriodicNote: false
+        };
+
+        const plugin = {
+            app,
+            settings,
+            isShuttingDown: () => false
+        } as unknown as NotebookNavigatorPlugin;
+
+        const workspaceCoordinator = {
+            revealFileInNearestFolder: vi.fn()
+        } as unknown as WorkspaceCoordinator;
+
+        const controller = new HomepageController(plugin, workspaceCoordinator);
+
+        const result = await controller.open('startup');
+
+        expect(result).toBe(true);
+        expect(getAbstractFileByPath).toHaveBeenCalledWith('Daily/2026-April-24.md');
+        expect(getAbstractFileByPath).not.toHaveBeenCalledWith('Daily/2026-квітень-24.md');
+        expect(openLinkText).toHaveBeenCalledWith(file.path, '', false);
     });
 });
