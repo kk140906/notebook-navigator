@@ -78,14 +78,15 @@ export interface ReleaseNote {
 const RELEASE_NOTES: ReleaseNote[] = [
     {
         version: '2.5.9',
-        date: '2026-04-25',
+        date: '2026-04-24',
         showOnUpdate: true,
         new: [
-            'Variable line height for title and preview text in list pane. If you chooose 3 lines for title or preview, notes will display without spacing with variable lines.',
-            'New style setting: Calendar > ==Active day outline thickness==.'
+            '==Variable line height for title and preview text in list pane==. If you chooose 3 lines for title or preview, notes will display without spacing with variable lines.',
+            'New style setting: Calendar > ==Active day outline thickness==.',
+            'New Setting: General > Homepage > ==Create note if missing==. When enabled, the daily, weekly, monthly, quarterly, or yearly note will be automatically created on startup if missing.'
         ],
         improved: ['Navigation tree now shows AND/OR icons when multiselecting tags and properties (command or shift + command).'],
-        changed: [],
+        changed: ['Settings: ==General > Homepage== now includes yearly notes as an option.'],
         fixed: [
             'Fixed getting stuck in list pane in single pane mode when multi-selecting tags or properties in navigation pane.',
             'Date filters now parse years before year 1000 correctly.',
