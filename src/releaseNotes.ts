@@ -77,6 +77,14 @@ export interface ReleaseNote {
  */
 const RELEASE_NOTES: ReleaseNote[] = [
     {
+        version: '2.6.2',
+        date: '2026-04-25',
+        showOnUpdate: false,
+        changed: [
+            'Due to the way Obsidian displays properties, icon names saved to frontmatter had to be changed to not use colons. For example, Phosphor Apple Logo is now saved as **ph-apple-logo**, Lucide Home is saved as **home**, and folder emoji is saved as **📁**.'
+        ]
+    },
+    {
         version: '2.6.1',
         date: '2026-04-24',
         showOnUpdate: true,
