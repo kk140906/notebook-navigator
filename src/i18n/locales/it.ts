@@ -985,7 +985,7 @@ export const STRINGS_IT = {
             fileNameIconMap: {
                 name: 'Mappa icone per nome',
                 desc: "I file contenenti il testo ottengono l'icona specificata. Una mappatura per riga: testo=icona",
-                placeholder: '# testo=icona\nriunione=LiCalendar\nfattura=PhReceipt',
+                placeholder: '# testo=icona\nriunione=ph-calendar\nfattura=ph-receipt',
                 editTooltip: 'Modifica mappature'
             },
             showCategoryIcons: {
@@ -995,7 +995,7 @@ export const STRINGS_IT = {
             fileTypeIconMap: {
                 name: 'Mappa icone per tipo',
                 desc: "I file con l'estensione ottengono l'icona specificata. Una mappatura per riga: estensione=icona",
-                placeholder: '# Extension=icon\ncpp=LiFileCode\npdf=RaBook',
+                placeholder: '# Extension=icon\ncpp=ph-file-code\npdf=ph-file-pdf',
                 editTooltip: 'Modifica mappature'
             },
             optimizeNoteHeight: {

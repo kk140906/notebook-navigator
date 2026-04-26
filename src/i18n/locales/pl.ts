@@ -991,7 +991,7 @@ export const STRINGS_PL = {
             fileNameIconMap: {
                 name: 'Przypisanie ikonek na podstawie nazwy pliku',
                 desc: 'Pliki zawierające dany tekst otrzymują określoną ikonkę. Jedno przypisanie na linię: tekst=ikonka',
-                placeholder: '# tekst=ikona\nspotkanie=LiCalendar\nfaktura=PhReceipt',
+                placeholder: '# tekst=ikona\nspotkanie=ph-calendar\nfaktura=ph-receipt',
                 editTooltip: 'Edytuj przypisania'
             },
             showCategoryIcons: {
@@ -1001,7 +1001,7 @@ export const STRINGS_PL = {
             fileTypeIconMap: {
                 name: 'Przypisanie ikonek na podstawie typu pliku',
                 desc: 'Pliki z danym rozszerzeniem otrzymują określoną ikonkę. Jedno przypisanie na linię: rozszerzenie=ikonka',
-                placeholder: '# rozszerzenie=ikonka\ncpp=LiFileCode\npdf=RaBook',
+                placeholder: '# rozszerzenie=ikonka\ncpp=ph-file-code\npdf=ph-file-pdf',
                 editTooltip: 'Edytuj przypisania'
             },
             optimizeNoteHeight: {

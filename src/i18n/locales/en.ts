@@ -985,7 +985,7 @@ export const STRINGS_EN = {
             fileNameIconMap: {
                 name: 'File name icon map',
                 desc: 'Files containing the text get the specified icon. One mapping per line: text=icon',
-                placeholder: '# Text=icon\nmeeting=LiCalendar\ninvoice=PhReceipt',
+                placeholder: '# Text=icon\nmeeting=ph-calendar\ninvoice=ph-receipt',
                 editTooltip: 'Edit mappings'
             },
             showCategoryIcons: {
@@ -995,7 +995,7 @@ export const STRINGS_EN = {
             fileTypeIconMap: {
                 name: 'File type icon map',
                 desc: 'Files with the extension get the specified icon. One mapping per line: extension=icon',
-                placeholder: '# Extension=icon\ncpp=LiFileCode\npdf=RaBook',
+                placeholder: '# Extension=icon\ncpp=ph-file-code\npdf=ph-file-pdf',
                 editTooltip: 'Edit mappings'
             },
             optimizeNoteHeight: {

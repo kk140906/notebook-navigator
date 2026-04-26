@@ -991,7 +991,7 @@ export const STRINGS_PT_BR = {
             fileNameIconMap: {
                 name: 'Mapa de ícones por nome',
                 desc: 'Os arquivos contendo o texto recebem o ícone especificado. Um mapeamento por linha: texto=ícone',
-                placeholder: '# texto=ícone\nreunião=LiCalendar\nfatura=PhReceipt',
+                placeholder: '# texto=ícone\nreunião=ph-calendar\nfatura=ph-receipt',
                 editTooltip: 'Editar mapeamentos'
             },
             showCategoryIcons: {
@@ -1001,7 +1001,7 @@ export const STRINGS_PT_BR = {
             fileTypeIconMap: {
                 name: 'Mapa de ícones por tipo',
                 desc: 'Os arquivos com a extensão recebem o ícone especificado. Um mapeamento por linha: extensão=ícone',
-                placeholder: '# Extension=icon\ncpp=LiFileCode\npdf=RaBook',
+                placeholder: '# Extension=icon\ncpp=ph-file-code\npdf=ph-file-pdf',
                 editTooltip: 'Editar mapeamentos'
             },
             optimizeNoteHeight: {

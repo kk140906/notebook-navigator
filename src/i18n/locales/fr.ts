@@ -991,7 +991,7 @@ export const STRINGS_FR = {
             fileNameIconMap: {
                 name: 'Correspondance nom-icône',
                 desc: "Les fichiers contenant le texte obtiennent l'icône spécifiée. Une correspondance par ligne : texte=icône",
-                placeholder: '# texte=icône\nréunion=LiCalendar\nfacture=PhReceipt',
+                placeholder: '# texte=icône\nréunion=ph-calendar\nfacture=ph-receipt',
                 editTooltip: 'Modifier les correspondances'
             },
             showCategoryIcons: {
@@ -1001,7 +1001,7 @@ export const STRINGS_FR = {
             fileTypeIconMap: {
                 name: 'Correspondance type-icône',
                 desc: "Les fichiers avec l'extension obtiennent l'icône spécifiée. Une correspondance par ligne : extension=icône",
-                placeholder: '# Extension=icon\ncpp=LiFileCode\npdf=RaBook',
+                placeholder: '# Extension=icon\ncpp=ph-file-code\npdf=ph-file-pdf',
                 editTooltip: 'Modifier les correspondances'
             },
             optimizeNoteHeight: {

@@ -989,7 +989,7 @@ export const STRINGS_FA = {
             fileNameIconMap: {
                 name: 'نگاشت آیکون نام فایل',
                 desc: 'فایل‌های حاوی متن آیکون مشخص‌شده را دریافت می‌کنند. یک نگاشت در هر خط: متن=آیکون',
-                placeholder: '# متن=آیکون\nجلسه=LiCalendar\nفاکتور=PhReceipt',
+                placeholder: '# متن=آیکون\nجلسه=ph-calendar\nفاکتور=ph-receipt',
                 editTooltip: 'ویرایش نگاشت‌ها'
             },
             showCategoryIcons: {
@@ -999,7 +999,7 @@ export const STRINGS_FA = {
             fileTypeIconMap: {
                 name: 'نگاشت آیکون نوع فایل',
                 desc: 'فایل‌های با پسوند مشخص آیکون مشخص‌شده را دریافت می‌کنند. یک نگاشت در هر خط: پسوند=آیکون',
-                placeholder: '# Extension=icon\ncpp=LiFileCode\npdf=RaBook',
+                placeholder: '# Extension=icon\ncpp=ph-file-code\npdf=ph-file-pdf',
                 editTooltip: 'ویرایش نگاشت‌ها'
             },
             optimizeNoteHeight: {

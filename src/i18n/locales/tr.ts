@@ -989,7 +989,7 @@ export const STRINGS_TR = {
             fileNameIconMap: {
                 name: 'Dosya adı simge eşlemesi',
                 desc: 'Metni içeren dosyalar belirtilen simgeyi alır. Satır başına bir eşleme: metin=simge',
-                placeholder: '# metin=simge\ntoplantı=LiCalendar\nfatura=PhReceipt',
+                placeholder: '# metin=simge\ntoplantı=ph-calendar\nfatura=ph-receipt',
                 editTooltip: 'Eşlemeleri düzenle'
             },
             showCategoryIcons: {
@@ -999,7 +999,7 @@ export const STRINGS_TR = {
             fileTypeIconMap: {
                 name: 'Dosya türü simge eşlemesi',
                 desc: 'Uzantıya sahip dosyalar belirtilen simgeyi alır. Satır başına bir eşleme: uzantı=simge',
-                placeholder: '# Extension=icon\ncpp=LiFileCode\npdf=RaBook',
+                placeholder: '# Extension=icon\ncpp=ph-file-code\npdf=ph-file-pdf',
                 editTooltip: 'Eşlemeleri düzenle'
             },
             optimizeNoteHeight: {

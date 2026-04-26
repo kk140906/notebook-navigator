@@ -77,6 +77,14 @@ export interface ReleaseNote {
  */
 const RELEASE_NOTES: ReleaseNote[] = [
     {
+        version: '2.6.3',
+        date: '2026-04-26',
+        showOnUpdate: false,
+        fixed: [
+            'Settings: File name icon map and File type icon map editors no longer disable Apply after selecting non-Lucide icons from the icon picker.'
+        ]
+    },
+    {
         version: '2.6.2',
         date: '2026-04-25',
         showOnUpdate: false,

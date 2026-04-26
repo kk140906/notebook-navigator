@@ -988,7 +988,7 @@ export const STRINGS_JA = {
             fileNameIconMap: {
                 name: 'ファイル名アイコンマップ',
                 desc: 'テキストを含むファイルに指定したアイコンが適用されます。1行に1つのマッピング: テキスト=アイコン',
-                placeholder: '# テキスト=アイコン\n会議=LiCalendar\n請求書=PhReceipt',
+                placeholder: '# テキスト=アイコン\n会議=ph-calendar\n請求書=ph-receipt',
                 editTooltip: 'マッピングを編集'
             },
             showCategoryIcons: {
@@ -998,7 +998,7 @@ export const STRINGS_JA = {
             fileTypeIconMap: {
                 name: 'ファイルタイプアイコンマップ',
                 desc: '拡張子を持つファイルに指定したアイコンが適用されます。1行に1つのマッピング: 拡張子=アイコン',
-                placeholder: '# Extension=icon\ncpp=LiFileCode\npdf=RaBook',
+                placeholder: '# Extension=icon\ncpp=ph-file-code\npdf=ph-file-pdf',
                 editTooltip: 'マッピングを編集'
             },
             optimizeNoteHeight: {

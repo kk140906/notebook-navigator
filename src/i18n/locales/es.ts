@@ -990,7 +990,7 @@ export const STRINGS_ES = {
             fileNameIconMap: {
                 name: 'Mapa de iconos por nombre',
                 desc: 'Los archivos que contienen el texto obtienen el icono especificado. Una asignación por línea: texto=icono',
-                placeholder: '# texto=icono\nreunión=LiCalendar\nfactura=PhReceipt',
+                placeholder: '# texto=icono\nreunión=ph-calendar\nfactura=ph-receipt',
                 editTooltip: 'Editar asignaciones'
             },
             showCategoryIcons: {
@@ -1000,7 +1000,7 @@ export const STRINGS_ES = {
             fileTypeIconMap: {
                 name: 'Mapa de iconos por tipo',
                 desc: 'Los archivos con la extensión obtienen el icono especificado. Una asignación por línea: extensión=icono',
-                placeholder: '# Extension=icon\ncpp=LiFileCode\npdf=RaBook',
+                placeholder: '# Extension=icon\ncpp=ph-file-code\npdf=ph-file-pdf',
                 editTooltip: 'Editar asignaciones'
             },
             optimizeNoteHeight: {

@@ -988,7 +988,7 @@ export const STRINGS_KO = {
             fileNameIconMap: {
                 name: '파일 이름 아이콘 맵',
                 desc: '텍스트를 포함하는 파일에 지정된 아이콘이 적용됩니다. 줄당 하나의 매핑: 텍스트=아이콘',
-                placeholder: '# 텍스트=아이콘\n회의=LiCalendar\n청구서=PhReceipt',
+                placeholder: '# 텍스트=아이콘\n회의=ph-calendar\n청구서=ph-receipt',
                 editTooltip: '매핑 편집'
             },
             showCategoryIcons: {
@@ -998,7 +998,7 @@ export const STRINGS_KO = {
             fileTypeIconMap: {
                 name: '파일 유형 아이콘 맵',
                 desc: '확장자가 있는 파일에 지정된 아이콘이 적용됩니다. 줄당 하나의 매핑: 확장자=아이콘',
-                placeholder: '# Extension=icon\ncpp=LiFileCode\npdf=RaBook',
+                placeholder: '# Extension=icon\ncpp=ph-file-code\npdf=ph-file-pdf',
                 editTooltip: '매핑 편집'
             },
             optimizeNoteHeight: {

@@ -990,7 +990,7 @@ export const STRINGS_VI = {
             fileNameIconMap: {
                 name: 'Bản đồ biểu tượng tên tệp',
                 desc: 'Tệp chứa văn bản sẽ nhận biểu tượng được chỉ định. Một ánh xạ mỗi dòng: văn bản=biểu tượng',
-                placeholder: '# văn bản=biểu tượng\nhọp=LiCalendar\nhóa đơn=PhReceipt',
+                placeholder: '# văn bản=biểu tượng\nhọp=ph-calendar\nhóa đơn=ph-receipt',
                 editTooltip: 'Chỉnh sửa ánh xạ'
             },
             showCategoryIcons: {
@@ -1000,7 +1000,7 @@ export const STRINGS_VI = {
             fileTypeIconMap: {
                 name: 'Bản đồ biểu tượng loại tệp',
                 desc: 'Tệp có phần mở rộng sẽ nhận biểu tượng được chỉ định. Một ánh xạ mỗi dòng: phần mở rộng=biểu tượng',
-                placeholder: '# Extension=icon\ncpp=LiFileCode\npdf=RaBook',
+                placeholder: '# Extension=icon\ncpp=ph-file-code\npdf=ph-file-pdf',
                 editTooltip: 'Chỉnh sửa ánh xạ'
             },
             optimizeNoteHeight: {

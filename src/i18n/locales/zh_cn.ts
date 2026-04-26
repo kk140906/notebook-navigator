@@ -982,7 +982,7 @@ export const STRINGS_ZH_CN = {
             fileNameIconMap: {
                 name: '文件名图标映射',
                 desc: '包含指定文本的文件将获得指定图标。每行一个映射：文本=图标',
-                placeholder: '# 文本=图标\n会议=LiCalendar\n发票=PhReceipt',
+                placeholder: '# 文本=图标\n会议=ph-calendar\n发票=ph-receipt',
                 editTooltip: '编辑映射'
             },
             showCategoryIcons: {
@@ -992,7 +992,7 @@ export const STRINGS_ZH_CN = {
             fileTypeIconMap: {
                 name: '文件类型图标映射',
                 desc: '具有指定扩展名的文件将获得指定图标。每行一个映射：扩展名=图标',
-                placeholder: '# Extension=icon\ncpp=LiFileCode\npdf=RaBook',
+                placeholder: '# Extension=icon\ncpp=ph-file-code\npdf=ph-file-pdf',
                 editTooltip: '编辑映射'
             },
             optimizeNoteHeight: {
