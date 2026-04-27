@@ -1212,7 +1212,7 @@ export const STRINGS_NL = {
             },
             calendarMonthHeadingFormat: {
                 name: 'Maandnaam-indeling',
-                desc: 'Normale of afgekorte maandnaam wanneer het jaaroverzicht verborgen is.',
+                desc: 'Lange (januari) of korte (jan.) maandnaam.',
                 options: {
                     full: 'januari (volledig)',
                     short: 'jan. (kort)'

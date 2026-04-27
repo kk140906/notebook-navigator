@@ -1210,7 +1210,7 @@ export const STRINGS_JA = {
             },
             calendarMonthHeadingFormat: {
                 name: '月名の形式',
-                desc: '年表示が非表示のとき、月名を通常または省略形で表示します。',
+                desc: '月名を長い形式 (1月) または短い形式 (1月) で表示します。',
                 options: {
                     full: '1月 (完全)',
                     short: '1月 (短縮)'

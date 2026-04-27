@@ -1213,7 +1213,7 @@ export const STRINGS_PT_BR = {
             },
             calendarMonthHeadingFormat: {
                 name: 'Formato do nome do mês',
-                desc: 'Nome do mês normal ou abreviado quando a visualização anual está oculta.',
+                desc: 'Nome do mês completo (janeiro) ou abreviado (jan).',
                 options: {
                     full: 'janeiro (completo)',
                     short: 'jan (curto)'

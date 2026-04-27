@@ -1210,7 +1210,7 @@ export const STRINGS_KO = {
             },
             calendarMonthHeadingFormat: {
                 name: '월 이름 형식',
-                desc: '연도 보기가 숨겨져 있을 때 월 이름을 일반 또는 약어로 표시합니다.',
+                desc: '월 이름을 긴 형식(1월) 또는 짧은 형식(1월)으로 표시합니다.',
                 options: {
                     full: '1월 (전체)',
                     short: '1월 (축약)'

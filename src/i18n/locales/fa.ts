@@ -1211,7 +1211,7 @@ export const STRINGS_FA = {
             },
             calendarMonthHeadingFormat: {
                 name: 'قالب نام ماه',
-                desc: 'نام ماه معمولی یا مخفف وقتی نمای سال پنهان است.',
+                desc: 'نام ماه کامل (ژانویه) یا کوتاه (ژانویه).',
                 options: {
                     full: 'ژانویه (کامل)',
                     short: 'ژانویه (کوتاه)'

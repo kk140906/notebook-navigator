@@ -1211,7 +1211,7 @@ export const STRINGS_TR = {
             },
             calendarMonthHeadingFormat: {
                 name: 'Ay adı biçimi',
-                desc: 'Yıl görünümü gizlendiğinde normal veya kısaltılmış ay adı.',
+                desc: 'Uzun (Ocak) veya kısa (Oca) ay adı.',
                 options: {
                     full: 'Ocak (tam)',
                     short: 'Oca (kısa)'

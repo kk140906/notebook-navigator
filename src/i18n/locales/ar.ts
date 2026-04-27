@@ -1209,7 +1209,7 @@ export const STRINGS_AR = {
             },
             calendarMonthHeadingFormat: {
                 name: 'تنسيق اسم الشهر',
-                desc: 'اسم الشهر عادي أو مختصر عندما يكون عرض السنة مخفيًا.',
+                desc: 'اسم الشهر الكامل (يناير) أو المختصر (يناير).',
                 options: {
                     full: 'يناير (كامل)',
                     short: 'يناير (مختصر)'

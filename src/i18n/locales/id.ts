@@ -1211,7 +1211,7 @@ export const STRINGS_ID = {
             },
             calendarMonthHeadingFormat: {
                 name: 'Format nama bulan',
-                desc: 'Nama bulan normal atau singkatan saat tampilan tahun disembunyikan.',
+                desc: 'Nama bulan lengkap (Januari) atau singkat (Jan).',
                 options: {
                     full: 'Januari (lengkap)',
                     short: 'Jan (singkat)'

@@ -1213,7 +1213,7 @@ export const STRINGS_PL = {
             },
             calendarMonthHeadingFormat: {
                 name: 'Format nazwy miesiąca',
-                desc: 'Normalna lub skrócona nazwa miesiąca, gdy widok roku jest ukryty.',
+                desc: 'Pełna (styczeń) lub skrócona (sty) nazwa miesiąca.',
                 options: {
                     full: 'styczeń (pełna)',
                     short: 'sty (krótka)'

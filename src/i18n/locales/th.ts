@@ -1207,7 +1207,7 @@ export const STRINGS_TH = {
             },
             calendarMonthHeadingFormat: {
                 name: 'รูปแบบชื่อเดือน',
-                desc: 'ชื่อเดือนแบบปกติหรือแบบย่อเมื่อมุมมองปีถูกซ่อน',
+                desc: 'ชื่อเดือนแบบเต็ม (มกราคม) หรือแบบย่อ (ม.ค.)',
                 options: {
                     full: 'มกราคม (เต็ม)',
                     short: 'ม.ค. (ย่อ)'

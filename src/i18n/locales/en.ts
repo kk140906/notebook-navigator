@@ -1207,7 +1207,7 @@ export const STRINGS_EN = {
             },
             calendarMonthHeadingFormat: {
                 name: 'Month name format',
-                desc: 'Full or short month name when the year view is hidden.',
+                desc: 'Long (January) or short (Jan) month name.',
                 options: {
                     full: 'January (full)',
                     short: 'Jan (short)'

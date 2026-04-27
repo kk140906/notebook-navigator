@@ -78,10 +78,11 @@ export interface ReleaseNote {
 const RELEASE_NOTES: ReleaseNote[] = [
     {
         version: '2.6.3',
-        date: '2026-04-26',
+        date: '2026-04-30',
         showOnUpdate: false,
+        changed: ['The setting "Calendar > Month name format" now always applies to all views, even when the year view is shown.'],
         fixed: [
-            'Settings: File name icon map and File type icon map editors no longer disable Apply after selecting non-Lucide icons from the icon picker.'
+            'Settings: List > Notes > "File name icon map" and "File type icon map" now work correctly again. They broke after the icon format changed in 2.6.2.'
         ]
     },
     {
@@ -213,7 +214,7 @@ const RELEASE_NOTES: ReleaseNote[] = [
         date: '2026-03-20',
         showOnUpdate: true,
         new: [
-            'New setting: Calendar > ==Month name format==. Choose between "full" (January) or "short" (Jan) when the year view is hidden.',
+            'New setting: Calendar > ==Month name format==. Choose between "full" (January) or "short" (Jan).',
             'New style setting: Calendar > ==Feature image overlay color==. Adds a color overlay to darken or tint feature images in calendar days and months. Set separate colors for light and dark mode.'
         ],
         improved: [

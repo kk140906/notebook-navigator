@@ -1212,7 +1212,7 @@ export const STRINGS_VI = {
             },
             calendarMonthHeadingFormat: {
                 name: 'Định dạng tên tháng',
-                desc: 'Tên tháng bình thường hoặc viết tắt khi chế độ xem năm bị ẩn.',
+                desc: 'Tên tháng đầy đủ (tháng 1) hoặc viết tắt (Thg 01).',
                 options: {
                     full: 'tháng 1 (đầy đủ)',
                     short: 'Thg 01 (ngắn)'
