@@ -112,6 +112,7 @@ export default class NotebookNavigatorPlugin extends Plugin implements ISettings
     private hasWorkspaceLayoutReady = false;
     private lastCalendarPlacement: CalendarPlacement | null = null;
     private calendarPlacementRequestId = 0;
+    private calendarCursorDateIso: string | null = null;
     private readonly settingsController = new PluginSettingsController({
         keys: this.keys,
         loadData: () => this.loadData(),
@@ -745,6 +746,14 @@ export default class NotebookNavigatorPlugin extends Plugin implements ISettings
 
     public setCalendarLeftPlacement(placement: CalendarLeftPlacement): void {
         this.preferencesController.setCalendarLeftPlacement(placement);
+    }
+
+    public getCalendarCursorDateIso(): string | null {
+        return this.calendarCursorDateIso;
+    }
+
+    public setCalendarCursorDateIso(dateIso: string): void {
+        this.calendarCursorDateIso = dateIso;
     }
 
     /**
