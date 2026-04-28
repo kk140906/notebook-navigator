@@ -82,6 +82,7 @@ const RELEASE_NOTES: ReleaseNote[] = [
         showOnUpdate: false,
         changed: ['The setting "Calendar > Month name format" now always applies to all views, even when the year view is shown.'],
         fixed: [
+            'List pane: fixed stale row heights and scroll position after list appearance changes, including variable note height.',
             'Settings: List > Notes > "File name icon map" and "File type icon map" now work correctly again. They broke after the icon format changed in 2.6.2.'
         ]
     },
