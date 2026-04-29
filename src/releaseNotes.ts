@@ -82,12 +82,15 @@ const RELEASE_NOTES: ReleaseNote[] = [
         showOnUpdate: false,
         improved: [
             'Calendar now keeps the displayed date when switching between the left and right sidebar.',
-            'Sort and appearance menus in list pane now include "Change default settings".'
+            'Sort and appearance menus in list pane now include options for "Change default settings".'
         ],
-        changed: ['The setting "Calendar > Month name format" now always applies to all views, even when the year view is shown.'],
+        changed: [
+            'The setting "Calendar > Month name format" now always applies to all views.',
+            'The grouping options in list pane (group by date, folder or no group) were moved from the appearance menu to the sort menu.'
+        ],
         fixed: [
-            'List pane: fixed stale row heights and scroll position after changing calendar or list appearance settings.',
-            'Settings: List > Notes > "File name icon map" and "File type icon map" now work correctly again. They broke after the icon format changed in 2.6.2.'
+            'List pane: fixed incorrect row heights (virtualizer breaking) after changing calendar or list appearance settings.',
+            'The two settings List > Notes > "File name icon map" and "File type icon map" now work correctly again. They broke after the icon format was introduced in 2.6.2.'
         ]
     },
     {

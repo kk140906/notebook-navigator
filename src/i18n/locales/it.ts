@@ -129,13 +129,14 @@ export const STRINGS_IT = {
         newFolder: 'Nuova cartella', // Tooltip for create new folder button (English: New folder)
         newNote: 'Nuova nota', // Tooltip for create new note button (English: New note)
         mobileBackToNavigation: 'Torna alla navigazione', // Mobile-only back button text to return to navigation pane (English: Back to navigation)
-        changeSortOrder: 'Cambia ordine', // Tooltip for the sort order toggle button (English: Change sort order)
+        changeChildSortOrder: 'Cambia ordine',
+        changeSortAndGroup: 'Cambia ordine e raggruppamento',
         defaultSort: 'Predefinito', // Label for default sorting mode (English: Default)
         descendants: 'discendenti',
         subfolders: 'sottocartelle',
         subtags: 'sotto-tag',
         childValues: 'valori figli',
-        applySortToDescendants: (target: string) => `Applica ordinamento a ${target}`,
+        applySortAndGroupToDescendants: (target: string) => `Applica ordinamento e raggruppamento a ${target}`,
         applyAppearanceToDescendants: (target: string) => `Applica aspetto a ${target}`,
         showFolders: 'Mostra navigazione', // Tooltip for button to show the navigation pane (English: Show navigation)
         reorderRootFolders: 'Riordina navigazione',
@@ -365,7 +366,7 @@ export const STRINGS_IT = {
     // Folder appearance menu
     folderAppearance: {
         appearance: 'Aspetto',
-        sortOrder: 'Ordinamento',
+        sortBy: 'Ordina per',
         standardPreset: 'Standard',
         compactPreset: 'Compatto',
         defaultSuffix: '(predefinito)',
@@ -384,7 +385,7 @@ export const STRINGS_IT = {
     modals: {
         bulkApply: {
             applyButton: 'Applica',
-            applySortTitle: (target: string) => `Applicare ordinamento a ${target}?`,
+            applySortAndGroupTitle: (target: string) => `Applicare ordinamento e raggruppamento a ${target}?`,
             applyAppearanceTitle: (target: string) => `Applicare aspetto a ${target}?`,
             affectedCountMessage: (count: number) => `Sostituzioni esistenti che cambieranno: ${count}.`
         },

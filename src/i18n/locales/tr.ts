@@ -129,13 +129,14 @@ export const STRINGS_TR = {
         newFolder: 'Yeni klasör', // Tooltip for create new folder button (English: New folder)
         newNote: 'Yeni not', // Tooltip for create new note button (English: New note)
         mobileBackToNavigation: 'Gezinmeye dön', // Mobile-only back button text to return to navigation pane (English: Back to navigation)
-        changeSortOrder: 'Sıralama düzenini değiştir', // Tooltip for the sort order toggle button (English: Change sort order)
+        changeChildSortOrder: 'Sıralama düzenini değiştir',
+        changeSortAndGroup: 'Sıralama ve gruplandırmayı değiştir',
         defaultSort: 'Varsayılan', // Label for default sorting mode (English: Default)
         descendants: 'alt öğeler',
         subfolders: 'alt klasörler',
         subtags: 'alt etiketler',
         childValues: 'alt değerler',
-        applySortToDescendants: (target: string) => `Sıralamayı ${target} için uygula`,
+        applySortAndGroupToDescendants: (target: string) => `Sıralama ve gruplandırmayı ${target} için uygula`,
         applyAppearanceToDescendants: (target: string) => `Görünümü ${target} için uygula`,
         showFolders: 'Gezinmeyi göster', // Tooltip for button to show the navigation pane (English: Show navigation)
         reorderRootFolders: 'Gezinmeyi yeniden sırala',
@@ -366,7 +367,7 @@ export const STRINGS_TR = {
     // Folder appearance menu
     folderAppearance: {
         appearance: 'Görünüm',
-        sortOrder: 'Sıralama düzeni',
+        sortBy: 'Sıralama ölçütü',
         standardPreset: 'Standart',
         compactPreset: 'Kompakt',
         defaultSuffix: '(varsayılan)',
@@ -385,7 +386,7 @@ export const STRINGS_TR = {
     modals: {
         bulkApply: {
             applyButton: 'Uygula',
-            applySortTitle: (target: string) => `Sıralama ${target} için uygulansın mı?`,
+            applySortAndGroupTitle: (target: string) => `Sıralama ve gruplandırma ${target} için uygulansın mı?`,
             applyAppearanceTitle: (target: string) => `Görünüm ${target} için uygulansın mı?`,
             affectedCountMessage: (count: number) => `Değişecek mevcut geçersiz kılmalar: ${count}.`
         },

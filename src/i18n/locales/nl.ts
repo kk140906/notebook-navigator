@@ -129,13 +129,14 @@ export const STRINGS_NL = {
         newFolder: 'Nieuwe map',
         newNote: 'Nieuwe notitie',
         mobileBackToNavigation: 'Terug naar navigatie',
-        changeSortOrder: 'Sorteervolgorde wijzigen',
+        changeChildSortOrder: 'Sorteervolgorde wijzigen',
+        changeSortAndGroup: 'Sortering en groepering wijzigen',
         defaultSort: 'Standaard',
         descendants: 'subelementen',
         subfolders: 'submappen',
         subtags: 'subtags',
         childValues: 'onderliggende waarden',
-        applySortToDescendants: (target: string) => `Sortering toepassen op ${target}`,
+        applySortAndGroupToDescendants: (target: string) => `Sortering en groepering toepassen op ${target}`,
         applyAppearanceToDescendants: (target: string) => `Weergave toepassen op ${target}`,
         showFolders: 'Navigatie tonen',
         reorderRootFolders: 'Navigatie herschikken',
@@ -367,7 +368,7 @@ export const STRINGS_NL = {
     // Folder appearance menu
     folderAppearance: {
         appearance: 'Uiterlijk',
-        sortOrder: 'Sorteervolgorde',
+        sortBy: 'Sorteren op',
         standardPreset: 'Standaard',
         compactPreset: 'Compact',
         defaultSuffix: '(standaard)',
@@ -386,7 +387,7 @@ export const STRINGS_NL = {
     modals: {
         bulkApply: {
             applyButton: 'Toepassen',
-            applySortTitle: (target: string) => `Sortering toepassen op ${target}?`,
+            applySortAndGroupTitle: (target: string) => `Sortering en groepering toepassen op ${target}?`,
             applyAppearanceTitle: (target: string) => `Weergave toepassen op ${target}?`,
             affectedCountMessage: (count: number) => `Bestaande overschrijvingen die wijzigen: ${count}.`
         },

@@ -128,13 +128,14 @@ export const STRINGS_JA = {
         newFolder: '新規フォルダ', // Tooltip for create new folder button (English: New folder)
         newNote: '新規ノート', // Tooltip for create new note button (English: New note)
         mobileBackToNavigation: 'ナビゲーションに戻る', // Mobile-only back button text to return to navigation pane (English: Back to navigation)
-        changeSortOrder: '並び順を変更', // Tooltip for the sort order toggle button (English: Change sort order)
+        changeChildSortOrder: '並び順を変更',
+        changeSortAndGroup: '並び順とグループを変更',
         defaultSort: 'デフォルト', // Label for default sorting mode (English: Default)
         descendants: '子孫',
         subfolders: 'サブフォルダー',
         subtags: 'サブタグ',
         childValues: '子の値',
-        applySortToDescendants: (target: string) => `${target}に並び替えを適用`,
+        applySortAndGroupToDescendants: (target: string) => `${target}に並び替えとグループ化を適用`,
         applyAppearanceToDescendants: (target: string) => `${target}に外観を適用`,
         showFolders: 'ナビゲーションを表示', // Tooltip for button to show the navigation pane (English: Show navigation)
         reorderRootFolders: 'ナビゲーションを並び替え',
@@ -365,7 +366,7 @@ export const STRINGS_JA = {
     // Folder appearance menu
     folderAppearance: {
         appearance: '外観',
-        sortOrder: '並び順',
+        sortBy: '並び替え',
         standardPreset: '標準',
         compactPreset: 'コンパクト',
         defaultSuffix: '(デフォルト)',
@@ -384,7 +385,7 @@ export const STRINGS_JA = {
     modals: {
         bulkApply: {
             applyButton: '適用',
-            applySortTitle: (target: string) => `${target}に並び替えを適用しますか？`,
+            applySortAndGroupTitle: (target: string) => `${target}に並び替えとグループ化を適用しますか？`,
             applyAppearanceTitle: (target: string) => `${target}に外観を適用しますか？`,
             affectedCountMessage: (count: number) => `変更される既存のオーバーライド: ${count}。`
         },

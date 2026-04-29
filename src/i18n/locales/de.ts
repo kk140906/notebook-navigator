@@ -128,13 +128,14 @@ export const STRINGS_DE = {
         newFolder: 'Neuer Ordner', // Tooltip for create new folder button (English: New folder)
         newNote: 'Neue Notiz', // Tooltip for create new note button (English: New note)
         mobileBackToNavigation: 'Zurück zur Navigation', // Mobile-only back button text to return to navigation pane (English: Back to navigation)
-        changeSortOrder: 'Sortierreihenfolge ändern', // Tooltip for the sort order toggle button (English: Change sort order)
+        changeChildSortOrder: 'Sortierreihenfolge ändern',
+        changeSortAndGroup: 'Sortierung und Gruppierung ändern',
         defaultSort: 'Standard', // Label for default sorting mode (English: Default)
         descendants: 'Unterelemente',
         subfolders: 'Unterordner',
         subtags: 'Unter-Tags',
         childValues: 'Unterwerte',
-        applySortToDescendants: (target: string) => `Sortierung auf ${target} anwenden`,
+        applySortAndGroupToDescendants: (target: string) => `Sortierung und Gruppierung auf ${target} anwenden`,
         applyAppearanceToDescendants: (target: string) => `Darstellung auf ${target} anwenden`,
         showFolders: 'Navigation anzeigen', // Tooltip for button to show the navigation pane (English: Show navigation)
         reorderRootFolders: 'Navigation neu anordnen',
@@ -366,7 +367,7 @@ export const STRINGS_DE = {
     // Folder appearance menu
     folderAppearance: {
         appearance: 'Darstellung',
-        sortOrder: 'Sortierreihenfolge',
+        sortBy: 'Sortieren nach',
         standardPreset: 'Standard',
         compactPreset: 'Kompakt',
         defaultSuffix: '(Standard)',
@@ -385,7 +386,7 @@ export const STRINGS_DE = {
     modals: {
         bulkApply: {
             applyButton: 'Anwenden',
-            applySortTitle: (target: string) => `Sortierung auf ${target} anwenden?`,
+            applySortAndGroupTitle: (target: string) => `Sortierung und Gruppierung auf ${target} anwenden?`,
             applyAppearanceTitle: (target: string) => `Darstellung auf ${target} anwenden?`,
             affectedCountMessage: (count: number) => `Vorhandene Überschreibungen, die sich ändern: ${count}.`
         },

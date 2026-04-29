@@ -129,13 +129,14 @@ export const STRINGS_PT_BR = {
         newFolder: 'Nova pasta',
         newNote: 'Nova nota',
         mobileBackToNavigation: 'Voltar à navegação',
-        changeSortOrder: 'Alterar ordem de classificação',
+        changeChildSortOrder: 'Alterar ordem de classificação',
+        changeSortAndGroup: 'Alterar classificação e agrupamento',
         defaultSort: 'Padrão',
         descendants: 'descendentes',
         subfolders: 'subpastas',
         subtags: 'subtags',
         childValues: 'valores filhos',
-        applySortToDescendants: (target: string) => `Aplicar ordenação a ${target}`,
+        applySortAndGroupToDescendants: (target: string) => `Aplicar classificação e agrupamento a ${target}`,
         applyAppearanceToDescendants: (target: string) => `Aplicar aparência a ${target}`,
         showFolders: 'Mostrar navegação',
         reorderRootFolders: 'Reordenar navegação',
@@ -367,7 +368,7 @@ export const STRINGS_PT_BR = {
     // Folder appearance menu
     folderAppearance: {
         appearance: 'Aparência',
-        sortOrder: 'Ordem de classificação',
+        sortBy: 'Classificar por',
         standardPreset: 'Padrão',
         compactPreset: 'Compacto',
         defaultSuffix: '(padrão)',
@@ -386,7 +387,7 @@ export const STRINGS_PT_BR = {
     modals: {
         bulkApply: {
             applyButton: 'Aplicar',
-            applySortTitle: (target: string) => `Aplicar ordenação a ${target}?`,
+            applySortAndGroupTitle: (target: string) => `Aplicar classificação e agrupamento a ${target}?`,
             applyAppearanceTitle: (target: string) => `Aplicar aparência a ${target}?`,
             affectedCountMessage: (count: number) => `Substituições existentes que serão alteradas: ${count}.`
         },

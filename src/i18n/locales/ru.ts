@@ -129,13 +129,14 @@ export const STRINGS_RU = {
         newFolder: 'Новая папка', // Tooltip for create new folder button (English: New folder)
         newNote: 'Новая заметка', // Tooltip for create new note button (English: New note)
         mobileBackToNavigation: 'Назад к навигации', // Mobile-only back button text to return to navigation pane (English: Back to navigation)
-        changeSortOrder: 'Изменить сортировку', // Tooltip for the sort order toggle button (English: Change sort order)
+        changeChildSortOrder: 'Изменить сортировку',
+        changeSortAndGroup: 'Изменить сортировку и группировку',
         defaultSort: 'По умолчанию', // Label for default sorting mode (English: Default)
         descendants: 'потомков',
         subfolders: 'подпапок',
         subtags: 'подтегов',
         childValues: 'дочерних значений',
-        applySortToDescendants: (target: string) => `Применить сортировку для ${target}`,
+        applySortAndGroupToDescendants: (target: string) => `Применить сортировку и группировку для ${target}`,
         applyAppearanceToDescendants: (target: string) => `Применить оформление для ${target}`,
         showFolders: 'Показать навигацию', // Tooltip for button to show the navigation pane (English: Show navigation)
         reorderRootFolders: 'Изменить порядок навигации',
@@ -366,7 +367,7 @@ export const STRINGS_RU = {
     // Folder appearance menu
     folderAppearance: {
         appearance: 'Внешний вид',
-        sortOrder: 'Порядок сортировки',
+        sortBy: 'Сортировать по',
         standardPreset: 'Стандартный',
         compactPreset: 'Компактный',
         defaultSuffix: '(по умолчанию)',
@@ -385,7 +386,7 @@ export const STRINGS_RU = {
     modals: {
         bulkApply: {
             applyButton: 'Применить',
-            applySortTitle: (target: string) => `Применить сортировку для ${target}?`,
+            applySortAndGroupTitle: (target: string) => `Применить сортировку и группировку для ${target}?`,
             applyAppearanceTitle: (target: string) => `Применить оформление для ${target}?`,
             affectedCountMessage: (count: number) => `Существующих переопределений, которые изменятся: ${count}.`
         },

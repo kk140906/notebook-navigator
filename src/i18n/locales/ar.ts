@@ -129,13 +129,14 @@ export const STRINGS_AR = {
         newFolder: 'مجلد جديد', // Tooltip for create new folder button (English: New folder)
         newNote: 'ملاحظة جديدة', // Tooltip for create new note button (English: New note)
         mobileBackToNavigation: 'العودة للتنقل', // Mobile-only back button text to return to navigation pane (English: Back to navigation)
-        changeSortOrder: 'تغيير ترتيب الفرز', // Tooltip for the sort order toggle button (English: Change sort order)
+        changeChildSortOrder: 'تغيير ترتيب الفرز',
+        changeSortAndGroup: 'تغيير الفرز والتجميع',
         defaultSort: 'افتراضي', // Label for default sorting mode (English: Default)
         descendants: 'العناصر الفرعية',
         subfolders: 'المجلدات الفرعية',
         subtags: 'الوسوم الفرعية',
         childValues: 'القيم الفرعية',
-        applySortToDescendants: (target: string) => `تطبيق الترتيب على ${target}`,
+        applySortAndGroupToDescendants: (target: string) => `تطبيق الفرز والتجميع على ${target}`,
         applyAppearanceToDescendants: (target: string) => `تطبيق المظهر على ${target}`,
         showFolders: 'إظهار التنقل', // Tooltip for button to show the navigation pane (English: Show navigation)
         reorderRootFolders: 'إعادة ترتيب التنقل',
@@ -365,7 +366,7 @@ export const STRINGS_AR = {
     // Folder appearance menu
     folderAppearance: {
         appearance: 'المظهر',
-        sortOrder: 'ترتيب الفرز',
+        sortBy: 'فرز حسب',
         standardPreset: 'قياسي',
         compactPreset: 'مضغوط',
         defaultSuffix: '(افتراضي)',
@@ -384,7 +385,7 @@ export const STRINGS_AR = {
     modals: {
         bulkApply: {
             applyButton: 'تطبيق',
-            applySortTitle: (target: string) => `تطبيق الترتيب على ${target}؟`,
+            applySortAndGroupTitle: (target: string) => `تطبيق الفرز والتجميع على ${target}؟`,
             applyAppearanceTitle: (target: string) => `تطبيق المظهر على ${target}؟`,
             affectedCountMessage: (count: number) => `التجاوزات الحالية التي ستتغير: ${count}.`
         },

@@ -128,13 +128,14 @@ export const STRINGS_PL = {
         newFolder: 'Nowy folder', // Tooltip for create new folder button (English: New folder)
         newNote: 'Nowa notatka', // Tooltip for create new note button (English: New note)
         mobileBackToNavigation: 'Wróć do nawigacji', // Mobile-only back button text to return to navigation pane (English: Back to navigation)
-        changeSortOrder: 'Zmień kolejność sortowania', // Tooltip for the sort order toggle button (English: Change sort order)
+        changeChildSortOrder: 'Zmień kolejność sortowania',
+        changeSortAndGroup: 'Zmień sortowanie i grupowanie',
         defaultSort: 'Domyślne', // Label for default sorting mode (English: Default)
         descendants: 'potomków',
         subfolders: 'podfolderów',
         subtags: 'podtagów',
         childValues: 'wartości podrzędnych',
-        applySortToDescendants: (target: string) => `Zastosuj sortowanie dla ${target}`,
+        applySortAndGroupToDescendants: (target: string) => `Zastosuj sortowanie i grupowanie dla ${target}`,
         applyAppearanceToDescendants: (target: string) => `Zastosuj wygląd dla ${target}`,
         showFolders: 'Pokaż nawigację', // Tooltip for button to show the navigation pane (English: Show navigation)
         reorderRootFolders: 'Zmień kolejność elementów',
@@ -365,7 +366,7 @@ export const STRINGS_PL = {
     // Folder appearance menu
     folderAppearance: {
         appearance: 'Wygląd',
-        sortOrder: 'Kolejność sortowania',
+        sortBy: 'Sortuj według',
         standardPreset: 'Standardowy',
         compactPreset: 'Kompaktowy',
         defaultSuffix: '(domyślne)',
@@ -386,7 +387,7 @@ export const STRINGS_PL = {
     modals: {
         bulkApply: {
             applyButton: 'Zastosuj',
-            applySortTitle: (target: string) => `Zastosuj sortowanie dla ${target}?`,
+            applySortAndGroupTitle: (target: string) => `Zastosuj sortowanie i grupowanie dla ${target}?`,
             applyAppearanceTitle: (target: string) => `Zastosuj wygląd dla ${target}?`,
             affectedCountMessage: (count: number) => `Istniejące nadpisania do zmiany: ${count}.`
         },

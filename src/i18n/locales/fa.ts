@@ -129,13 +129,14 @@ export const STRINGS_FA = {
         newFolder: 'پوشه جدید',
         newNote: 'یادداشت جدید',
         mobileBackToNavigation: 'بازگشت به ناوبری',
-        changeSortOrder: 'تغییر ترتیب',
+        changeChildSortOrder: 'تغییر ترتیب',
+        changeSortAndGroup: 'تغییر ترتیب و گروه‌بندی',
         defaultSort: 'پیش‌فرض',
         descendants: 'فرزندان',
         subfolders: 'زیرپوشه‌ها',
         subtags: 'زیربرچسب‌ها',
         childValues: 'مقادیر فرزند',
-        applySortToDescendants: (target: string) => `اعمال مرتب‌سازی به ${target}`,
+        applySortAndGroupToDescendants: (target: string) => `اعمال مرتب‌سازی و گروه‌بندی به ${target}`,
         applyAppearanceToDescendants: (target: string) => `اعمال ظاهر به ${target}`,
         showFolders: 'نمایش ناوبری',
         reorderRootFolders: 'مرتب‌سازی مجدد ناوبری',
@@ -365,7 +366,7 @@ export const STRINGS_FA = {
     // Folder appearance menu
     folderAppearance: {
         appearance: 'ظاهر',
-        sortOrder: 'ترتیب مرتب‌سازی',
+        sortBy: 'مرتب‌سازی بر اساس',
         standardPreset: 'استاندارد',
         compactPreset: 'فشرده',
         defaultSuffix: '(پیش‌فرض)',
@@ -384,7 +385,7 @@ export const STRINGS_FA = {
     modals: {
         bulkApply: {
             applyButton: 'اعمال',
-            applySortTitle: (target: string) => `مرتب‌سازی به ${target} اعمال شود؟`,
+            applySortAndGroupTitle: (target: string) => `مرتب‌سازی و گروه‌بندی به ${target} اعمال شود؟`,
             applyAppearanceTitle: (target: string) => `ظاهر به ${target} اعمال شود؟`,
             affectedCountMessage: (count: number) => `بازنویسی‌های موجود که تغییر خواهند کرد: ${count}.`
         },

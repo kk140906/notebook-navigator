@@ -128,13 +128,14 @@ export const STRINGS_ZH_CN = {
         newFolder: '新建文件夹', // Tooltip for create new folder button (English: New folder)
         newNote: '新笔记', // Tooltip for create new note button (English: New note)
         mobileBackToNavigation: '返回导航', // Mobile-only back button text to return to navigation pane (English: Back to navigation)
-        changeSortOrder: '更改排序方式', // Tooltip for the sort order toggle button (English: Change sort order)
+        changeChildSortOrder: '更改排序方式',
+        changeSortAndGroup: '更改排序和分组',
         defaultSort: '默认', // Label for default sorting mode (English: Default)
         descendants: '子项',
         subfolders: '子文件夹',
         subtags: '子标签',
         childValues: '子值',
-        applySortToDescendants: (target: string) => `将排序应用到${target}`,
+        applySortAndGroupToDescendants: (target: string) => `将排序和分组应用到${target}`,
         applyAppearanceToDescendants: (target: string) => `将外观应用到${target}`,
         showFolders: '显示导航', // Tooltip for button to show the navigation pane (English: Show navigation)
         reorderRootFolders: '重新排列导航',
@@ -365,7 +366,7 @@ export const STRINGS_ZH_CN = {
     // Folder appearance menu
     folderAppearance: {
         appearance: '外观',
-        sortOrder: '排序方式',
+        sortBy: '排序方式',
         standardPreset: '标准',
         compactPreset: '紧凑',
         defaultSuffix: '(默认)',
@@ -384,7 +385,7 @@ export const STRINGS_ZH_CN = {
     modals: {
         bulkApply: {
             applyButton: '应用',
-            applySortTitle: (target: string) => `将排序应用到${target}？`,
+            applySortAndGroupTitle: (target: string) => `将排序和分组应用到${target}？`,
             applyAppearanceTitle: (target: string) => `将外观应用到${target}？`,
             affectedCountMessage: (count: number) => `将更改的现有覆盖：${count}。`
         },

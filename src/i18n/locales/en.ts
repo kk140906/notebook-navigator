@@ -129,13 +129,14 @@ export const STRINGS_EN = {
         newFolder: 'New folder', // Tooltip for create new folder button (English: New folder)
         newNote: 'New note', // Tooltip for create new note button (English: New note)
         mobileBackToNavigation: 'Back to navigation', // Mobile-only back button text to return to navigation pane (English: Back to navigation)
-        changeSortOrder: 'Change sort order', // Tooltip for the sort order toggle button (English: Change sort order)
+        changeChildSortOrder: 'Change sort order',
+        changeSortAndGroup: 'Change sort and group',
         defaultSort: 'Default', // Label for default sorting mode (English: Default)
         descendants: 'descendants',
         subfolders: 'subfolders',
         subtags: 'subtags',
         childValues: 'child values',
-        applySortToDescendants: (target: string) => `Apply sort to ${target}`,
+        applySortAndGroupToDescendants: (target: string) => `Apply sort and group to ${target}`,
         applyAppearanceToDescendants: (target: string) => `Apply appearance to ${target}`,
         showFolders: 'Show navigation', // Tooltip for button to show the navigation pane (English: Show navigation)
         reorderRootFolders: 'Reorder navigation',
@@ -365,7 +366,7 @@ export const STRINGS_EN = {
     // Folder appearance menu
     folderAppearance: {
         appearance: 'Appearance',
-        sortOrder: 'Sort order',
+        sortBy: 'Sort by',
         standardPreset: 'Standard',
         compactPreset: 'Compact',
         defaultSuffix: '(default)',
@@ -384,7 +385,7 @@ export const STRINGS_EN = {
     modals: {
         bulkApply: {
             applyButton: 'Apply',
-            applySortTitle: (target: string) => `Apply sort to ${target}?`,
+            applySortAndGroupTitle: (target: string) => `Apply sort and group to ${target}?`,
             applyAppearanceTitle: (target: string) => `Apply appearance to ${target}?`,
             affectedCountMessage: (count: number) => `Existing overrides that will change: ${count}.`
         },

@@ -129,13 +129,14 @@ export const STRINGS_UK = {
         newFolder: 'Нова папка', // Tooltip for create new folder button (English: New folder)
         newNote: 'Нова нотатка', // Tooltip for create new note button (English: New note)
         mobileBackToNavigation: 'Назад до навігації', // Mobile-only back button text to return to navigation pane (English: Back to navigation)
-        changeSortOrder: 'Змінити порядок сортування', // Tooltip for the sort order toggle button (English: Change sort order)
+        changeChildSortOrder: 'Змінити порядок сортування',
+        changeSortAndGroup: 'Змінити сортування та групування',
         defaultSort: 'За замовчуванням', // Label for default sorting mode (English: Default)
         descendants: 'нащадків',
         subfolders: 'підпапок',
         subtags: 'підтегів',
         childValues: 'дочірніх значень',
-        applySortToDescendants: (target: string) => `Застосувати сортування для ${target}`,
+        applySortAndGroupToDescendants: (target: string) => `Застосувати сортування та групування для ${target}`,
         applyAppearanceToDescendants: (target: string) => `Застосувати оформлення для ${target}`,
         showFolders: 'Показати навігацію', // Tooltip for button to show the navigation pane (English: Show navigation)
         reorderRootFolders: 'Змінити порядок навігації',
@@ -366,7 +367,7 @@ export const STRINGS_UK = {
     // Folder appearance menu
     folderAppearance: {
         appearance: 'Вигляд',
-        sortOrder: 'Порядок сортування',
+        sortBy: 'Сортувати за',
         standardPreset: 'Стандартний',
         compactPreset: 'Компактний',
         defaultSuffix: '(за замовчуванням)',
@@ -385,7 +386,7 @@ export const STRINGS_UK = {
     modals: {
         bulkApply: {
             applyButton: 'Застосувати',
-            applySortTitle: (target: string) => `Застосувати сортування для ${target}?`,
+            applySortAndGroupTitle: (target: string) => `Застосувати сортування та групування для ${target}?`,
             applyAppearanceTitle: (target: string) => `Застосувати оформлення для ${target}?`,
             affectedCountMessage: (count: number) => `Наявних перевизначень, які зміняться: ${count}.`
         },

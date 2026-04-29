@@ -129,13 +129,14 @@ export const STRINGS_VI = {
         newFolder: 'Thư mục mới', // Tooltip for create new folder button (English: New folder)
         newNote: 'Ghi chú mới', // Tooltip for create new note button (English: New note)
         mobileBackToNavigation: 'Quay lại điều hướng', // Mobile-only back button text to return to navigation pane (English: Back to navigation)
-        changeSortOrder: 'Đổi thứ tự sắp xếp', // Tooltip for the sort order toggle button (English: Change sort order)
+        changeChildSortOrder: 'Đổi thứ tự sắp xếp',
+        changeSortAndGroup: 'Đổi sắp xếp và nhóm',
         defaultSort: 'Mặc định', // Label for default sorting mode (English: Default)
         descendants: 'phần tử con',
         subfolders: 'thư mục con',
         subtags: 'thẻ con',
         childValues: 'giá trị con',
-        applySortToDescendants: (target: string) => `Áp dụng sắp xếp cho ${target}`,
+        applySortAndGroupToDescendants: (target: string) => `Áp dụng sắp xếp và nhóm cho ${target}`,
         applyAppearanceToDescendants: (target: string) => `Áp dụng giao diện cho ${target}`,
         showFolders: 'Hiện điều hướng', // Tooltip for button to show the navigation pane (English: Show navigation)
         reorderRootFolders: 'Sắp xếp lại điều hướng',
@@ -365,7 +366,7 @@ export const STRINGS_VI = {
     // Folder appearance menu
     folderAppearance: {
         appearance: 'Giao diện',
-        sortOrder: 'Thứ tự sắp xếp',
+        sortBy: 'Sắp xếp theo',
         standardPreset: 'Chuẩn',
         compactPreset: 'Gọn',
         defaultSuffix: '(mặc định)',
@@ -384,7 +385,7 @@ export const STRINGS_VI = {
     modals: {
         bulkApply: {
             applyButton: 'Áp dụng',
-            applySortTitle: (target: string) => `Áp dụng sắp xếp cho ${target}?`,
+            applySortAndGroupTitle: (target: string) => `Áp dụng sắp xếp và nhóm cho ${target}?`,
             applyAppearanceTitle: (target: string) => `Áp dụng giao diện cho ${target}?`,
             affectedCountMessage: (count: number) => `Ghi đè hiện có sẽ thay đổi: ${count}.`
         },

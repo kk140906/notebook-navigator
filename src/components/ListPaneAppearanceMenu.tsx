@@ -19,10 +19,9 @@
 import { Menu, TFolder } from 'obsidian';
 import { strings } from '../i18n';
 import { FolderAppearance, getDefaultListMode, resolveListMode } from '../hooks/useListPaneAppearance';
-import type { NotePropertyType, ListDisplayMode, ListNoteGroupingOption } from '../settings/types';
+import type { NotePropertyType, ListDisplayMode } from '../settings/types';
 import { NotebookNavigatorSettings } from '../settings';
 import { ItemType } from '../types';
-import { resolveListGrouping } from '../utils/listGrouping';
 import { runAsyncAction } from '../utils/async';
 import { ensureRecord, sanitizeRecord } from '../utils/recordUtils';
 import { resolveUXIconForMenu } from '../utils/uxIcons';
@@ -56,18 +55,6 @@ interface AppearanceRecordAccessor {
 
 function getNotePropertyIcon(type: NotePropertyType, settings: NotebookNavigatorSettings): string {
     return type === 'wordCount' ? resolveUXIconForMenu(settings.interfaceIcons, 'file-word-count', 'lucide-sigma') : 'lucide-minus';
-}
-
-function getGroupingIcon(option: ListNoteGroupingOption): string {
-    switch (option) {
-        case 'date':
-            return 'lucide-calendar';
-        case 'folder':
-            return 'lucide-folder';
-        case 'none':
-        default:
-            return 'lucide-x';
-    }
 }
 
 export function showListPaneAppearanceMenu({
@@ -154,16 +141,6 @@ export function showListPaneAppearanceMenu({
     // Will be undefined if no custom appearance has been set
     const appearance = appearanceAccessor ? appearanceAccessor.getRecord(settings)?.[appearanceAccessor.key] : undefined;
     const effectiveMode = resolveListMode({ appearance, defaultMode });
-
-    // Resolve grouping settings to detect custom overrides for this folder/tag
-    const groupingInfo = resolveListGrouping({
-        settings,
-        selectionType,
-        folderPath: selectedFolder ? selectedFolder.path : null,
-        tag: selectedTag ?? null,
-        propertyNodeId: selectedProperty ?? null
-    });
-    const hasCustomGroupBy = groupingInfo.hasCustomOverride;
 
     const isStandard = effectiveMode === 'standard';
     const isCompact = effectiveMode === 'compact';
@@ -271,7 +248,7 @@ export function showListPaneAppearanceMenu({
     const isTagSelection = selectionType === ItemType.TAG && Boolean(selectedTag);
     const isPropertySelection = selectionType === ItemType.PROPERTY && Boolean(selectedProperty);
 
-    // Add groupBy menu section for folders, tags, and properties
+    // Add note property section for folders, tags, and properties
     if (isFolderSelection || isTagSelection || isPropertySelection) {
         const getNotePropertyTypeLabel = (type: NotePropertyType): string => {
             switch (type) {
@@ -316,40 +293,6 @@ export function showListPaneAppearanceMenu({
                     .setChecked(isChecked)
                     .onClick(() => {
                         updateAppearance({ notePropertyType: option });
-                    });
-            });
-        });
-
-        menu.addSeparator();
-
-        // Group by header
-        menu.addItem(item => {
-            item.setTitle(strings.folderAppearance.groupBy).setIcon('lucide-layers').setDisabled(true);
-        });
-
-        // Default grouping option (clears custom override)
-        const defaultGroupLabel = strings.settings.items.groupNotes.options[groupingInfo.defaultGrouping];
-
-        menu.addItem(item => {
-            item.setTitle(`    ${strings.folderAppearance.defaultGroupOption(defaultGroupLabel)}`)
-                .setIcon(getGroupingIcon(groupingInfo.defaultGrouping))
-                .setChecked(!hasCustomGroupBy)
-                .onClick(() => {
-                    updateAppearance({ groupBy: undefined });
-                });
-        });
-
-        // Custom grouping options (folders support all three, tags and properties only support none/date)
-        const groupOptions: ListNoteGroupingOption[] = isFolderSelection ? ['none', 'date', 'folder'] : ['none', 'date'];
-        groupOptions.forEach(option => {
-            menu.addItem(item => {
-                const isChecked = hasCustomGroupBy && groupingInfo.normalizedOverride === option;
-                const optionLabel = strings.settings.items.groupNotes.options[option];
-                item.setTitle(`    ${optionLabel}`)
-                    .setIcon(getGroupingIcon(option))
-                    .setChecked(isChecked)
-                    .onClick(() => {
-                        updateAppearance({ groupBy: option });
                     });
             });
         });

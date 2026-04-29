@@ -129,13 +129,14 @@ export const STRINGS_TH = {
         newFolder: 'โฟลเดอร์ใหม่',
         newNote: 'โน้ตใหม่',
         mobileBackToNavigation: 'กลับไปการนำทาง',
-        changeSortOrder: 'เปลี่ยนลำดับการเรียง',
+        changeChildSortOrder: 'เปลี่ยนลำดับการเรียง',
+        changeSortAndGroup: 'เปลี่ยนการเรียงและการจัดกลุ่ม',
         defaultSort: 'ค่าเริ่มต้น',
         descendants: 'รายการย่อย',
         subfolders: 'โฟลเดอร์ย่อย',
         subtags: 'แท็กย่อย',
         childValues: 'ค่าย่อย',
-        applySortToDescendants: (target: string) => `ใช้การเรียงลำดับกับ${target}`,
+        applySortAndGroupToDescendants: (target: string) => `ใช้การเรียงและการจัดกลุ่มกับ${target}`,
         applyAppearanceToDescendants: (target: string) => `ใช้รูปลักษณ์กับ${target}`,
         showFolders: 'แสดงการนำทาง',
         reorderRootFolders: 'จัดเรียงการนำทางใหม่',
@@ -365,7 +366,7 @@ export const STRINGS_TH = {
     // Folder appearance menu
     folderAppearance: {
         appearance: 'ลักษณะ',
-        sortOrder: 'ลำดับการเรียง',
+        sortBy: 'เรียงตาม',
         standardPreset: 'มาตรฐาน',
         compactPreset: 'กะทัดรัด',
         defaultSuffix: '(ค่าเริ่มต้น)',
@@ -384,7 +385,7 @@ export const STRINGS_TH = {
     modals: {
         bulkApply: {
             applyButton: 'ใช้',
-            applySortTitle: (target: string) => `ใช้การเรียงลำดับกับ${target}?`,
+            applySortAndGroupTitle: (target: string) => `ใช้การเรียงและการจัดกลุ่มกับ${target}?`,
             applyAppearanceTitle: (target: string) => `ใช้รูปลักษณ์กับ${target}?`,
             affectedCountMessage: (count: number) => `การแทนที่ที่มีอยู่ซึ่งจะเปลี่ยนแปลง: ${count}`
         },

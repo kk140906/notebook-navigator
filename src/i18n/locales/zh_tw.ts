@@ -128,13 +128,14 @@ export const STRINGS_ZH_TW = {
         newFolder: '新建資料夾',
         newNote: '新筆記',
         mobileBackToNavigation: '返回導覽',
-        changeSortOrder: '變更排序方式',
+        changeChildSortOrder: '變更排序方式',
+        changeSortAndGroup: '變更排序與分組',
         defaultSort: '預設',
         descendants: '子項',
         subfolders: '子資料夾',
         subtags: '子標籤',
         childValues: '子值',
-        applySortToDescendants: (target: string) => `將排序套用到${target}`,
+        applySortAndGroupToDescendants: (target: string) => `將排序與分組套用到${target}`,
         applyAppearanceToDescendants: (target: string) => `將外觀套用到${target}`,
         showFolders: '顯示導覽',
         reorderRootFolders: '重新排列導覽',
@@ -365,7 +366,7 @@ export const STRINGS_ZH_TW = {
     // Folder appearance menu
     folderAppearance: {
         appearance: '外觀',
-        sortOrder: '排序方式',
+        sortBy: '排序方式',
         standardPreset: '標準',
         compactPreset: '精簡',
         defaultSuffix: '(預設)',
@@ -384,7 +385,7 @@ export const STRINGS_ZH_TW = {
     modals: {
         bulkApply: {
             applyButton: '套用',
-            applySortTitle: (target: string) => `將排序套用到${target}？`,
+            applySortAndGroupTitle: (target: string) => `將排序與分組套用到${target}？`,
             applyAppearanceTitle: (target: string) => `將外觀套用到${target}？`,
             affectedCountMessage: (count: number) => `將更改的現有覆寫：${count}。`
         },

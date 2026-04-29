@@ -128,13 +128,14 @@ export const STRINGS_KO = {
         newFolder: '새 폴더', // Tooltip for create new folder button (English: New folder)
         newNote: '새 노트', // Tooltip for create new note button (English: New note)
         mobileBackToNavigation: '탐색으로 돌아가기', // Mobile-only back button text to return to navigation pane (English: Back to navigation)
-        changeSortOrder: '정렬 순서 변경', // Tooltip for the sort order toggle button (English: Change sort order)
+        changeChildSortOrder: '정렬 순서 변경',
+        changeSortAndGroup: '정렬 및 그룹 변경',
         defaultSort: '기본', // Label for default sorting mode (English: Default)
         descendants: '하위 항목',
         subfolders: '하위 폴더',
         subtags: '하위 태그',
         childValues: '하위 값',
-        applySortToDescendants: (target: string) => `${target}에 정렬 적용`,
+        applySortAndGroupToDescendants: (target: string) => `${target}에 정렬 및 그룹 적용`,
         applyAppearanceToDescendants: (target: string) => `${target}에 모양 적용`,
         showFolders: '탐색 표시', // Tooltip for button to show the navigation pane (English: Show navigation)
         reorderRootFolders: '내비게이션 재정렬',
@@ -364,7 +365,7 @@ export const STRINGS_KO = {
     // Folder appearance menu
     folderAppearance: {
         appearance: '모양',
-        sortOrder: '정렬 순서',
+        sortBy: '정렬 기준',
         standardPreset: '표준',
         compactPreset: '컴팩트',
         defaultSuffix: '(기본값)',
@@ -383,7 +384,7 @@ export const STRINGS_KO = {
     modals: {
         bulkApply: {
             applyButton: '적용',
-            applySortTitle: (target: string) => `${target}에 정렬을 적용하시겠습니까?`,
+            applySortAndGroupTitle: (target: string) => `${target}에 정렬 및 그룹을 적용하시겠습니까?`,
             applyAppearanceTitle: (target: string) => `${target}에 모양을 적용하시겠습니까?`,
             affectedCountMessage: (count: number) => `변경될 기존 재정의: ${count}.`
         },

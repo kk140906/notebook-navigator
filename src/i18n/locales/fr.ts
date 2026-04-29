@@ -128,13 +128,14 @@ export const STRINGS_FR = {
         newFolder: 'Nouveau dossier', // Tooltip for create new folder button (English: New folder)
         newNote: 'Nouvelle note', // Tooltip for create new note button (English: New note)
         mobileBackToNavigation: 'Retour à la navigation', // Mobile-only back button text to return to navigation pane (English: Back to navigation)
-        changeSortOrder: "Changer l'ordre de tri", // Tooltip for the sort order toggle button (English: Change sort order)
+        changeChildSortOrder: "Changer l'ordre de tri",
+        changeSortAndGroup: 'Changer le tri et le regroupement',
         defaultSort: 'Par défaut', // Label for default sorting mode (English: Default)
         descendants: 'descendants',
         subfolders: 'sous-dossiers',
         subtags: 'sous-étiquettes',
         childValues: 'valeurs enfants',
-        applySortToDescendants: (target: string) => `Appliquer le tri aux ${target}`,
+        applySortAndGroupToDescendants: (target: string) => `Appliquer le tri et le regroupement aux ${target}`,
         applyAppearanceToDescendants: (target: string) => `Appliquer l'apparence aux ${target}`,
         showFolders: 'Afficher la navigation', // Tooltip for button to show the navigation pane (English: Show navigation)
         reorderRootFolders: 'Réorganiser la navigation',
@@ -366,7 +367,7 @@ export const STRINGS_FR = {
     // Folder appearance menu
     folderAppearance: {
         appearance: 'Apparence',
-        sortOrder: 'Ordre de tri',
+        sortBy: 'Trier par',
         standardPreset: 'Standard',
         compactPreset: 'Compact',
         defaultSuffix: '(par défaut)',
@@ -385,7 +386,7 @@ export const STRINGS_FR = {
     modals: {
         bulkApply: {
             applyButton: 'Appliquer',
-            applySortTitle: (target: string) => `Appliquer le tri aux ${target}\u202f?`,
+            applySortAndGroupTitle: (target: string) => `Appliquer le tri et le regroupement aux ${target}\u202f?`,
             applyAppearanceTitle: (target: string) => `Appliquer l'apparence aux ${target}\u202f?`,
             affectedCountMessage: (count: number) => `Remplacements existants qui seront modifiés\u202f: ${count}.`
         },

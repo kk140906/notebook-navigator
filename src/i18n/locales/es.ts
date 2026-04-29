@@ -128,13 +128,14 @@ export const STRINGS_ES = {
         newFolder: 'Nueva carpeta', // Tooltip for create new folder button (English: New folder)
         newNote: 'Nueva nota', // Tooltip for create new note button (English: New note)
         mobileBackToNavigation: 'Volver a navegación', // Mobile-only back button text to return to navigation pane (English: Back to navigation)
-        changeSortOrder: 'Cambiar orden de clasificación', // Tooltip for the sort order toggle button (English: Change sort order)
+        changeChildSortOrder: 'Cambiar orden de clasificación',
+        changeSortAndGroup: 'Cambiar orden y agrupación',
         defaultSort: 'Predeterminado', // Label for default sorting mode (English: Default)
         descendants: 'descendientes',
         subfolders: 'subcarpetas',
         subtags: 'subetiquetas',
         childValues: 'valores secundarios',
-        applySortToDescendants: (target: string) => `Aplicar orden a ${target}`,
+        applySortAndGroupToDescendants: (target: string) => `Aplicar orden y agrupación a ${target}`,
         applyAppearanceToDescendants: (target: string) => `Aplicar apariencia a ${target}`,
         showFolders: 'Mostrar navegación', // Tooltip for button to show the navigation pane (English: Show navigation)
         reorderRootFolders: 'Reordenar navegación',
@@ -366,7 +367,7 @@ export const STRINGS_ES = {
     // Folder appearance menu
     folderAppearance: {
         appearance: 'Apariencia',
-        sortOrder: 'Orden de clasificación',
+        sortBy: 'Ordenar por',
         standardPreset: 'Estándar',
         compactPreset: 'Compacto',
         defaultSuffix: '(predeterminado)',
@@ -385,7 +386,7 @@ export const STRINGS_ES = {
     modals: {
         bulkApply: {
             applyButton: 'Aplicar',
-            applySortTitle: (target: string) => `¿Aplicar orden a ${target}?`,
+            applySortAndGroupTitle: (target: string) => `¿Aplicar orden y agrupación a ${target}?`,
             applyAppearanceTitle: (target: string) => `¿Aplicar apariencia a ${target}?`,
             affectedCountMessage: (count: number) => `Anulaciones existentes que cambiarán: ${count}.`
         },

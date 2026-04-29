@@ -129,13 +129,14 @@ export const STRINGS_ID = {
         newFolder: 'Folder baru',
         newNote: 'Catatan baru',
         mobileBackToNavigation: 'Kembali ke navigasi',
-        changeSortOrder: 'Ubah urutan',
+        changeChildSortOrder: 'Ubah urutan',
+        changeSortAndGroup: 'Ubah urutan dan grup',
         defaultSort: 'Default',
         descendants: 'turunan',
         subfolders: 'subfolder',
         subtags: 'subtag',
         childValues: 'nilai anak',
-        applySortToDescendants: (target: string) => `Terapkan urutan ke ${target}`,
+        applySortAndGroupToDescendants: (target: string) => `Terapkan urutan dan grup ke ${target}`,
         applyAppearanceToDescendants: (target: string) => `Terapkan tampilan ke ${target}`,
         showFolders: 'Tampilkan navigasi',
         reorderRootFolders: 'Atur ulang navigasi',
@@ -366,7 +367,7 @@ export const STRINGS_ID = {
     // Folder appearance menu
     folderAppearance: {
         appearance: 'Tampilan',
-        sortOrder: 'Urutan',
+        sortBy: 'Urutkan berdasarkan',
         standardPreset: 'Standar',
         compactPreset: 'Kompak',
         defaultSuffix: '(default)',
@@ -385,7 +386,7 @@ export const STRINGS_ID = {
     modals: {
         bulkApply: {
             applyButton: 'Terapkan',
-            applySortTitle: (target: string) => `Terapkan urutan ke ${target}?`,
+            applySortAndGroupTitle: (target: string) => `Terapkan urutan dan grup ke ${target}?`,
             applyAppearanceTitle: (target: string) => `Terapkan tampilan ke ${target}?`,
             affectedCountMessage: (count: number) => `Penimpaan yang ada dan akan berubah: ${count}.`
         },

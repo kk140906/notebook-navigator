@@ -129,13 +129,14 @@ export const STRINGS_PT = {
         newFolder: 'Nova pasta', // Tooltip for create new folder button (English: New folder)
         newNote: 'Nova nota', // Tooltip for create new note button (English: New note)
         mobileBackToNavigation: 'Voltar à navegação', // Mobile-only back button text to return to navigation pane (English: Back to navigation)
-        changeSortOrder: 'Alterar ordem de ordenação', // Tooltip for the sort order toggle button (English: Change sort order)
+        changeChildSortOrder: 'Alterar ordem de ordenação',
+        changeSortAndGroup: 'Alterar ordenação e agrupamento',
         defaultSort: 'Predefinido', // Label for default sorting mode (English: Default)
         descendants: 'descendentes',
         subfolders: 'subpastas',
         subtags: 'subetiquetas',
         childValues: 'valores secundários',
-        applySortToDescendants: (target: string) => `Aplicar ordenação a ${target}`,
+        applySortAndGroupToDescendants: (target: string) => `Aplicar ordenação e agrupamento a ${target}`,
         applyAppearanceToDescendants: (target: string) => `Aplicar aparência a ${target}`,
         showFolders: 'Mostrar navegação', // Tooltip for button to show the navigation pane (English: Show navigation)
         reorderRootFolders: 'Reordenar navegação',
@@ -366,7 +367,7 @@ export const STRINGS_PT = {
     // Folder appearance menu
     folderAppearance: {
         appearance: 'Aparência',
-        sortOrder: 'Ordem de ordenação',
+        sortBy: 'Ordenar por',
         standardPreset: 'Padrão',
         compactPreset: 'Compacto',
         defaultSuffix: '(predefinido)',
@@ -385,7 +386,7 @@ export const STRINGS_PT = {
     modals: {
         bulkApply: {
             applyButton: 'Aplicar',
-            applySortTitle: (target: string) => `Aplicar ordenação a ${target}?`,
+            applySortAndGroupTitle: (target: string) => `Aplicar ordenação e agrupamento a ${target}?`,
             applyAppearanceTitle: (target: string) => `Aplicar aparência a ${target}?`,
             affectedCountMessage: (count: number) => `Substituições existentes que serão alteradas: ${count}.`
         },
