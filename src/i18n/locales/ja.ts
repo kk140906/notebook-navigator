@@ -364,6 +364,8 @@ export const STRINGS_JA = {
 
     // Folder appearance menu
     folderAppearance: {
+        appearance: '外観',
+        sortOrder: '並び順',
         standardPreset: '標準',
         compactPreset: 'コンパクト',
         defaultSuffix: '(デフォルト)',
@@ -813,6 +815,7 @@ export const STRINGS_JA = {
 
     // Settings
     settings: {
+        changeDefaultSettings: 'デフォルト設定を変更',
         metadataReport: {
             exportSuccess: '失敗したメタデータレポートをエクスポートしました: {filename}',
             exportFailed: 'メタデータレポートのエクスポートに失敗しました'

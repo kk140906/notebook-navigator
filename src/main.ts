@@ -16,8 +16,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { Platform, Plugin, TFile, FileView, TFolder, WorkspaceLeaf, addIcon } from 'obsidian';
-import { NotebookNavigatorSettings, NotebookNavigatorSettingTab } from './settings';
+import { App, Platform, Plugin, TFile, FileView, TFolder, WorkspaceLeaf, addIcon } from 'obsidian';
+import { NotebookNavigatorSettingTab, type NotebookNavigatorSettings } from './settings';
 import {
     LocalStorageKeys,
     NOTEBOOK_NAVIGATOR_CALENDAR_VIEW,
@@ -69,11 +69,30 @@ import {
     type SyncModeSettingId,
     type TagSortOrder
 } from './settings/types';
+import type { SettingsTabId } from './settings/tabs/SettingsTabContext';
 import { NOTEBOOK_NAVIGATOR_ICON_ID, NOTEBOOK_NAVIGATOR_ICON_SVG } from './constants/notebookNavigatorIcon';
 import { PluginSettingsController } from './services/settings/PluginSettingsController';
 import { PluginPreferencesController } from './services/settings/PluginPreferencesController';
 import { consumePendingPdfProcessingDiagnostic } from './services/content/pdf/pdfCrashDiagnostics';
 import { applyModifiedSettingsTransfer, createModifiedSettingsTransfer } from './settings/transfer';
+
+interface ObsidianSettingsModal {
+    open(): void;
+    openTabById(id: string): void;
+}
+
+interface AppWithSettingsModal extends App {
+    setting?: ObsidianSettingsModal;
+}
+
+function getSettingsModal(app: App): ObsidianSettingsModal | null {
+    const candidate = (app as AppWithSettingsModal).setting;
+    if (!candidate || typeof candidate.open !== 'function' || typeof candidate.openTabById !== 'function') {
+        return null;
+    }
+
+    return candidate;
+}
 
 /**
  * Main plugin class for Notebook Navigator
@@ -108,6 +127,7 @@ export default class NotebookNavigatorPlugin extends Plugin implements ISettings
     private workspaceCoordinator: WorkspaceCoordinator | null = null;
     // Handles homepage file opening and startup behavior
     private homepageController: HomepageController | null = null;
+    private settingTab: NotebookNavigatorSettingTab | null = null;
     private pendingUpdateNotice: ReleaseUpdateNotice | null = null;
     private hasWorkspaceLayoutReady = false;
     private lastCalendarPlacement: CalendarPlacement | null = null;
@@ -150,6 +170,29 @@ export default class NotebookNavigatorPlugin extends Plugin implements ISettings
 
     public isSynced(settingId: SyncModeSettingId): boolean {
         return this.settingsController.isSynced(settingId);
+    }
+
+    public openSettingsTab(tabId: SettingsTabId): boolean {
+        const settingTab = this.settingTab;
+        if (!settingTab) {
+            return false;
+        }
+
+        settingTab.selectTab(tabId);
+
+        const settingsModal = getSettingsModal(this.app);
+        if (!settingsModal) {
+            return false;
+        }
+
+        try {
+            settingsModal.open();
+            settingsModal.openTabById(this.manifest.id);
+            settingTab.selectTab(tabId, { focus: true });
+            return true;
+        } catch {
+            return false;
+        }
     }
 
     public async setSyncMode(settingId: SyncModeSettingId, mode: SettingSyncMode): Promise<void> {
@@ -468,7 +511,8 @@ export default class NotebookNavigatorPlugin extends Plugin implements ISettings
         registerNavigatorCommands(this);
 
         // ==== Settings tab ====
-        this.addSettingTab(new NotebookNavigatorSettingTab(this.app, this));
+        this.settingTab = new NotebookNavigatorSettingTab(this.app, this);
+        this.addSettingTab(this.settingTab);
 
         // Register editor context menu
         registerWorkspaceEvents(this);
@@ -1031,6 +1075,7 @@ export default class NotebookNavigatorPlugin extends Plugin implements ISettings
         this.ribbonIconEl?.remove();
         this.ribbonIconEl = undefined;
 
+        this.settingTab = null;
         this.omnisearchService = null;
     }
 

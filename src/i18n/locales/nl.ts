@@ -366,6 +366,8 @@ export const STRINGS_NL = {
 
     // Folder appearance menu
     folderAppearance: {
+        appearance: 'Uiterlijk',
+        sortOrder: 'Sorteervolgorde',
         standardPreset: 'Standaard',
         compactPreset: 'Compact',
         defaultSuffix: '(standaard)',
@@ -815,6 +817,7 @@ export const STRINGS_NL = {
 
     // Settings
     settings: {
+        changeDefaultSettings: 'Standaardinstellingen wijzigen',
         metadataReport: {
             exportSuccess: 'Metadatarapport met fouten geëxporteerd naar: {filename}',
             exportFailed: 'Kan metadatarapport niet exporteren'

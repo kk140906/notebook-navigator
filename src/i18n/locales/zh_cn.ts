@@ -364,6 +364,8 @@ export const STRINGS_ZH_CN = {
 
     // Folder appearance menu
     folderAppearance: {
+        appearance: '外观',
+        sortOrder: '排序方式',
         standardPreset: '标准',
         compactPreset: '紧凑',
         defaultSuffix: '(默认)',
@@ -807,6 +809,7 @@ export const STRINGS_ZH_CN = {
 
     // Settings
     settings: {
+        changeDefaultSettings: '更改默认设置',
         metadataReport: {
             exportSuccess: '失败的元数据报告已导出至：{filename}',
             exportFailed: '导出元数据报告失败'

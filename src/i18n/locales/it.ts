@@ -364,6 +364,8 @@ export const STRINGS_IT = {
 
     // Folder appearance menu
     folderAppearance: {
+        appearance: 'Aspetto',
+        sortOrder: 'Ordinamento',
         standardPreset: 'Standard',
         compactPreset: 'Compatto',
         defaultSuffix: '(predefinito)',
@@ -810,6 +812,7 @@ export const STRINGS_IT = {
 
     // Settings
     settings: {
+        changeDefaultSettings: 'Modifica impostazioni predefinite',
         metadataReport: {
             exportSuccess: 'Report metadati falliti esportato in: {filename}',
             exportFailed: 'Impossibile esportare report metadati'

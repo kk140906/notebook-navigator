@@ -364,6 +364,8 @@ export const STRINGS_VI = {
 
     // Folder appearance menu
     folderAppearance: {
+        appearance: 'Giao diện',
+        sortOrder: 'Thứ tự sắp xếp',
         standardPreset: 'Chuẩn',
         compactPreset: 'Gọn',
         defaultSuffix: '(mặc định)',
@@ -815,6 +817,7 @@ export const STRINGS_VI = {
 
     // Settings
     settings: {
+        changeDefaultSettings: 'Thay đổi cài đặt mặc định',
         metadataReport: {
             exportSuccess: 'Báo cáo metadata thất bại đã xuất đến: {filename}',
             exportFailed: 'Không thể xuất báo cáo metadata'

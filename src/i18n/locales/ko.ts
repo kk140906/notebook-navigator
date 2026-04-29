@@ -363,6 +363,8 @@ export const STRINGS_KO = {
 
     // Folder appearance menu
     folderAppearance: {
+        appearance: '모양',
+        sortOrder: '정렬 순서',
         standardPreset: '표준',
         compactPreset: '컴팩트',
         defaultSuffix: '(기본값)',
@@ -813,6 +815,7 @@ export const STRINGS_KO = {
 
     // Settings
     settings: {
+        changeDefaultSettings: '기본 설정 변경',
         metadataReport: {
             exportSuccess: '메타데이터 보고서 내보내기 실패: {filename}',
             exportFailed: '메타데이터 보고서 내보내기 실패'

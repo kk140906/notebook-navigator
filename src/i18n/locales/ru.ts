@@ -365,6 +365,8 @@ export const STRINGS_RU = {
 
     // Folder appearance menu
     folderAppearance: {
+        appearance: 'Внешний вид',
+        sortOrder: 'Порядок сортировки',
         standardPreset: 'Стандартный',
         compactPreset: 'Компактный',
         defaultSuffix: '(по умолчанию)',
@@ -811,6 +813,7 @@ export const STRINGS_RU = {
 
     // Settings
     settings: {
+        changeDefaultSettings: 'Изменить настройки по умолчанию',
         metadataReport: {
             exportSuccess: 'Отчёт о неудачных метаданных экспортирован в: {filename}',
             exportFailed: 'Не удалось экспортировать отчёт о метаданных'

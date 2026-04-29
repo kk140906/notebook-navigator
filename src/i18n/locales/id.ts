@@ -365,6 +365,8 @@ export const STRINGS_ID = {
 
     // Folder appearance menu
     folderAppearance: {
+        appearance: 'Tampilan',
+        sortOrder: 'Urutan',
         standardPreset: 'Standar',
         compactPreset: 'Kompak',
         defaultSuffix: '(default)',
@@ -814,6 +816,7 @@ export const STRINGS_ID = {
 
     // Settings
     settings: {
+        changeDefaultSettings: 'Ubah pengaturan default',
         metadataReport: {
             exportSuccess: 'Laporan metadata yang gagal diekspor ke: {filename}',
             exportFailed: 'Gagal mengekspor laporan metadata'

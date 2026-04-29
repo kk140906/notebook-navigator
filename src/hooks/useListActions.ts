@@ -299,7 +299,7 @@ function collectAllPropertyNodeIds(propertyTreeService: NonNullable<ReturnType<t
  * @returns Object containing action handlers and computed values for list pane operations
  */
 export function useListActions() {
-    const { app, tagTreeService, propertyTreeService } = useServices();
+    const { app, plugin, tagTreeService, propertyTreeService } = useServices();
     const settings = useSettingsState();
     const vaultProfileId = settings.vaultProfile;
     const vaultProfiles = settings.vaultProfiles;
@@ -319,6 +319,14 @@ export function useListActions() {
     const hasPropertySelection = selectionState.selectionType === ItemType.PROPERTY && Boolean(selectionState.selectedProperty);
     const hasCreatablePropertySelection = hasPropertySelection && selectionState.selectedProperty !== PROPERTIES_ROOT_VIRTUAL_FOLDER_ID;
     const hasAppearanceOrSortSelection = hasFolderSelection || hasTagSelection || hasPropertySelection;
+
+    const openDefaultListSettings = useCallback(() => {
+        plugin.openSettingsTab('list-pane');
+    }, [plugin]);
+
+    const openDefaultListAppearanceSettings = useCallback(() => {
+        plugin.openSettingsTab('notes');
+    }, [plugin]);
     const canCreateNewFile = Boolean(selectionState.selectedFolder) || hasCreatableTagSelection || hasCreatablePropertySelection;
 
     const getSelectionSortTarget = useCallback((): SelectionSortTarget | null => {
@@ -916,13 +924,18 @@ export function useListActions() {
                           onApply: promptApplyAppearanceToDescendants,
                           disabled: getDescendantAppearanceChangeStats().disabled
                       }
-                    : undefined
+                    : undefined,
+                defaultSettingsAction: {
+                    menuTitle: strings.settings.changeDefaultSettings,
+                    onOpen: openDefaultListAppearanceSettings
+                }
             });
         },
         [
             canApplyToDescendants,
             getDescendantAppearanceChangeStats,
             hasAppearanceOrSortSelection,
+            openDefaultListAppearanceSettings,
             promptApplyAppearanceToDescendants,
             selectionDescendantLabel,
             settings,
@@ -958,7 +971,12 @@ export function useListActions() {
             const hasSelectionSortOverride = Boolean(getSelectionSortOverride());
 
             menu.addItem(item => {
+                item.setTitle(strings.folderAppearance.sortOrder).setIcon('lucide-arrow-up-down').setDisabled(true);
+            });
+
+            menu.addItem(item => {
                 item.setTitle(`${strings.paneHeader.defaultSort}: ${getSortOptionLabel(settings.defaultFolderSort)}`)
+                    .setIcon(getSortIconName(settings.defaultFolderSort))
                     .setChecked(!hasSelectionSortOverride)
                     .onClick(() => {
                         // Reset to default sort
@@ -981,6 +999,7 @@ export function useListActions() {
 
                 menu.addItem(item => {
                     item.setTitle(getSortOptionLabel(option))
+                        .setIcon(getSortIconName(option))
                         .setChecked(hasSelectionSortOverride && currentSort === option)
                         .onClick(() => {
                             // Apply sort option
@@ -997,12 +1016,22 @@ export function useListActions() {
                 menu.addItem(item => {
                     const descendantStats = getDescendantSortChangeStats();
                     item.setTitle(strings.paneHeader.applySortToDescendants(selectionDescendantLabel))
+                        .setIcon('lucide-squares-unite')
                         .setDisabled(descendantStats.disabled)
                         .onClick(() => {
                             promptApplySortToDescendants();
                         });
                 });
             }
+
+            menu.addSeparator();
+            menu.addItem(item => {
+                item.setTitle(strings.settings.changeDefaultSettings)
+                    .setIcon('lucide-settings')
+                    .onClick(() => {
+                        openDefaultListSettings();
+                    });
+            });
 
             menu.showAtMouseEvent(event.nativeEvent);
         },
@@ -1013,6 +1042,7 @@ export function useListActions() {
             getCurrentSortOption,
             getDescendantSortChangeStats,
             getSelectionSortOverride,
+            openDefaultListSettings,
             promptApplySortToDescendants,
             removeSelectionSortOverride,
             selectionDescendantLabel,

@@ -364,6 +364,8 @@ export const STRINGS_AR = {
 
     // Folder appearance menu
     folderAppearance: {
+        appearance: 'المظهر',
+        sortOrder: 'ترتيب الفرز',
         standardPreset: 'قياسي',
         compactPreset: 'مضغوط',
         defaultSuffix: '(افتراضي)',
@@ -812,6 +814,7 @@ export const STRINGS_AR = {
 
     // Settings
     settings: {
+        changeDefaultSettings: 'تغيير الإعدادات الافتراضية',
         metadataReport: {
             exportSuccess: 'تم تصدير تقرير البيانات الوصفية الفاشلة إلى: {filename}',
             exportFailed: 'فشل تصدير تقرير البيانات الوصفية'

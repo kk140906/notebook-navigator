@@ -364,6 +364,8 @@ export const STRINGS_ZH_TW = {
 
     // Folder appearance menu
     folderAppearance: {
+        appearance: '外觀',
+        sortOrder: '排序方式',
         standardPreset: '標準',
         compactPreset: '精簡',
         defaultSuffix: '(預設)',
@@ -807,6 +809,7 @@ export const STRINGS_ZH_TW = {
 
     // Settings
     settings: {
+        changeDefaultSettings: '變更預設設定',
         metadataReport: {
             exportSuccess: '失敗的中繼資料報告已匯出至：{filename}',
             exportFailed: '匯出中繼資料報告失敗'

@@ -364,6 +364,8 @@ export const STRINGS_FA = {
 
     // Folder appearance menu
     folderAppearance: {
+        appearance: 'ظاهر',
+        sortOrder: 'ترتیب مرتب‌سازی',
         standardPreset: 'استاندارد',
         compactPreset: 'فشرده',
         defaultSuffix: '(پیش‌فرض)',
@@ -814,6 +816,7 @@ export const STRINGS_FA = {
 
     // Settings
     settings: {
+        changeDefaultSettings: 'تغییر تنظیمات پیش‌فرض',
         metadataReport: {
             exportSuccess: 'گزارش متادیتای ناموفق به {filename} صادر شد',
             exportFailed: 'صادر کردن گزارش متادیتا ناموفق بود'

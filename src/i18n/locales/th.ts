@@ -364,6 +364,8 @@ export const STRINGS_TH = {
 
     // Folder appearance menu
     folderAppearance: {
+        appearance: 'ลักษณะ',
+        sortOrder: 'ลำดับการเรียง',
         standardPreset: 'มาตรฐาน',
         compactPreset: 'กะทัดรัด',
         defaultSuffix: '(ค่าเริ่มต้น)',
@@ -810,6 +812,7 @@ export const STRINGS_TH = {
 
     // Settings
     settings: {
+        changeDefaultSettings: 'เปลี่ยนการตั้งค่าเริ่มต้น',
         metadataReport: {
             exportSuccess: 'ส่งออกรายงานเมตาดาต้าที่ล้มเหลวไปยัง: {filename}',
             exportFailed: 'ส่งออกรายงานเมตาดาต้าล้มเหลว'

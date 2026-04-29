@@ -41,12 +41,33 @@ interface AppearanceMenuProps {
         onApply: () => void;
         disabled?: boolean;
     };
+    defaultSettingsAction?: {
+        menuTitle: string;
+        onOpen: () => void;
+        disabled?: boolean;
+    };
 }
 
 interface AppearanceRecordAccessor {
     key: string;
     getRecord: (settings: NotebookNavigatorSettings) => Record<string, FolderAppearance> | undefined;
     setRecord: (settings: NotebookNavigatorSettings, next: Record<string, FolderAppearance>) => void;
+}
+
+function getNotePropertyIcon(type: NotePropertyType, settings: NotebookNavigatorSettings): string {
+    return type === 'wordCount' ? resolveUXIconForMenu(settings.interfaceIcons, 'file-word-count', 'lucide-sigma') : 'lucide-minus';
+}
+
+function getGroupingIcon(option: ListNoteGroupingOption): string {
+    switch (option) {
+        case 'date':
+            return 'lucide-calendar';
+        case 'folder':
+            return 'lucide-folder';
+        case 'none':
+        default:
+            return 'lucide-x';
+    }
 }
 
 export function showListPaneAppearanceMenu({
@@ -57,7 +78,8 @@ export function showListPaneAppearanceMenu({
     selectedProperty,
     selectionType,
     updateSettings,
-    descendantAction
+    descendantAction,
+    defaultSettingsAction
 }: AppearanceMenuProps) {
     const defaultMode: ListDisplayMode = getDefaultListMode(settings);
     const resolveAppearanceAccessor = (): AppearanceRecordAccessor | null => {
@@ -146,6 +168,10 @@ export function showListPaneAppearanceMenu({
     const isStandard = effectiveMode === 'standard';
     const isCompact = effectiveMode === 'compact';
 
+    menu.addItem(item => {
+        item.setTitle(strings.folderAppearance.appearance).setIcon('lucide-palette').setDisabled(true);
+    });
+
     // Standard preset
     menu.addItem(item => {
         const label =
@@ -153,6 +179,7 @@ export function showListPaneAppearanceMenu({
                 ? `${strings.folderAppearance.standardPreset} ${strings.folderAppearance.defaultSuffix}`
                 : strings.folderAppearance.standardPreset;
         item.setTitle(label)
+            .setIcon('lucide-list')
             .setChecked(isStandard)
             .onClick(() => {
                 updateAppearance({ mode: 'standard' });
@@ -166,6 +193,7 @@ export function showListPaneAppearanceMenu({
                 ? `${strings.folderAppearance.compactPreset} ${strings.folderAppearance.defaultSuffix}`
                 : strings.folderAppearance.compactPreset;
         item.setTitle(label)
+            .setIcon('lucide-align-left')
             .setChecked(isCompact)
             .onClick(() => {
                 updateAppearance({ mode: 'compact', previewRows: undefined });
@@ -184,6 +212,7 @@ export function showListPaneAppearanceMenu({
         const hasCustomTitleRows = appearance?.titleRows !== undefined;
         const isDefaultTitle = !hasCustomTitleRows;
         item.setTitle(`    ${strings.folderAppearance.defaultTitleOption(settings.fileNameRows)}`)
+            .setIcon('lucide-text')
             .setChecked(isDefaultTitle)
             .onClick(() => {
                 updateAppearance({ titleRows: undefined });
@@ -195,6 +224,7 @@ export function showListPaneAppearanceMenu({
         menu.addItem(item => {
             const isChecked = appearance?.titleRows === rows;
             item.setTitle(`    ${strings.folderAppearance.titleRowOption(rows)}`)
+                .setIcon('lucide-text')
                 .setChecked(isChecked)
                 .onClick(() => {
                     updateAppearance({ titleRows: rows });
@@ -215,6 +245,7 @@ export function showListPaneAppearanceMenu({
             const hasCustomPreviewRows = appearance?.previewRows !== undefined;
             const isDefaultPreview = !hasCustomPreviewRows;
             item.setTitle(`    ${strings.folderAppearance.defaultPreviewOption(settings.previewRows)}`)
+                .setIcon('lucide-file-text')
                 .setChecked(isDefaultPreview)
                 .onClick(() => {
                     updateAppearance({ previewRows: undefined });
@@ -227,6 +258,7 @@ export function showListPaneAppearanceMenu({
                 const hasCustomPreviewRows = appearance?.previewRows !== undefined;
                 const isChecked = hasCustomPreviewRows && appearance?.previewRows === rows;
                 item.setTitle(`    ${strings.folderAppearance.previewRowOption(rows)}`)
+                    .setIcon('lucide-file-text')
                     .setChecked(isChecked)
                     .onClick(() => {
                         updateAppearance({ previewRows: rows });
@@ -266,6 +298,7 @@ export function showListPaneAppearanceMenu({
         const hasNotePropertyType = currentNotePropertyType !== undefined;
         menu.addItem(item => {
             item.setTitle(`    ${strings.folderAppearance.defaultLabel} (${defaultNotePropertyLabel})`)
+                .setIcon(getNotePropertyIcon(settings.notePropertyType, settings))
                 .setChecked(!hasNotePropertyType)
                 .onClick(() => {
                     updateAppearance({ notePropertyType: undefined });
@@ -279,6 +312,7 @@ export function showListPaneAppearanceMenu({
                 const isChecked = hasNotePropertyType && currentNotePropertyType === option;
                 const label = getNotePropertyTypeLabel(option);
                 item.setTitle(`    ${label}`)
+                    .setIcon(getNotePropertyIcon(option, settings))
                     .setChecked(isChecked)
                     .onClick(() => {
                         updateAppearance({ notePropertyType: option });
@@ -298,6 +332,7 @@ export function showListPaneAppearanceMenu({
 
         menu.addItem(item => {
             item.setTitle(`    ${strings.folderAppearance.defaultGroupOption(defaultGroupLabel)}`)
+                .setIcon(getGroupingIcon(groupingInfo.defaultGrouping))
                 .setChecked(!hasCustomGroupBy)
                 .onClick(() => {
                     updateAppearance({ groupBy: undefined });
@@ -311,6 +346,7 @@ export function showListPaneAppearanceMenu({
                 const isChecked = hasCustomGroupBy && groupingInfo.normalizedOverride === option;
                 const optionLabel = strings.settings.items.groupNotes.options[option];
                 item.setTitle(`    ${optionLabel}`)
+                    .setIcon(getGroupingIcon(option))
                     .setChecked(isChecked)
                     .onClick(() => {
                         updateAppearance({ groupBy: option });
@@ -323,9 +359,22 @@ export function showListPaneAppearanceMenu({
         menu.addSeparator();
         menu.addItem(item => {
             item.setTitle(descendantAction.menuTitle)
+                .setIcon('lucide-squares-unite')
                 .setDisabled(Boolean(descendantAction.disabled))
                 .onClick(() => {
                     descendantAction.onApply();
+                });
+        });
+    }
+
+    if (defaultSettingsAction) {
+        menu.addSeparator();
+        menu.addItem(item => {
+            item.setTitle(defaultSettingsAction.menuTitle)
+                .setIcon('lucide-settings')
+                .setDisabled(Boolean(defaultSettingsAction.disabled))
+                .onClick(() => {
+                    defaultSettingsAction.onOpen();
                 });
         });
     }

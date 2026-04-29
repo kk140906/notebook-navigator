@@ -365,6 +365,8 @@ export const STRINGS_TR = {
 
     // Folder appearance menu
     folderAppearance: {
+        appearance: 'Görünüm',
+        sortOrder: 'Sıralama düzeni',
         standardPreset: 'Standart',
         compactPreset: 'Kompakt',
         defaultSuffix: '(varsayılan)',
@@ -814,6 +816,7 @@ export const STRINGS_TR = {
 
     // Settings
     settings: {
+        changeDefaultSettings: 'Varsayılan ayarları değiştir',
         metadataReport: {
             exportSuccess: 'Başarısız meta veri raporu dışa aktarıldı: {filename}',
             exportFailed: 'Meta veri raporu dışa aktarılamadı'

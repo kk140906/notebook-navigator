@@ -80,7 +80,10 @@ const RELEASE_NOTES: ReleaseNote[] = [
         version: '2.6.3',
         date: '2026-04-30',
         showOnUpdate: false,
-        improved: ['Calendar now keeps the displayed date when switching between the left and right sidebar.'],
+        improved: [
+            'Calendar now keeps the displayed date when switching between the left and right sidebar.',
+            'Sort and appearance menus in list pane now include "Change default settings".'
+        ],
         changed: ['The setting "Calendar > Month name format" now always applies to all views, even when the year view is shown.'],
         fixed: [
             'List pane: fixed stale row heights and scroll position after changing calendar or list appearance settings.',
