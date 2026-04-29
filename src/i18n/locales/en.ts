@@ -1002,10 +1002,6 @@ export const STRINGS_EN = {
                 placeholder: '# Extension=icon\ncpp=ph-file-code\npdf=ph-file-pdf',
                 editTooltip: 'Edit mappings'
             },
-            optimizeNoteHeight: {
-                name: 'Variable note height',
-                desc: 'Use compact height for pinned notes and notes without preview text.'
-            },
             compactItemHeight: {
                 name: 'Compact item height',
                 desc: 'Set the height of compact list items on desktop and mobile.',

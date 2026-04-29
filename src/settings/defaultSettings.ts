@@ -293,7 +293,6 @@ export const DEFAULT_SETTINGS: NotebookNavigatorSettings = {
     filterPinnedByFolder: false,
     showPinnedGroupHeader: true,
     showPinnedIcon: true,
-    optimizeNoteHeight: true,
     compactItemHeight: LISTPANE_MEASUREMENTS.defaultCompactItemHeight,
     compactItemHeightScaleText: true,
     showQuickActions: true,

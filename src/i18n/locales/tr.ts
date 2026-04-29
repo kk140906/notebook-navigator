@@ -1006,10 +1006,6 @@ export const STRINGS_TR = {
                 placeholder: '# Extension=icon\ncpp=ph-file-code\npdf=ph-file-pdf',
                 editTooltip: 'Eşlemeleri düzenle'
             },
-            optimizeNoteHeight: {
-                name: 'Değişken not yüksekliği',
-                desc: 'Sabitlenmiş notlar ve önizleme metni olmayan notlar için kompakt yükseklik kullan.'
-            },
             compactItemHeight: {
                 name: 'Kompakt öğe yüksekliği',
                 desc: 'Masaüstü ve mobilde kompakt liste öğelerinin yüksekliğini ayarlayın.',

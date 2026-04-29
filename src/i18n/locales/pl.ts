@@ -1008,10 +1008,6 @@ export const STRINGS_PL = {
                 placeholder: '# rozszerzenie=ikonka\ncpp=ph-file-code\npdf=ph-file-pdf',
                 editTooltip: 'Edytuj przypisania'
             },
-            optimizeNoteHeight: {
-                name: 'Zmienna wysokość notatek',
-                desc: 'Używa kompaktowej wysokości dla przypiętych notatek i notatek bez podglądu treści.'
-            },
             compactItemHeight: {
                 name: 'Wysokość elementów w trybie kompaktowym',
                 desc: 'Ustawia wysokość elementów kompaktowej listy na komputerach stacjonarnych i urządzeniach mobilnych.',

@@ -302,16 +302,6 @@ export function renderListPaneTab(context: SettingsTabContext): void {
         }
     );
 
-    addToggleSetting(
-        displayGroup.addSetting,
-        strings.settings.items.optimizeNoteHeight.name,
-        strings.settings.items.optimizeNoteHeight.desc,
-        () => plugin.settings.optimizeNoteHeight,
-        value => {
-            plugin.settings.optimizeNoteHeight = value;
-        }
-    );
-
     // Slider to configure compact list item height with reset button
     let compactItemHeightSlider: SliderComponent;
     const compactItemHeightSetting = displayGroup.addSetting(setting => {

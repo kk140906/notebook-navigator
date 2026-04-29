@@ -1007,10 +1007,6 @@ export const STRINGS_ES = {
                 placeholder: '# Extension=icon\ncpp=ph-file-code\npdf=ph-file-pdf',
                 editTooltip: 'Editar asignaciones'
             },
-            optimizeNoteHeight: {
-                name: 'Altura de nota variable',
-                desc: 'Usar altura compacta para notas ancladas y notas sin texto de vista previa.'
-            },
             compactItemHeight: {
                 name: 'Altura de elementos compactos',
                 desc: 'Define la altura de los elementos compactos en escritorio y móvil.',

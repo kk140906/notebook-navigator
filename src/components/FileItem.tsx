@@ -589,12 +589,9 @@ export const FileItem = React.memo(function FileItem({
     });
 
     const {
-        pinnedItemShouldUseCompactLayout,
         shouldUseSingleLineForDateAndPreview,
-        shouldUseMultiLinePreviewLayout,
-        shouldCollapseEmptyPreviewSpace,
-        shouldUseExpandedMultiLineLayout,
-        shouldSuppressEmptyPreviewLines,
+        shouldShowMultilinePreview,
+        shouldReplaceEmptyPreviewWithPills,
         shouldShowDateForItem,
         shouldShowSingleLineSecondLine
     } = getFileItemLayoutState({
@@ -602,7 +599,6 @@ export const FileItem = React.memo(function FileItem({
         showPreview: appearanceSettings.showPreview,
         showImage: appearanceSettings.showImage,
         previewRows: appearanceSettings.previewRows,
-        optimizeNoteHeight: settings.optimizeNoteHeight,
         isPinned,
         hasPreviewContent,
         showFeatureImageArea,
@@ -613,7 +609,7 @@ export const FileItem = React.memo(function FileItem({
     const parentFolderSource = file.parent;
     const shouldShowParentFolderLine = shouldShowFileItemParentFolderLine({
         showParentFolder: settings.showParentFolder,
-        pinnedItemShouldUseCompactLayout,
+        isPinned,
         selectionType,
         includeDescendantNotes,
         parentFolder,
@@ -1120,7 +1116,7 @@ export const FileItem = React.memo(function FileItem({
                                 {fileTitleElement}
 
                                 {/* ========== SINGLE LINE MODE ========== */}
-                                {/* Conditions: pinnedItemShouldUseCompactLayout OR previewRows < 2 */}
+                                {/* Conditions: pinned note OR previewRows < 2 */}
                                 {/* Layout: Date+Preview share one line, pills below, parent folder last */}
                                 {shouldUseSingleLineForDateAndPreview && (
                                     <>
@@ -1128,7 +1124,7 @@ export const FileItem = React.memo(function FileItem({
                                         {shouldShowSingleLineSecondLine ? (
                                             <div className="nn-file-second-line">
                                                 {shouldShowDateForItem && <div className="nn-file-date">{displayDate}</div>}
-                                                {appearanceSettings.showPreview && !shouldSuppressEmptyPreviewLines && (
+                                                {appearanceSettings.showPreview && !shouldReplaceEmptyPreviewWithPills && (
                                                     <div className="nn-file-preview" style={{ '--preview-rows': 1 } as React.CSSProperties}>
                                                         {highlightedPreview}
                                                     </div>
@@ -1145,50 +1141,27 @@ export const FileItem = React.memo(function FileItem({
                                 )}
 
                                 {/* ========== MULTI-LINE MODE ========== */}
-                                {/* Conditions: !pinnedItemShouldUseCompactLayout AND previewRows >= 2 */}
-                                {/* Two sub-cases based on preview content and optimization settings */}
-                                {shouldUseMultiLinePreviewLayout && (
+                                {/* Conditions: unpinned note AND previewRows >= 2 */}
+                                {!shouldUseSingleLineForDateAndPreview && (
                                     <>
-                                        {/* CASE 1: COLLAPSED EMPTY PREVIEW */}
-                                        {/* Conditions: heightOptimizationEnabled AND !hasPreviewContent */}
-                                        {/* Layout: Pills, then Date+Parent on same line (compact) */}
-                                        {shouldCollapseEmptyPreviewSpace && (
-                                            <>
-                                                {/* Pills (show even when no preview text) */}
-                                                {pillRows}
-                                                {/* Date + Parent folder share the second line (compact layout) */}
-                                                <div className="nn-file-second-line">
-                                                    {shouldShowDateForItem && <div className="nn-file-date">{displayDate}</div>}
-                                                    {renderParentFolder()}
-                                                </div>
-                                            </>
+                                        {/* Multi-row preview - clamp to the configured rows without forcing empty lines */}
+                                        {shouldShowMultilinePreview && (
+                                            <div
+                                                className="nn-file-preview"
+                                                style={{ '--preview-rows': appearanceSettings.previewRows } as React.CSSProperties}
+                                            >
+                                                {highlightedPreview}
+                                            </div>
                                         )}
 
-                                        {/* CASE 2: KEEP THE EXPANDED MULTI-LINE LAYOUT */}
-                                        {/* Conditions: heightOptimizationDisabled OR hasPreviewContent OR feature image visible */}
-                                        {/* Layout: Preview can shrink to its rendered rows, then pills, then Date+Parent on the metadata line */}
-                                        {shouldUseExpandedMultiLineLayout && (
-                                            <>
-                                                {/* Multi-row preview - clamp to the configured rows without forcing empty lines */}
-                                                {appearanceSettings.showPreview && !shouldSuppressEmptyPreviewLines && (
-                                                    <div
-                                                        className="nn-file-preview"
-                                                        style={{ '--preview-rows': appearanceSettings.previewRows } as React.CSSProperties}
-                                                    >
-                                                        {highlightedPreview}
-                                                    </div>
-                                                )}
+                                        {/* Pills */}
+                                        {pillRows}
 
-                                                {/* Pills */}
-                                                {pillRows}
-
-                                                {/* Date + Parent folder share the metadata line */}
-                                                <div className="nn-file-second-line">
-                                                    {shouldShowDateForItem && <div className="nn-file-date">{displayDate}</div>}
-                                                    {renderParentFolder()}
-                                                </div>
-                                            </>
-                                        )}
+                                        {/* Date + Parent folder share the metadata line */}
+                                        <div className="nn-file-second-line">
+                                            {shouldShowDateForItem && <div className="nn-file-date">{displayDate}</div>}
+                                            {renderParentFolder()}
+                                        </div>
                                     </>
                                 )}
                             </div>

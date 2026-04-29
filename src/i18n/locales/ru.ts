@@ -1003,10 +1003,6 @@ export const STRINGS_RU = {
                 placeholder: '# Extension=icon\ncpp=ph-file-code\npdf=ph-file-pdf',
                 editTooltip: 'Редактировать сопоставления'
             },
-            optimizeNoteHeight: {
-                name: 'Переменная высота заметок',
-                desc: 'Использовать компактную высоту для закреплённых заметок и заметок без превью.'
-            },
             compactItemHeight: {
                 name: 'Высота компактных элементов',
                 desc: 'Установите высоту компактных элементов списка на компьютере и мобильном.',

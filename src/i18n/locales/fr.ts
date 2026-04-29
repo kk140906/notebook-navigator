@@ -1008,10 +1008,6 @@ export const STRINGS_FR = {
                 placeholder: '# Extension=icon\ncpp=ph-file-code\npdf=ph-file-pdf',
                 editTooltip: 'Modifier les correspondances'
             },
-            optimizeNoteHeight: {
-                name: 'Hauteur de note variable',
-                desc: "Utiliser une hauteur compacte pour les notes épinglées et les notes sans texte d'aperçu."
-            },
             compactItemHeight: {
                 name: 'Hauteur des éléments compacts',
                 desc: 'Définit la hauteur des éléments compacts sur ordinateur et mobile.',

@@ -1007,10 +1007,6 @@ export const STRINGS_NL = {
                 placeholder: '# Extension=icon\ncpp=ph-file-code\npdf=ph-file-pdf',
                 editTooltip: 'Toewijzingen bewerken'
             },
-            optimizeNoteHeight: {
-                name: 'Variabele notitiehoogte',
-                desc: 'Compacte hoogte gebruiken voor vastgepinde notities en notities zonder voorbeeldtekst.'
-            },
             compactItemHeight: {
                 name: 'Compacte itemhoogte',
                 desc: 'Stel de hoogte van compacte lijstitems in op desktop en mobiel.',

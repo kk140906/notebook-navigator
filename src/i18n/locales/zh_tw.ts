@@ -999,10 +999,6 @@ export const STRINGS_ZH_TW = {
                 placeholder: '# 副檔名=圖示\ncpp=ph-file-code\npdf=ph-file-pdf',
                 editTooltip: '編輯對應'
             },
-            optimizeNoteHeight: {
-                name: '可變筆記高度',
-                desc: '為釘選筆記和無預覽文字的筆記使用精簡高度。'
-            },
             compactItemHeight: {
                 name: '精簡項目高度',
                 desc: '設定桌面和行動裝置的精簡列表項目高度。',

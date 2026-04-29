@@ -1005,10 +1005,6 @@ export const STRINGS_KO = {
                 placeholder: '# Extension=icon\ncpp=ph-file-code\npdf=ph-file-pdf',
                 editTooltip: '매핑 편집'
             },
-            optimizeNoteHeight: {
-                name: '가변 노트 높이',
-                desc: '고정된 노트와 미리보기 텍스트가 없는 노트에 컴팩트한 높이를 사용합니다.'
-            },
             compactItemHeight: {
                 name: '슬림 항목 높이',
                 desc: '데스크톱과 모바일에서 슬림 목록 항목 높이를 설정합니다.',

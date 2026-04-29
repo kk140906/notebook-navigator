@@ -72,14 +72,13 @@ describe('listPaneMeasurements layout helpers', () => {
         ).toBe(2);
     });
 
-    it('keeps the expanded multi-line layout when the feature image area is visible', () => {
+    it('keeps the multiline preview slot when the feature image area is visible', () => {
         expect(
             getFileItemLayoutState({
                 showDate: true,
                 showPreview: true,
                 showImage: true,
                 previewRows: 3,
-                optimizeNoteHeight: true,
                 isPinned: false,
                 hasPreviewContent: false,
                 showFeatureImageArea: true,
@@ -87,11 +86,10 @@ describe('listPaneMeasurements layout helpers', () => {
             })
         ).toMatchObject({
             isCompactMode: false,
-            shouldUseMultiLinePreviewLayout: true,
-            shouldCollapseEmptyPreviewSpace: false,
-            shouldUseExpandedMultiLineLayout: true,
-            shouldSuppressEmptyPreviewLines: false,
-            multilinePreviewRowCount: 3
+            shouldUseSingleLineForDateAndPreview: false,
+            shouldShowMultilinePreview: true,
+            shouldReplaceEmptyPreviewWithPills: false,
+            shouldShowDateForItem: true
         });
     });
 
@@ -102,18 +100,16 @@ describe('listPaneMeasurements layout helpers', () => {
                 showPreview: true,
                 showImage: false,
                 previewRows: 3,
-                optimizeNoteHeight: true,
                 isPinned: false,
                 hasPreviewContent: false,
                 showFeatureImageArea: false,
                 hasVisiblePillRows: true
             })
         ).toMatchObject({
-            shouldUseMultiLinePreviewLayout: true,
-            shouldCollapseEmptyPreviewSpace: true,
-            shouldUseExpandedMultiLineLayout: false,
-            shouldSuppressEmptyPreviewLines: true,
-            multilinePreviewRowCount: 0
+            shouldUseSingleLineForDateAndPreview: false,
+            shouldShowMultilinePreview: false,
+            shouldReplaceEmptyPreviewWithPills: true,
+            shouldShowDateForItem: true
         });
     });
 
@@ -121,7 +117,7 @@ describe('listPaneMeasurements layout helpers', () => {
         expect(
             shouldShowFileItemParentFolderLine({
                 showParentFolder: true,
-                pinnedItemShouldUseCompactLayout: false,
+                isPinned: false,
                 selectionType: 'tag',
                 includeDescendantNotes: false,
                 parentFolder: 'Projects',
@@ -132,7 +128,7 @@ describe('listPaneMeasurements layout helpers', () => {
         expect(
             shouldShowFileItemParentFolderLine({
                 showParentFolder: true,
-                pinnedItemShouldUseCompactLayout: false,
+                isPinned: false,
                 selectionType: 'folder',
                 includeDescendantNotes: true,
                 parentFolder: 'Projects',
@@ -143,7 +139,7 @@ describe('listPaneMeasurements layout helpers', () => {
         expect(
             shouldShowFileItemParentFolderLine({
                 showParentFolder: true,
-                pinnedItemShouldUseCompactLayout: false,
+                isPinned: false,
                 selectionType: 'folder',
                 includeDescendantNotes: true,
                 parentFolder: 'Projects',
@@ -154,7 +150,7 @@ describe('listPaneMeasurements layout helpers', () => {
         expect(
             shouldShowFileItemParentFolderLine({
                 showParentFolder: true,
-                pinnedItemShouldUseCompactLayout: false,
+                isPinned: false,
                 selectionType: 'tag',
                 includeDescendantNotes: false,
                 parentFolder: null,

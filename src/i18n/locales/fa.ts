@@ -1006,10 +1006,6 @@ export const STRINGS_FA = {
                 placeholder: '# Extension=icon\ncpp=ph-file-code\npdf=ph-file-pdf',
                 editTooltip: 'ویرایش نگاشت‌ها'
             },
-            optimizeNoteHeight: {
-                name: 'ارتفاع متغیر یادداشت',
-                desc: 'استفاده از ارتفاع فشرده برای یادداشت‌های سنجاق‌شده و یادداشت‌های بدون متن پیش‌نمایش.'
-            },
             compactItemHeight: {
                 name: 'ارتفاع آیتم فشرده',
                 desc: 'ارتفاع آیتم‌های لیست فشرده را در دسکتاپ و موبایل تنظیم کنید.',

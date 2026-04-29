@@ -1005,10 +1005,6 @@ export const STRINGS_JA = {
                 placeholder: '# Extension=icon\ncpp=ph-file-code\npdf=ph-file-pdf',
                 editTooltip: 'マッピングを編集'
             },
-            optimizeNoteHeight: {
-                name: '可変ノート高さ',
-                desc: 'ピン留めされたノートとプレビューテキストのないノートにコンパクトな高さを使用。'
-            },
             compactItemHeight: {
                 name: 'スリム表示の項目高さ',
                 desc: 'デスクトップとモバイルのスリム表示項目の高さを設定します。',

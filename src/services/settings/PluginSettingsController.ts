@@ -249,6 +249,7 @@ export class PluginSettingsController {
         delete settingsRecord['calendarCustomPromptForTitle'];
         delete settingsRecord['saveMetadataToFrontmatter'];
         delete settingsRecord['lastAnnouncedRelease'];
+        delete settingsRecord['optimizeNoteHeight'];
 
         this.currentSettings.keyboardShortcuts = sanitizeKeyboardShortcuts(this.currentSettings.keyboardShortcuts);
         this.normalizeSyncModes({ storedData, isFirstLaunch });
@@ -567,6 +568,7 @@ export class PluginSettingsController {
         delete rest.calendarCustomPromptForTitle;
         delete rest.saveMetadataToFrontmatter;
         delete rest.propertyFields;
+        delete rest.optimizeNoteHeight;
 
         const syncModeRegistry = this.getSyncModeRegistry();
         SYNC_MODE_SETTING_IDS.forEach(settingId => {

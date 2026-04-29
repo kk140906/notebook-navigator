@@ -1008,10 +1008,6 @@ export const STRINGS_PT_BR = {
                 placeholder: '# Extension=icon\ncpp=ph-file-code\npdf=ph-file-pdf',
                 editTooltip: 'Editar mapeamentos'
             },
-            optimizeNoteHeight: {
-                name: 'Altura de nota variável',
-                desc: 'Usar altura compacta para notas fixadas e notas sem texto de visualização.'
-            },
             compactItemHeight: {
                 name: 'Altura do item compacto',
                 desc: 'Defina a altura dos itens de lista compactos no desktop e celular.',

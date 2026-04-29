@@ -1002,10 +1002,6 @@ export const STRINGS_TH = {
                 placeholder: '# Extension=icon\ncpp=ph-file-code\npdf=ph-file-pdf',
                 editTooltip: 'แก้ไขการแมป'
             },
-            optimizeNoteHeight: {
-                name: 'ความสูงโน้ตแบบปรับได้',
-                desc: 'ใช้ความสูงแบบกะทัดรัดสำหรับโน้ตที่ปักหมุดและโน้ตที่ไม่มีข้อความตัวอย่าง'
-            },
             compactItemHeight: {
                 name: 'ความสูงรายการกะทัดรัด',
                 desc: 'กำหนดความสูงของรายการกะทัดรัดบนเดสก์ท็อปและมือถือ',

@@ -70,6 +70,7 @@ export function migrateLegacySyncedSettings(params: {
     delete mutableSettings.fileVisibility;
     delete mutableSettings.preventInvalidCharacters;
     delete mutableSettings.mobileBackground;
+    delete mutableSettings.optimizeNoteHeight;
 
     const storedNoteGrouping = storedData ? storedData['noteGrouping'] : undefined;
 

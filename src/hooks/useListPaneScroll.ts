@@ -260,7 +260,6 @@ function getListLayoutSignature({
             hiddenTagVisibilitySignature: getHiddenTagVisibilitySignature(hiddenTagVisibility)
         },
         variableHeight: {
-            optimizeNoteHeight: settings.optimizeNoteHeight,
             compactItemHeight: settings.compactItemHeight,
             compactItemHeightScaleText: settings.compactItemHeightScaleText,
             estimatedPreviewCharsPerRow,
@@ -510,7 +509,6 @@ export function useListPaneScroll({
                 showPreview: folderSettings.showPreview,
                 showImage: folderSettings.showImage,
                 previewRows: folderSettings.previewRows,
-                optimizeNoteHeight: settings.optimizeNoteHeight,
                 isPinned: Boolean(item.isPinned),
                 hasPreviewContent,
                 showFeatureImageArea,
@@ -518,7 +516,7 @@ export function useListPaneScroll({
             });
             const showParentFolderLine = shouldShowFileItemParentFolderLine({
                 showParentFolder: settings.showParentFolder,
-                pinnedItemShouldUseCompactLayout: layoutState.pinnedItemShouldUseCompactLayout,
+                isPinned: Boolean(item.isPinned),
                 selectionType: selectionState.selectionType,
                 includeDescendantNotes,
                 parentFolder: item.parentFolder,
@@ -551,24 +549,20 @@ export function useListPaneScroll({
                     if (showParentFolderLine) {
                         textContentHeight += heights.singleTextLineHeight;
                     }
-                } else if (layoutState.shouldUseMultiLinePreviewLayout) {
-                    if (layoutState.shouldCollapseEmptyPreviewSpace) {
-                        if (layoutState.shouldShowDateForItem || showParentFolderLine) {
-                            textContentHeight += heights.singleTextLineHeight;
-                        }
-                    } else if (layoutState.shouldUseExpandedMultiLineLayout) {
+                } else {
+                    if (layoutState.shouldShowMultilinePreview) {
                         const estimatedPreviewRows = estimateRenderedTextRows({
                             text: effectivePreviewText,
-                            maxRows: layoutState.multilinePreviewRowCount,
+                            maxRows: folderSettings.previewRows,
                             charsPerRow: estimatedPreviewCharsPerRow
                         });
                         if (estimatedPreviewRows > 0) {
                             textContentHeight += heights.multilineTextLineHeight * estimatedPreviewRows;
                         }
+                    }
 
-                        if (layoutState.shouldShowDateForItem || showParentFolderLine) {
-                            textContentHeight += heights.singleTextLineHeight;
-                        }
+                    if (layoutState.shouldShowDateForItem || showParentFolderLine) {
+                        textContentHeight += heights.singleTextLineHeight;
                     }
                 }
             }

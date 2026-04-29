@@ -1007,10 +1007,6 @@ export const STRINGS_VI = {
                 placeholder: '# Extension=icon\ncpp=ph-file-code\npdf=ph-file-pdf',
                 editTooltip: 'Chỉnh sửa ánh xạ'
             },
-            optimizeNoteHeight: {
-                name: 'Chiều cao ghi chú thay đổi',
-                desc: 'Sử dụng chiều cao gọn cho ghi chú đã ghim và ghi chú không có văn bản xem trước.'
-            },
             compactItemHeight: {
                 name: 'Chiều cao mục gọn',
                 desc: 'Đặt chiều cao mục danh sách gọn trên máy tính và di động.',

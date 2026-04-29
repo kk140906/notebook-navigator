@@ -1007,10 +1007,6 @@ export const STRINGS_DE = {
                 placeholder: '# Extension=icon\ncpp=ph-file-code\npdf=ph-file-pdf',
                 editTooltip: 'Zuordnungen bearbeiten'
             },
-            optimizeNoteHeight: {
-                name: 'Variable Notizenhöhe',
-                desc: 'Kompakte Höhe für angeheftete Notizen und Notizen ohne Vorschautext verwenden.'
-            },
             compactItemHeight: {
                 name: 'Höhe schlanker Elemente',
                 desc: 'Legt die Höhe schlanker Listenelemente auf Desktop und Mobilgeräten fest.',

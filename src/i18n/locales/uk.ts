@@ -1003,10 +1003,6 @@ export const STRINGS_UK = {
                 placeholder: '# Extension=icon\ncpp=ph-file-code\npdf=ph-file-pdf',
                 editTooltip: 'Редагувати зіставлення'
             },
-            optimizeNoteHeight: {
-                name: 'Змінна висота нотаток',
-                desc: 'Використовувати компактну висоту для закріплених нотаток та нотаток без тексту попереднього перегляду.'
-            },
             compactItemHeight: {
                 name: 'Висота компактних елементів',
                 desc: "Встановіть висоту елементів компактного списку на комп'ютері та мобільному.",

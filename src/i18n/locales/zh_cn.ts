@@ -999,10 +999,6 @@ export const STRINGS_ZH_CN = {
                 placeholder: '# Extension=icon\ncpp=ph-file-code\npdf=ph-file-pdf',
                 editTooltip: '编辑映射'
             },
-            optimizeNoteHeight: {
-                name: '可变笔记高度',
-                desc: '为固定笔记和无预览文本的笔记使用紧凑高度。'
-            },
             compactItemHeight: {
                 name: '精简项目高度',
                 desc: '设置桌面和移动端的紧凑列表项高度。',

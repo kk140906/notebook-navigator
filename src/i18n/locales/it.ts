@@ -1002,10 +1002,6 @@ export const STRINGS_IT = {
                 placeholder: '# Extension=icon\ncpp=ph-file-code\npdf=ph-file-pdf',
                 editTooltip: 'Modifica mappature'
             },
-            optimizeNoteHeight: {
-                name: 'Altezza nota variabile',
-                desc: 'Usa altezza compatta per note fissate e note senza testo anteprima.'
-            },
             compactItemHeight: {
                 name: 'Altezza elemento compatto',
                 desc: "Imposta l'altezza degli elementi lista compatta su desktop e mobile.",

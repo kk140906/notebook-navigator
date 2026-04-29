@@ -1004,10 +1004,6 @@ export const STRINGS_AR = {
                 placeholder: '# Extension=icon\ncpp=ph-file-code\npdf=ph-file-pdf',
                 editTooltip: 'تعديل التعيينات'
             },
-            optimizeNoteHeight: {
-                name: 'ارتفاع متغير للملاحظة',
-                desc: 'استخدام ارتفاع مضغوط للملاحظات المثبتة والملاحظات بدون نص معاينة.'
-            },
             compactItemHeight: {
                 name: 'ارتفاع العنصر المضغوط',
                 desc: 'تعيين ارتفاع عناصر القائمة المضغوطة على سطح المكتب والجوال.',

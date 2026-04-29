@@ -266,15 +266,11 @@ export function estimateRenderedTextRows({
 
 export interface FileItemLayoutState {
     isCompactMode: boolean;
-    pinnedItemShouldUseCompactLayout: boolean;
     shouldUseSingleLineForDateAndPreview: boolean;
-    shouldUseMultiLinePreviewLayout: boolean;
-    shouldCollapseEmptyPreviewSpace: boolean;
-    shouldUseExpandedMultiLineLayout: boolean;
-    shouldSuppressEmptyPreviewLines: boolean;
+    shouldShowMultilinePreview: boolean;
+    shouldReplaceEmptyPreviewWithPills: boolean;
     shouldShowDateForItem: boolean;
     shouldShowSingleLineSecondLine: boolean;
-    multilinePreviewRowCount: number;
 }
 
 export function getFileItemLayoutState({
@@ -282,7 +278,6 @@ export function getFileItemLayoutState({
     showPreview,
     showImage,
     previewRows,
-    optimizeNoteHeight,
     isPinned,
     hasPreviewContent,
     showFeatureImageArea,
@@ -292,53 +287,44 @@ export function getFileItemLayoutState({
     showPreview: boolean;
     showImage: boolean;
     previewRows: number;
-    optimizeNoteHeight: boolean;
     isPinned: boolean;
     hasPreviewContent: boolean;
     showFeatureImageArea: boolean;
     hasVisiblePillRows: boolean;
 }): FileItemLayoutState {
     const isCompactMode = isListPaneCompactMode({ showDate, showPreview, showImage });
-    const pinnedItemShouldUseCompactLayout = isPinned && optimizeNoteHeight;
-    const shouldUseSingleLineForDateAndPreview = pinnedItemShouldUseCompactLayout || previewRows < 2;
-    const shouldUseMultiLinePreviewLayout = !pinnedItemShouldUseCompactLayout && previewRows >= 2;
-    const shouldCollapseEmptyPreviewSpace = optimizeNoteHeight && !hasPreviewContent && !showFeatureImageArea;
-    const shouldUseExpandedMultiLineLayout = !optimizeNoteHeight || hasPreviewContent || showFeatureImageArea;
-    const shouldSuppressEmptyPreviewLines = !hasPreviewContent && hasVisiblePillRows;
-    const shouldShowDateForItem = showDate && !pinnedItemShouldUseCompactLayout;
-    const shouldShowSingleLineSecondLine = shouldShowDateForItem || (showPreview && !shouldSuppressEmptyPreviewLines);
-    const multilinePreviewRowCount = showPreview && shouldUseExpandedMultiLineLayout && !shouldSuppressEmptyPreviewLines ? previewRows : 0;
+    const shouldUseSingleLineForDateAndPreview = isPinned || previewRows < 2;
+    const shouldReplaceEmptyPreviewWithPills = !hasPreviewContent && hasVisiblePillRows;
+    const shouldShowDateForItem = showDate && !isPinned;
+    const shouldShowSingleLineSecondLine = shouldShowDateForItem || (showPreview && !shouldReplaceEmptyPreviewWithPills);
+    const shouldShowMultilinePreview = showPreview && !shouldReplaceEmptyPreviewWithPills && (hasPreviewContent || showFeatureImageArea);
 
     return {
         isCompactMode,
-        pinnedItemShouldUseCompactLayout,
         shouldUseSingleLineForDateAndPreview,
-        shouldUseMultiLinePreviewLayout,
-        shouldCollapseEmptyPreviewSpace,
-        shouldUseExpandedMultiLineLayout,
-        shouldSuppressEmptyPreviewLines,
+        shouldShowMultilinePreview,
+        shouldReplaceEmptyPreviewWithPills,
         shouldShowDateForItem,
-        shouldShowSingleLineSecondLine,
-        multilinePreviewRowCount
+        shouldShowSingleLineSecondLine
     };
 }
 
 export function shouldShowFileItemParentFolderLine({
     showParentFolder,
-    pinnedItemShouldUseCompactLayout,
+    isPinned,
     selectionType,
     includeDescendantNotes,
     parentFolder,
     fileParentPath
 }: {
     showParentFolder: boolean;
-    pinnedItemShouldUseCompactLayout: boolean;
+    isPinned: boolean;
     selectionType: NavigationItemType | null | undefined;
     includeDescendantNotes: boolean;
     parentFolder: string | null | undefined;
     fileParentPath: string | null | undefined;
 }): boolean {
-    if (!showParentFolder || pinnedItemShouldUseCompactLayout || !fileParentPath || fileParentPath === '/') {
+    if (!showParentFolder || isPinned || !fileParentPath || fileParentPath === '/') {
         return false;
     }
 

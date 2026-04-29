@@ -1006,10 +1006,6 @@ export const STRINGS_ID = {
                 placeholder: '# Extension=icon\ncpp=ph-file-code\npdf=ph-file-pdf',
                 editTooltip: 'Edit pemetaan'
             },
-            optimizeNoteHeight: {
-                name: 'Tinggi catatan variabel',
-                desc: 'Gunakan tinggi ringkas untuk catatan yang disematkan dan catatan tanpa teks pratinjau.'
-            },
             compactItemHeight: {
                 name: 'Tinggi item kompak',
                 desc: 'Atur tinggi item daftar kompak di desktop dan mobile.',
