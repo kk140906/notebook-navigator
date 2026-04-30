@@ -66,8 +66,8 @@ function stripHtmlFromChunk(chunk: string): string {
     }
 
     let cleaned = chunk;
-    cleaned = cleaned.replace(/<script[\s\S]*?<\/script>/gi, ' ');
-    cleaned = cleaned.replace(/<style[\s\S]*?<\/style>/gi, ' ');
+    cleaned = cleaned.replace(/<script\b[\s\S]*?<\/script\s*>/gi, ' ');
+    cleaned = cleaned.replace(/<style\b[\s\S]*?<\/style\s*>/gi, ' ');
     cleaned = cleaned.replace(/<br\s*\/?>/gi, ' ');
     cleaned = cleaned.replace(/<hr\s*\/?>/gi, ' ');
     cleaned = cleaned.replace(/<\/(p|div|section|article|header|footer|main|aside|nav|li|ul|ol|blockquote|h[1-6]|tr|td|th|table)>/gi, ' ');

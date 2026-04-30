@@ -623,7 +623,21 @@ function acquireLock() {
     if (isDryRun) return;
 
     try {
-        if (fs.existsSync(lockFilePath)) {
+        while (true) {
+            try {
+                const fd = fs.openSync(lockFilePath, 'wx');
+                try {
+                    fs.writeFileSync(fd, process.pid.toString());
+                } finally {
+                    fs.closeSync(fd);
+                }
+                return;
+            } catch (error) {
+                if (error.code !== 'EEXIST') {
+                    throw error;
+                }
+            }
+
             const pid = fs.readFileSync(lockFilePath, 'utf8').trim();
 
             // Check if process is still running
@@ -640,8 +654,6 @@ function acquireLock() {
                 fs.unlinkSync(lockFilePath);
             }
         }
-
-        fs.writeFileSync(lockFilePath, process.pid.toString());
     } catch (error) {
         console.error('❌ Failed to acquire lock:', error.message);
         process.exit(1);
@@ -653,7 +665,10 @@ function releaseLock() {
 
     try {
         if (fs.existsSync(lockFilePath)) {
-            fs.unlinkSync(lockFilePath);
+            const pid = fs.readFileSync(lockFilePath, 'utf8').trim();
+            if (pid === process.pid.toString()) {
+                fs.unlinkSync(lockFilePath);
+            }
         }
     } catch (error) {
         console.error('⚠️  Failed to release lock:', error.message);

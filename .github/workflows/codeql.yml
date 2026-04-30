@@ -11,15 +11,14 @@ on:
     - cron: '27 4 * * 1'
   workflow_dispatch:
 
-permissions:
-  contents: read
-  security-events: write
-
 jobs:
   analyze:
     name: Analyze JavaScript and TypeScript
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    permissions:
+      contents: read
+      security-events: write
 
     steps:
       - name: Checkout

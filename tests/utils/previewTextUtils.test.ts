@@ -230,6 +230,12 @@ describe('PreviewTextUtils.extractPreviewText', () => {
         expect(preview).toBe('Alpha red and underlined text');
     });
 
+    it('strips script and style blocks with spaced closing tags', () => {
+        const content = 'Alpha <script>alert("hidden")</script > Beta <style>.hidden { display: none; }</style > Tail';
+        const preview = PreviewTextUtils.extractPreviewText(content, skipCodeSettings);
+        expect(preview).toBe('Alpha Beta Tail');
+    });
+
     it('keeps html tags that are inside inline code blocks', () => {
         const content = 'Code sample `const markup = "<div>value</div>";` end';
         const preview = PreviewTextUtils.extractPreviewText(content, skipCodeSettings);
