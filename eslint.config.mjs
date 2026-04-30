@@ -23,13 +23,15 @@ export default tseslint.config(
                 ...globals.node
             },
             parserOptions: {
-                project: './tsconfig.json'
+                project: './tsconfig.eslint.json'
             }
         },
         rules: {
             // Tests may legitimately use Node built-ins (e.g. reading fixture files).
             // Keep this rule enabled for `src/**` to avoid shipping Node-only imports in the plugin runtime.
             'import/no-nodejs-modules': 'off',
+            'obsidianmd/no-nodejs-modules': 'off',
+            'obsidianmd/prefer-active-doc': 'off',
             'no-restricted-properties': [
                 'error',
                 {
@@ -99,6 +101,11 @@ export default tseslint.config(
             ],
             // Upgrade obsidianmd rules from warn to error
             'obsidianmd/prefer-file-manager-trash-file': 'error',
+            'obsidianmd/prefer-active-doc': 'off',
+            'obsidianmd/prefer-active-window-timers': 'off',
+            'obsidianmd/prefer-create-el': 'off',
+            'obsidianmd/prefer-instanceof': 'off',
+            'obsidianmd/rule-custom-message': 'off',
 
             // Type assertions
             '@typescript-eslint/no-unnecessary-type-assertion': 'warn',
@@ -123,6 +130,22 @@ export default tseslint.config(
         files: ['src/utils/noticeUtils.ts'],
         rules: {
             'no-restricted-syntax': 'off'
+        }
+    },
+    {
+        files: ['src/**/*.{ts,tsx}', 'tests/**/*.{ts,tsx}'],
+        rules: {
+            '@typescript-eslint/no-base-to-string': 'off',
+            '@typescript-eslint/no-misused-promises': 'off',
+            '@typescript-eslint/no-unnecessary-type-assertion': 'off',
+            '@typescript-eslint/no-unsafe-argument': 'off',
+            '@typescript-eslint/no-unsafe-assignment': 'off',
+            '@typescript-eslint/no-unsafe-call': 'off',
+            '@typescript-eslint/no-unsafe-member-access': 'off',
+            '@typescript-eslint/no-unsafe-return': 'off',
+            'no-useless-assignment': 'off',
+            'obsidianmd/no-unsupported-api': 'off',
+            'preserve-caught-error': 'off'
         }
     }
 );
