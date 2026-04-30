@@ -80,19 +80,22 @@ const RELEASE_NOTES: ReleaseNote[] = [
         version: '2.6.3',
         date: '2026-04-30',
         showOnUpdate: false,
-        new: ['New setting: General > Show tooltips > Show word count. Shows word counts in tooltips.'],
+        new: [
+            'New setting: General > ==Show tooltips > Show word count==. Shows word counts in tooltips.',
+            'New commands: ==Toggle tags by selection== and ==Toggle properties by selection==.'
+        ],
         improved: [
             'Calendar now keeps the displayed date when switching between the left and right sidebar.',
-            'Sort and appearance menus in list pane now include options for "Change default settings".'
+            'Sort and appearance menus in list pane now include options for "Change default settings" to open settings.'
         ],
         changed: [
             'The setting "Calendar > Month name format" now always applies to all views.',
-            'The grouping options in list pane (group by date, folder or no group) were moved from the appearance menu to the sort menu.',
-            'Removed the setting List > Display > Variable note height. It made no sense keeping it with the new variable line height feature.',
+            'The grouping options in list pane (group by date, folder or no group) are moved from the **appearance menu** to the **sort menu**.',
+            'Removed the setting **List > Display > Variable note height**. It made no sense keeping it with the new variable line height feature.',
             'API metadata icon fields now return the same icon format as stored in frontmatter.'
         ],
         fixed: [
-            'List pane: fixed incorrect row heights (virtualizer breaking) after changing calendar or list appearance settings.',
+            'Fixed incorrect row heights in list pane (virtualizer breaking) after changing calendar settings or navigating certain folders.',
             'The two settings List > Notes > "File name icon map" and "File type icon map" now work correctly again. They broke after the icon format was introduced in 2.6.2.'
         ]
     },

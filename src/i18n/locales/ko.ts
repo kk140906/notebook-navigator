@@ -786,6 +786,8 @@ export const STRINGS_KO = {
         toggleDescendants: '하위 항목 전환', // Command palette: Toggles showing notes from descendants (English: Toggle descendants)
         toggleHidden: '숨긴 폴더, 태그, 노트 전환', // Command palette: Toggles showing hidden items (English: Toggle hidden items)
         toggleTagSort: '태그 정렬 전환', // Command palette: Toggles between alphabetical and frequency tag sorting (English: Toggle tag sort order)
+        toggleTagsBySelection: '선택에 따라 태그 전환',
+        togglePropertiesBySelection: '선택에 따라 속성 전환',
         toggleCompactMode: '컴팩트 모드 전환', // Command palette: Toggles list mode between standard and compact (English: Toggle compact mode)
         collapseExpand: '모든 항목 접기 / 펼치기', // Command palette: Collapse or expand all folders and tags (English: Collapse / expand all items)
         addTag: '선택한 파일에 태그 추가', // Command palette: Opens a dialog to add a tag to selected files (English: Add tag to selected files)

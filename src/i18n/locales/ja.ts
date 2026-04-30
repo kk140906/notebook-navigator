@@ -786,6 +786,8 @@ export const STRINGS_JA = {
         toggleDescendants: '子孫切り替え', // Command palette: Toggles showing notes from descendants (English: Toggle descendants)
         toggleHidden: '非表示のフォルダ・タグ・ノートを切り替え', // Command palette: Toggles showing hidden items (English: Toggle hidden items)
         toggleTagSort: 'タグの並び順を切り替え', // Command palette: Toggles between alphabetical and frequency tag sorting (English: Toggle tag sort order)
+        toggleTagsBySelection: '選択範囲でタグを切り替え',
+        togglePropertiesBySelection: '選択範囲でプロパティを切り替え',
         toggleCompactMode: 'コンパクトモードの切り替え', // Command palette: Toggles list mode between standard and compact (English: Toggle compact mode)
         collapseExpand: 'すべての項目を折りたたむ/展開', // Command palette: Collapse or expand all folders and tags (English: Collapse / expand all items)
         addTag: '選択したファイルにタグを追加', // Command palette: Opens a dialog to add a tag to selected files (English: Add tag to selected files)

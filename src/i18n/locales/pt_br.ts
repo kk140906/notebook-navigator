@@ -789,6 +789,8 @@ export const STRINGS_PT_BR = {
         toggleDescendants: 'Alternar descendentes',
         toggleHidden: 'Alternar pastas, tags e notas ocultas',
         toggleTagSort: 'Alternar ordem de classificação de tags',
+        toggleTagsBySelection: 'Alternar tags por seleção',
+        togglePropertiesBySelection: 'Alternar propriedades por seleção',
         toggleCompactMode: 'Alternar modo compacto', // Command palette: Toggles list mode between standard and compact (English: Toggle compact mode)
         collapseExpand: 'Recolher / expandir todos os itens',
         addTag: 'Adicionar tag aos arquivos selecionados',

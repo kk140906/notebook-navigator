@@ -787,6 +787,8 @@ export const STRINGS_FA = {
         toggleDescendants: 'تغییر زیرمجموعه‌ها',
         toggleHidden: 'تغییر پوشه‌ها، برچسب‌ها و یادداشت‌های مخفی',
         toggleTagSort: 'تغییر ترتیب مرتب‌سازی برچسب',
+        toggleTagsBySelection: 'تغییر برچسب‌ها بر اساس انتخاب',
+        togglePropertiesBySelection: 'تغییر ویژگی‌ها بر اساس انتخاب',
         toggleCompactMode: 'تغییر حالت فشرده', // Command palette: Toggles list mode between standard and compact (English: Toggle compact mode)
         collapseExpand: 'جمع / باز کردن همه آیتم‌ها',
         addTag: 'افزودن برچسب به فایل‌های انتخابی',

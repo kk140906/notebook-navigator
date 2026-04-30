@@ -787,6 +787,8 @@ export const STRINGS_PT = {
         toggleDescendants: 'Alternar descendentes', // Command palette: Toggles showing notes from descendants (English: Toggle descendants)
         toggleHidden: 'Alternar pastas, etiquetas e notas ocultas', // Command palette: Toggles showing hidden items (English: Toggle hidden items)
         toggleTagSort: 'Alternar ordem de ordenação de etiquetas', // Command palette: Toggles between alphabetical and frequency tag sorting (English: Toggle tag sort order)
+        toggleTagsBySelection: 'Alternar etiquetas por seleção',
+        togglePropertiesBySelection: 'Alternar propriedades por seleção',
         toggleCompactMode: 'Alternar modo compacto', // Command palette: Toggles list mode between standard and compact (English: Toggle compact mode)
         collapseExpand: 'Recolher / expandir todos os itens', // Command palette: Collapse or expand all folders and tags (English: Collapse / expand all items)
         addTag: 'Adicionar etiqueta aos ficheiros selecionados', // Command palette: Opens a dialog to add a tag to selected files (English: Add tag to selected files)
