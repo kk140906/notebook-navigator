@@ -54,7 +54,7 @@ import { Align, ListScrollIntent, getListAlign, rankListPending } from '../types
 import type { ListPaneItem } from '../types/virtualization';
 import type { NotebookNavigatorSettings } from '../settings';
 import type { ListDisplayMode, ListNoteGroupingOption, NotePropertyType } from '../settings/types';
-import type { SelectionState } from '../context/SelectionContext';
+import type { SelectionDispatch, SelectionState } from '../context/SelectionContext';
 import { getEffectiveSortOption } from '../utils/sortUtils';
 import { calculateCompactListMetrics } from '../utils/listPaneMetrics';
 import { getExtensionSuffix } from '../utils/fileTypeUtils';
@@ -108,7 +108,7 @@ interface UseListPaneScrollParams {
     /** Current selection state */
     selectionState: SelectionState;
     /** Selection state dispatcher */
-    selectionDispatch: (action: { type: string; [key: string]: unknown }) => void;
+    selectionDispatch: SelectionDispatch;
     /** Current search query (undefined if search is not active) */
     searchQuery?: string;
     /** Suppress scroll-to-top behavior after search filtering (used for mobile shortcuts) */
@@ -645,7 +645,7 @@ export function useListPaneScroll({
      * Used as a ref callback to capture the DOM element.
      */
     const scrollContainerRefCallback = useCallback((element: HTMLDivElement | null) => {
-        scrollContainerRef.current = element as HTMLDivElement;
+        scrollContainerRef.current = element;
         setScrollContainerEl(element);
         if (!element) {
             setContainerVisible(false);

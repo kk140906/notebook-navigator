@@ -240,7 +240,7 @@ export class FileDeletionService {
             const deletedSourcePaths = new Set<string>();
 
             const targetPathSet = new Set(sourcePaths);
-            let hasOpenLeaf = false;
+            let hasOpenLeaf: boolean;
 
             try {
                 hasOpenLeaf = getSupportedLeaves(this.app).some(leaf => {

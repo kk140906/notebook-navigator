@@ -59,7 +59,7 @@ function readProviderIconIds(relativePath: string): string[] {
         return [];
     }
 
-    return Object.keys(raw as Record<string, unknown>);
+    return Object.keys(raw);
 }
 
 describe('convertIconizeToIconId', () => {

@@ -420,7 +420,7 @@ export class TagFileMutations {
                 error.message = `[Notebook Navigator] Failed to ${failureContext}: ${error.message}`;
                 throw error;
             }
-            throw new Error(`[Notebook Navigator] Failed to ${failureContext}`);
+            throw Object.assign(new Error(`[Notebook Navigator] Failed to ${failureContext}`), { cause: error });
         }
         return changed;
     }

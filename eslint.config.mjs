@@ -131,21 +131,5 @@ export default tseslint.config(
         rules: {
             'no-restricted-syntax': 'off'
         }
-    },
-    {
-        files: ['src/**/*.{ts,tsx}', 'tests/**/*.{ts,tsx}'],
-        rules: {
-            '@typescript-eslint/no-base-to-string': 'off',
-            '@typescript-eslint/no-misused-promises': 'off',
-            '@typescript-eslint/no-unnecessary-type-assertion': 'off',
-            '@typescript-eslint/no-unsafe-argument': 'off',
-            '@typescript-eslint/no-unsafe-assignment': 'off',
-            '@typescript-eslint/no-unsafe-call': 'off',
-            '@typescript-eslint/no-unsafe-member-access': 'off',
-            '@typescript-eslint/no-unsafe-return': 'off',
-            'no-useless-assignment': 'off',
-            'obsidianmd/no-unsupported-api': 'off',
-            'preserve-caught-error': 'off'
-        }
     }
 );

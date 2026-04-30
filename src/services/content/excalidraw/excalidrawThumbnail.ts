@@ -153,7 +153,7 @@ function findActiveLeafViewForFile(app: App, file: TFile): object | null {
                 return;
             }
 
-            const view: unknown = Reflect.get(leaf as object, 'view');
+            const view: unknown = Reflect.get(leaf, 'view');
             if (!isRecord(view)) {
                 return;
             }

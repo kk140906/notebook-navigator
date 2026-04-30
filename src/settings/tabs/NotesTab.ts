@@ -25,7 +25,7 @@ import { createSettingGroupFactory } from '../settingGroups';
 import { addSettingSyncModeToggle } from '../syncModeToggle';
 import { setElementVisible, wireToggleSettingWithSubSettings } from '../subSettings';
 import { DEFAULT_SETTINGS } from '../defaultSettings';
-import type { FeatureImagePixelSizeSetting, FeatureImageSizeSetting } from '../types';
+import { isFeatureImagePixelSizeSetting, isFeatureImageSizeSetting } from '../types';
 import {
     normalizeFileNameIconMapKey,
     normalizeFileTypeIconMapKey,
@@ -496,7 +496,10 @@ export function renderNotesTab(context: SettingsTabContext): void {
                 .addOption('96', strings.settings.items.featureImageSize.options.large)
                 .addOption('128', strings.settings.items.featureImageSize.options.extraLarge)
                 .setValue(plugin.settings.featureImageSize)
-                .onChange((value: FeatureImageSizeSetting) => {
+                .onChange(value => {
+                    if (!isFeatureImageSizeSetting(value)) {
+                        return;
+                    }
                     plugin.setFeatureImageSize(value);
                 })
         );
@@ -511,7 +514,10 @@ export function renderNotesTab(context: SettingsTabContext): void {
                 .addOption('384', strings.settings.items.featureImagePixelSize.options.large)
                 .addOption('512', strings.settings.items.featureImagePixelSize.options.extraLarge)
                 .setValue(plugin.settings.featureImagePixelSize)
-                .onChange((value: FeatureImagePixelSizeSetting) => {
+                .onChange(value => {
+                    if (!isFeatureImagePixelSizeSetting(value)) {
+                        return;
+                    }
                     plugin.setFeatureImagePixelSize(value);
                 })
         );

@@ -57,7 +57,7 @@ type MetadataAPIHost = {
 type PinnedContextSnapshot = Pinned extends Map<string, infer TValue> ? TValue : never;
 
 function freezePinnedContext(context: PinnedNotes[string]): PinnedContextSnapshot {
-    return Object.freeze({ ...normalizePinnedNoteContext(context) }) as PinnedContextSnapshot;
+    return Object.freeze({ ...normalizePinnedNoteContext(context) });
 }
 
 function normalizeIconInput(icon: string): string | null {

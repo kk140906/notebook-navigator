@@ -75,11 +75,11 @@ export class IconPickerModal extends Modal {
     private disableMetadataUpdates: boolean;
     /** Callback function invoked when an icon is selected */
     public onChooseIcon?: (iconId: string | null) => IconSelectionHandlerResult | Promise<IconSelectionHandlerResult>;
-    private resultsContainer: HTMLDivElement;
+    private resultsContainer!: HTMLDivElement;
     private searchDebounceTimer: number | null = null;
-    private searchInput: HTMLInputElement;
+    private searchInput!: HTMLInputElement;
 
-    private tabContainer: HTMLDivElement;
+    private tabContainer!: HTMLDivElement;
     private domDisposers: (() => void)[] = [];
     private providerTabs: HTMLElement[] = [];
     private currentIcon: string | undefined;
@@ -613,7 +613,7 @@ export class IconPickerModal extends Modal {
 
     private createIconItem(iconDef: IconDefinition, container: HTMLElement, provider?: IconProvider): HTMLDivElement | null {
         let resolvedProvider = provider;
-        let fullIconId = iconDef.id;
+        let fullIconId: string;
 
         if (resolvedProvider) {
             fullIconId = this.iconService.formatIconId(resolvedProvider.id, iconDef.id);
@@ -876,12 +876,7 @@ export class IconPickerModal extends Modal {
         const iconItems = Array.from(this.resultsContainer.querySelectorAll<HTMLElement>('.nn-icon-item'));
         const currentIndex = iconItems.indexOf(currentFocused);
 
-        let newIndex = currentIndex;
-        if (deltaX !== 0) {
-            newIndex = currentIndex + deltaX;
-        } else {
-            newIndex = currentIndex + deltaY * GRID_COLUMNS;
-        }
+        const newIndex = deltaX !== 0 ? currentIndex + deltaX : currentIndex + deltaY * GRID_COLUMNS;
 
         if (newIndex >= 0 && newIndex < iconItems.length) {
             iconItems[newIndex].focus();

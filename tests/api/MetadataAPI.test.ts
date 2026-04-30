@@ -19,7 +19,6 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { MetadataAPI } from '../../src/api/modules/MetadataAPI';
 import { DEFAULT_SETTINGS } from '../../src/settings/defaultSettings';
 import type { NotebookNavigatorSettings } from '../../src/settings';
-import type { IconString } from '../../src/api/types';
 import { TFolder } from 'obsidian';
 import { buildPropertyValueNodeId, normalizePropertyTreeValuePath } from '../../src/utils/propertyTree';
 
@@ -48,12 +47,11 @@ describe('MetadataAPI icon normalization', () => {
 
         api = {
             getPlugin: () => plugin as never,
-            getApp: () =>
-                ({
-                    vault: {
-                        getFolderByPath: (path: string) => foldersByPath.get(path) ?? null
-                    }
-                }) as never,
+            getApp: () => ({
+                vault: {
+                    getFolderByPath: (path: string) => foldersByPath.get(path) ?? null
+                }
+            }),
             trigger: triggerMock
         };
     });
@@ -253,7 +251,7 @@ describe('MetadataAPI icon normalization', () => {
         foldersByPath.set(folder.path, folder);
 
         await metadataAPI.setFolderMeta(folder, {
-            icon: 'ph-apple-logo' as IconString,
+            icon: 'ph-apple-logo',
             color: '#112233',
             backgroundColor: '#223344'
         });
