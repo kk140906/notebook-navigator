@@ -88,7 +88,8 @@ const RELEASE_NOTES: ReleaseNote[] = [
         changed: [
             'The setting "Calendar > Month name format" now always applies to all views.',
             'The grouping options in list pane (group by date, folder or no group) were moved from the appearance menu to the sort menu.',
-            'Removed the setting List > Display > Variable note height. It made no sense keeping it with the new variable line height feature.'
+            'Removed the setting List > Display > Variable note height. It made no sense keeping it with the new variable line height feature.',
+            'API metadata icon fields now return the same icon format as stored in frontmatter.'
         ],
         fixed: [
             'List pane: fixed incorrect row heights (virtualizer breaking) after changing calendar or list appearance settings.',
