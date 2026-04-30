@@ -189,9 +189,6 @@ export class ExternalIconProviderController {
                 return;
             }
 
-            // eslint-disable-next-line obsidianmd/rule-custom-message -- Intentional diagnostic logging.
-            console.log(`[IconProviders] Updating ${id} from version ${previousVersion} to ${manifest.version} using bundled manifest`);
-
             const config = this.requireProviderConfig(id);
 
             tasks.push(

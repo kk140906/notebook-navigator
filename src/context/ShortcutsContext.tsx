@@ -272,8 +272,6 @@ export function ShortcutsProvider({ children }: ShortcutsProviderProps) {
             await updateSettings(current => {
                 const profile = current.vaultProfiles.find(entry => entry.id === activeProfileId);
                 if (!profile) {
-                    // eslint-disable-next-line obsidianmd/rule-custom-message -- Intentional diagnostic logging.
-                    console.log(`[Notebook Navigator] Skipped shortcut mutation because profile ${activeProfileId} was not found.`);
                     return;
                 }
 
