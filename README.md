@@ -8,8 +8,6 @@ Read in your language: [English](https://notebooknavigator.com/docs.html) • [�
 Turn Obsidian into a fast, customizable notes browser with folders, tags, properties and shortcuts in one view.
 Visual previews. Full keyboard navigation. Dual-pane layout. Mobile optimized. Works with 100,000+ notes.
 
-Notebook Navigator runs automated quality checks covering builds, tests, code standards, and security scanning. Pull requests and main-branch updates run TypeScript validation, ESLint, Vitest, production builds, CodeQL static analysis, and OpenSSF Scorecard repository checks.
-
 If you love using Notebook Navigator, please consider [☕️ Buying me a coffee](https://buymeacoffee.com/johansan) or [Sponsor on GitHub ❤️](https://github.com/sponsors/johansan).
 
 <br>
@@ -25,7 +23,30 @@ If you love using Notebook Navigator, please consider [☕️ Buying me a coffee
 
 <br>
 
-## 2 Getting started
+## 2 Security and quality
+
+Notebook Navigator handles your notes, so it is built and maintained with strict quality and security standards. Every pull request and every update to the main branch runs through an automated pipeline that must pass before changes can ship. Current status for all checks is visible in the badges at the top of this page.
+
+### 2.1 Quality checks
+
+Every change is verified by:
+
+- **[TypeScript](https://www.typescriptlang.org/)** — Type checking across the entire codebase catches errors at build time before they reach the plugin
+- **[ESLint](https://eslint.org/)** with the official **[Obsidian ESLint plugin](https://github.com/obsidianmd/eslint-plugin)** — Enforces Obsidian plugin best practices alongside project coding standards
+- **[Prettier](https://prettier.io/)** — Consistent code formatting across the codebase
+- **[Vitest](https://vitest.dev/)** — Unit tests covering core logic and edge cases
+- **Production build** — The plugin must compile with zero errors and zero warnings
+
+### 2.2 Security scans
+
+Security is reviewed continuously by:
+
+- **[CodeQL](https://codeql.github.com/)** — GitHub's static analysis engine scans every change for known vulnerability patterns (XSS, injection, unsafe APIs) using the security-extended query suite
+- **[OpenSSF Scorecard](https://securityscorecards.dev/)** — Independent supply-chain security review from the [Open Source Security Foundation](https://openssf.org/). Grades the repository on dependency pinning, branch protection, signed releases, workflow permissions, and more. The full report is public: [view the live scorecard](https://securityscorecards.dev/viewer/?uri=github.com/johansan/notebook-navigator)
+
+<br>
+
+## 3 Getting started
 
 Here is the official tutorial for learning and mastering Notebook Navigator:
 
@@ -35,7 +56,7 @@ The video has subtitles in 21 languages.
 
 <br>
 
-## 3 Documentation
+## 4 Documentation
 
 - [**API Reference**](docs/api-reference.md) - Public API documentation. Covers metadata management, navigation control and event subscriptions for JavaScript/TypeScript developers.
 
@@ -59,7 +80,7 @@ The video has subtitles in 21 languages.
 
 <br>
 
-## 4 Keyboard shortcuts
+## 5 Keyboard shortcuts
 
 | Key                                         | Action                                                                                                                                      |
 | ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -79,15 +100,15 @@ The video has subtitles in 21 languages.
 | Shift+Home/End                              | Select from current position to first/last item                                                                                             |
 | Shift+↑/↓                                   | Extend selection up/down                                                                                                                    |
 
-**Note:** All keyboard shortcuts can be customized. See [section 7 - Custom hotkeys](#7-custom-hotkeys) for details on adding VIM-style navigation (h,j,k,l), alternate keys, and modifier combinations.
+**Note:** All keyboard shortcuts can be customized. See [section 8 - Custom hotkeys](#8-custom-hotkeys) for details on adding VIM-style navigation (h,j,k,l), alternate keys, and modifier combinations.
 
 <br>
 
-## 5 Synced and local settings
+## 6 Synced and local settings
 
 Many settings in Notebook Navigator display a sync toggle — a cloud icon that switches between "Enable sync" and "Disable sync". This controls where each setting is stored and whether it is shared across devices.
 
-### 5.1 How sync works
+### 6.1 How sync works
 
 Obsidian plugins store their configuration in `data.json`, located at `.obsidian/plugins/notebook-navigator/data.json` inside your vault folder. When you use a sync service — such as [Obsidian Sync](https://obsidian.md/sync), iCloud, GitHub, Dropbox, or Google Drive — this file is synchronized across all your devices along with the rest of your vault. Any setting saved to `data.json` will propagate to every device that syncs the vault.
 
@@ -105,11 +126,11 @@ If you do not use a sync service, the sync toggle has no practical effect since 
 
 <br>
 
-## 6 Search
+## 7 Search
 
 Notebook Navigator has two search modes: filter search and Omnisearch. Switch between them using the up/down arrow keys or by clicking the search icon. Combine file names, properties, tags, dates, and filters in one query (e.g., `meeting .status=active #work @thisweek`).
 
-### 6.1 Filter search
+### 7.1 Filter search
 
 Filters files by name, tags, properties, dates, folders, extensions, and tasks within the current folder and subfolders. Default search mode.
 
@@ -177,7 +198,7 @@ The default date field follows the current sort order. When sorting by name, the
 - Operator query: `#work OR .status=started`
 - Mixed query: `#work OR ext:md` (`OR` is matched in file names)
 
-### 6.2 Omnisearch
+### 7.2 Omnisearch
 
 Full-text search across the vault, filtered to the current folder, subfolders, or selected tags. Requires the [Omnisearch](https://github.com/scambier/obsidian-omnisearch) plugin. If Omnisearch is not installed, search falls back to filter search.
 
@@ -192,7 +213,7 @@ Note previews show Omnisearch result excerpts instead of the default preview tex
 
 <br>
 
-## 7 Custom hotkeys
+## 8 Custom hotkeys
 
 Edit `.obsidian/plugins/notebook-navigator/data.json` to customize Notebook Navigator hotkeys. Open the file and locate the `keyboardShortcuts` section. Each entry maps an action to one or more key bindings:
 
@@ -202,7 +223,7 @@ Edit `.obsidian/plugins/notebook-navigator/data.json` to customize Notebook Navi
 
 Add multiple bindings per action to support alternate keys, like the `ArrowUp` and `K` example above. Combine modifiers in one entry by listing each value, for example `"modifiers": ["Mod", "Shift"]`. Keyboard sequences such as `gg` or `dd` are not supported. Reload Obsidian after editing the file.
 
-### 7.1 Modifiers
+### 8.1 Modifiers
 
 | Modifier | Key                                       |
 | -------- | ----------------------------------------- |
@@ -211,7 +232,7 @@ Add multiple bindings per action to support alternate keys, like the `ArrowUp` a
 | `Shift`  | Shift                                     |
 | `Ctrl`   | Control (prefer `Mod` for cross-platform) |
 
-### 7.2 Available actions
+### 8.2 Available actions
 
 | Action                            | Default key(s)       |
 | --------------------------------- | -------------------- |
@@ -238,7 +259,7 @@ Add multiple bindings per action to support alternate keys, like the `ArrowUp` a
 
 <br>
 
-## 8 Commands
+## 9 Commands
 
 Set custom hotkeys for these commands in Obsidian's Hotkeys settings:
 
@@ -310,7 +331,7 @@ Set custom hotkeys for these commands in Obsidian's Hotkeys settings:
 
 - `Notebook Navigator: Rebuild cache` Rebuilds the local Notebook Navigator cache. Use this if you experience missing tags, incorrect previews or missing feature images
 
-### 8.1 Command IDs
+### 9.1 Command IDs
 
 | Command ID                                          | Command name                                                                                         |
 | --------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
@@ -373,9 +394,9 @@ Set custom hotkeys for these commands in Obsidian's Hotkeys settings:
 
 <br>
 
-## 9 Features
+## 10 Features
 
-### 9.1 Interface
+### 10.1 Interface
 
 - **Dual-pane layout** - Navigation pane (folders/tags/properties) and list pane (files)
 - **Single-pane mode** - Navigation and list views with animated transitions
@@ -385,7 +406,7 @@ Set custom hotkeys for these commands in Obsidian's Hotkeys settings:
 - **Multi-language support** - 21 languages with RTL layout support
 - **Interface icon set** - Customizable UI icons across the plugin
 
-### 9.2 Navigation
+### 10.2 Navigation
 
 - **Vault profiles** - Multiple filtered views with per-profile hidden folders/tags/notes, file visibility, banner, and shortcuts
 - **Shortcuts** - Notes, folders, tags, and saved searches with pinning and reordering
@@ -397,7 +418,7 @@ Set custom hotkeys for these commands in Obsidian's Hotkeys settings:
 - **Auto-reveal active file** - Folder expansion and scroll-to-selection
 - **Keyboard and commands** - Configurable hotkeys, selection history back/forward commands, next/previous file commands, open shortcut 1–9 commands
 
-### 9.3 Organization
+### 10.3 Organization
 
 - **Pin notes** - Keep important notes at the top of folders and tags
 - **Folder notes** - Set/detach folder notes, pin folder notes, open in new tab option
@@ -408,7 +429,7 @@ Set custom hotkeys for these commands in Obsidian's Hotkeys settings:
 - **Color and icon system** - Folder/tag/property/file colors, icon packs, emoji/Lucide icons, frontmatter read/write, icon mapping by file name and file type category
 - **Name warnings** - Warn about forbidden filesystem characters and characters that break Obsidian links when naming files and folders
 
-### 9.4 File display
+### 10.4 File display
 
 - **Note previews** - 1–5 preview lines with optional HTML stripping
 - **Thumbnails** - Featured images plus auto-generated thumbnails stored in the metadata cache
@@ -421,7 +442,7 @@ Set custom hotkeys for these commands in Obsidian's Hotkeys settings:
 - **Compact mode** - Compact display when preview, date, and images are disabled
 - **Clickable tags** - Tags in file list navigate directly to that tag
 
-### 9.5 Productivity
+### 10.5 Productivity
 
 - **Search** - Filter by file name, tags, properties, dates, folders, extensions, and tasks with AND/OR/exclusions
 - **Omnisearch integration** - Full-text search via [Omnisearch](https://github.com/scambier/obsidian-omnisearch)
@@ -434,31 +455,31 @@ Set custom hotkeys for these commands in Obsidian's Hotkeys settings:
 
 <br>
 
-## 10 Network Usage Disclosure
+## 11 Network Usage Disclosure
 
 Notebook Navigator runs locally, but some features make HTTP requests from Obsidian.
 
-### 10.1 Release update checks (Optional)
+### 11.1 Release update checks (Optional)
 
 - **Setting:** "Check for new version on start"
 - **Request:** `https://api.github.com/repos/johansan/notebook-navigator/releases/latest`
 - **Frequency:** At most once per 24 hours, on startup
 - **Data:** Sends standard HTTP metadata; does not include vault content
 
-### 10.2 Icon pack downloads (Optional)
+### 11.2 Icon pack downloads (Optional)
 
 - **Setting:** Enable an icon pack in the Icon Packs tab
 - **Requests:** `https://raw.githubusercontent.com/johansan/notebook-navigator/main/icon-assets/...` (manifest, font, metadata)
 - **Storage:** Stored locally in IndexedDB
 
-### 10.3 External images and YouTube thumbnails
+### 11.3 External images and YouTube thumbnails
 
 - **Feature images (Optional):** Controlled by the "Download external images" setting. Downloads remote images and YouTube thumbnails for feature images and stores them locally in IndexedDB.
 - **Welcome modal (First launch):** Loads a static thumbnail from `https://raw.githubusercontent.com/johansan/notebook-navigator/main/images/youtube-thumbnail.jpg`.
 - **What's new modal (On update / when opened):** Loads release banner images from `https://raw.githubusercontent.com/johansan/notebook-navigator/main/images/version-banners/<id>.jpg` for release notes that include a banner.
 - **What's new modal (On update / when opened):** Loads YouTube thumbnails from `https://img.youtube.com/vi/<id>/...` for release notes that include a YouTube link.
 
-### 10.4 Privacy and data handling
+### 11.4 Privacy and data handling
 
 - Notebook Navigator does not send note content, file names, or tags to a Notebook Navigator server.
 - Requests to GitHub, YouTube, and any external image host are made directly from your device and include standard HTTP metadata (IP address, user-agent, and similar).
@@ -466,13 +487,13 @@ Notebook Navigator runs locally, but some features make HTTP requests from Obsid
 
 <br>
 
-## 11 Star History
+## 12 Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=johansan/notebook-navigator&type=date&legend=top-left)](https://www.star-history.com/#johansan/notebook-navigator&type=date&legend=top-left)
 
 <br>
 
-## 12 Contact
+## 13 Contact
 
 Notebook Navigator is built and maintained by [Johan Sanneblad](https://www.linkedin.com/in/johansan/). Johan has a PhD in Software Development and has worked with innovation development for companies such as Apple, Electronic Arts, Google, Microsoft, Lego, SKF, Volvo Cars, Volvo Group and Yamaha.
 
@@ -480,13 +501,13 @@ Feel free to connect with me on [LinkedIn](https://www.linkedin.com/in/johansan/
 
 <br>
 
-## 13 Questions or issues?
+## 14 Questions or issues?
 
 **[Join our Discord](https://discord.gg/6eeSUvzEJr)** for support and discussions, or open an issue on the
 [GitHub repository](https://github.com/johansan/notebook-navigator).
 
 <br>
 
-## 14 License
+## 15 License
 
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](https://github.com/johansan/notebook-navigator/blob/main/LICENSE) file for details.
