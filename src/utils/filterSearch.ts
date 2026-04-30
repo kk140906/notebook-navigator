@@ -1026,18 +1026,27 @@ const shouldQuoteQueryTokenPart = (value: string): boolean => {
     return /\s/.test(value) || value.includes('"') || value.includes('\\') || value.includes('=');
 };
 
-const escapePropertyFilterPartForQuery = (value: string): string => {
-    return value.replace(/\\/g, '\\\\').replace(/=/g, '\\=');
+const escapePropertyFilterPartForQuery = (value: string, includeQuotes = false): string => {
+    let escaped = '';
+
+    for (const char of value) {
+        if (char === '\\' || char === '=' || (includeQuotes && char === '"')) {
+            escaped += '\\';
+        }
+        escaped += char;
+    }
+
+    return escaped;
 };
 
 const formatPropertyFilterPartForQuery = (value: string): string => {
-    const escaped = escapePropertyFilterPartForQuery(value);
-    if (!shouldQuoteQueryTokenPart(value)) {
+    const shouldQuote = shouldQuoteQueryTokenPart(value);
+    const escaped = escapePropertyFilterPartForQuery(value, shouldQuote);
+    if (!shouldQuote) {
         return escaped;
     }
 
-    const escapedQuotes = escaped.replace(/"/g, '\\"');
-    return `"${escapedQuotes}"`;
+    return `"${escaped}"`;
 };
 
 const formatPropertyTokenForQuery = (propertyToken: PropertySearchToken, negated = false): string => {

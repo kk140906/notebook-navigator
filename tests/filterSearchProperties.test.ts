@@ -263,6 +263,16 @@ describe('updateFilterQueryWithProperty', () => {
         expect(parsed.propertyTokens).toEqual([{ key: 'status', value: 'in=progress' }]);
     });
 
+    it('round-trips values containing backslashes', () => {
+        const added = updateFilterQueryWithProperty('', 'path', 'C:\\Notes\\Daily', 'AND');
+        expect(added.query).toBe('.path="c:\\\\notes\\\\daily"');
+        expect(added.action).toBe('added');
+        expect(added.changed).toBe(true);
+
+        const parsed = parseFilterSearchTokens(added.query);
+        expect(parsed.propertyTokens).toEqual([{ key: 'path', value: 'c:\\notes\\daily' }]);
+    });
+
     it('appends tokens without connectors in mixed queries', () => {
         const result = updateFilterQueryWithProperty('meeting @today', 'status', 'in progress', 'OR');
         expect(result.query).toBe('meeting @today .status="in progress"');
