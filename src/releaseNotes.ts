@@ -81,29 +81,29 @@ const RELEASE_NOTES: ReleaseNote[] = [
         date: '2026-04-30',
         showOnUpdate: false,
         new: [
-            'New setting: General > ==Show tooltips > Show word count==. Shows word counts in tooltips.',
-            'New commands: ==Toggle tags by selection== and ==Toggle properties by selection==.'
+            '**Settings.** General > ==Show tooltips > Show word count==. Shows word counts in tooltips.',
+            '**Commands.** ==Toggle tags by selection== and ==Toggle properties by selection==.'
         ],
         improved: [
-            'Calendar now keeps the displayed date when switching between the left and right sidebar.',
-            'Property value filters now match substrings, so ".author=chomsky" matches values such as "Avram Noam Chomsky" and "Chomsky et al.".',
-            'Sort and appearance menus in list pane now include options for "Change default settings" to open settings.',
-            'Added automated GitHub quality checks, CodeQL security scanning, and OpenSSF Scorecard.',
-            'Updated all third-party libraries used by the plugin to their latest versions.',
-            'Improved robustness across services, modals, and content providers.',
-            'Full support for the latest Obsidian ESLint plugin (0.2.9, released April 30).'
+            '**Calendar.** Calendar now keeps the displayed date when switching between the left and right sidebar.',
+            '**Search.** Property value filters now match substrings, so ".author=chomsky" matches values such as "Avram Noam Chomsky" and "Chomsky et al.".',
+            '**List pane.** Sort and appearance menus in list pane now include options for "Change default settings" to open settings.',
+            '**Internal.** Added automated GitHub quality checks, CodeQL security scanning, and OpenSSF Scorecard.',
+            '**Internal.** Updated all third-party libraries used by the plugin to their latest versions.',
+            '**Internal.** Improved robustness across services, modals, and content providers.',
+            '**Internal.** Full support for the latest Obsidian ESLint plugin (0.2.9, released April 30).'
         ],
         changed: [
-            'The setting "Calendar > Month name format" now always applies to all views.',
-            'The grouping options in list pane (group by date, folder or no group) are moved from the **appearance menu** to the **sort menu**.',
-            'Removed the setting **List > Display > Variable note height**. It made no sense keeping it with the new variable line height feature.',
-            'API metadata icon fields now return the same icon format as stored in frontmatter.',
-            'Minimum supported Obsidian version is now **1.11.0**.'
+            '**Calendar.** The setting "Calendar > Month name format" now applies to all views.',
+            '**List pane.** ==The grouping options in list pane (group by date, folder or no group) are moved== from the **appearance menu** to the **sort menu**.',
+            '**Settings.** ==Removed the setting List > Display > Variable note height==. It made no sense keeping it with the new variable line height feature.',
+            '**API.** API metadata icon fields now return the same icon format as stored in frontmatter.',
+            '**Internal.** Minimum supported Obsidian version is now **1.11.0**.'
         ],
         fixed: [
-            'Fixed rainbow colors on file tags not showing in list pane when tags used uppercase letters.',
-            'Fixed incorrect row heights in list pane (virtualizer breaking) after changing calendar settings or navigating certain folders.',
-            'The two settings List > Notes > "File name icon map" and "File type icon map" now work correctly again. They broke after the icon format was introduced in 2.6.2.'
+            '**Navigation pane.** Fixed rainbow colors on file tags not showing in list pane when tags used uppercase letters.',
+            '**List pane.** Fixed incorrect row heights in list pane (virtualizer breaking) after changing calendar settings or navigating certain folders.',
+            '**Settings.** The two settings List > Notes > "File name icon map" and "File type icon map" now work correctly again. They broke after the icon format was introduced in 2.6.2.'
         ]
     },
     {
