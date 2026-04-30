@@ -163,9 +163,13 @@ const parsePropertyFilterToken = (token: string): PropertySearchToken | null => 
     const rawKey = unescapePropertyFilterPart(tryUnquotePropertyFilterPart(content.slice(0, separatorIndex)));
     const rawValue = unescapePropertyFilterPart(tryUnquotePropertyFilterPart(content.slice(separatorIndex + 1)));
     const normalizedKey = normalizePropertyFilterKey(rawKey);
-    const normalizedValue = normalizePropertyTreeValuePath(rawValue);
-    if (!normalizedKey || !normalizedValue) {
+    if (!normalizedKey) {
         return null;
+    }
+
+    const normalizedValue = normalizePropertyTreeValuePath(rawValue);
+    if (!normalizedValue) {
+        return { key: normalizedKey, value: null };
     }
 
     return {
@@ -789,6 +793,8 @@ const parseFilterModeTokens = (
  * Inclusion patterns (must match):
  * - #tag - Include notes with tags containing "tag"
  * - # - Include only notes that have at least one tag
+ * - .key - Include notes with property key
+ * - .key=value - Include notes where the property value contains "value"
  * - @today - Include notes matching the default date field on the current day
  * - @YYYY-MM-DD / @YYYYMMDD - Include notes matching the default date field on a specific day
  * - @YYYY - Include notes matching the default date field inside a calendar year
@@ -807,6 +813,8 @@ const parseFilterModeTokens = (
  * Exclusion patterns (must NOT match):
  * - -#tag - Exclude notes with tags containing "tag"
  * - -# - Exclude all tagged notes (show only untagged)
+ * - -.key - Exclude notes with property key
+ * - -.key=value - Exclude notes where the property value contains "value"
  * - -@... - Exclude notes matching a date token or range
  * - -has:task - Exclude notes with unfinished tasks
  * - -folder:archive - Exclude notes where any folder segment contains "archive"

@@ -86,6 +86,7 @@ const RELEASE_NOTES: ReleaseNote[] = [
         ],
         improved: [
             'Calendar now keeps the displayed date when switching between the left and right sidebar.',
+            'Property value filters now match substrings, so ".author=chomsky" matches values such as "Avram Noam Chomsky" and "Chomsky et al.".',
             'Sort and appearance menus in list pane now include options for "Change default settings" to open settings.'
         ],
         changed: [

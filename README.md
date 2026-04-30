@@ -133,11 +133,11 @@ Filters files by name, tags, properties, dates, folders, extensions, and tasks w
 **Properties**
 
 - `.key` - Include notes with property key
-- `.key=value` - Include notes with property value
+- `.key=value` - Include notes where the property value contains `value`
 - `."Reading Status"` - Property key with whitespace (double-quoted)
 - `."Reading Status"="In Progress"` - Keys and values with whitespace must be double-quoted
 - `-.key` - Exclude notes with property key
-- `-.key=value` - Exclude notes with property value
+- `-.key=value` - Exclude notes where the property value contains `value`
 - Cmd/Ctrl+Click a property to add with AND. Cmd/Ctrl+Shift+Click to add with OR
 
 **Filters**

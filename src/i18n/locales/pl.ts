@@ -196,11 +196,11 @@ export const STRINGS_PL = {
                     title: 'Atrybuty',
                     items: [
                         '`.key` Uwzględnij notatki z atrybutem.',
-                        '`.key=value` Uwzględnij notatki z wartością atrybutu.',
+                        '`.key=value` Uwzględnij notatki, których wartość atrybutu zawiera `value`.',
                         '`."Reading Status"` Uwzględnij notatki z atrybutem zawierającym spacje.',
                         '`."Reading Status"="In Progress"` Atrybuty i ich wartości ze spacjami muszą być w podwójnych cudzysłowach.',
                         '`-.key` Wyklucz notatki z atrybutem.',
-                        '`-.key=value` Wyklucz notatki z wartością atrybutu.',
+                        '`-.key=value` Wyklucz notatki, których wartość atrybutu zawiera `value`.',
                         'Przytrzymaj Cmd/Ctrl i kliknij tag, aby dodać go za pomocą AND. Przytrzymaj Cmd/Ctrl i Shift, a następnie kliknij, aby dodać go za pomocą OR.'
                     ]
                 },

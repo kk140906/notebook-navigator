@@ -197,11 +197,11 @@ export const STRINGS_TR = {
                     title: 'Özellikler',
                     items: [
                         '`.key` Özellik anahtarına sahip notları dahil et.',
-                        '`.key=value` Özellik değerine sahip notları dahil et.',
+                        '`.key=value` Özellik değeri `value` içeren notları dahil et.',
                         '`."Reading Status"` Boşluk içeren özellik anahtarına sahip notları dahil et.',
                         '`."Reading Status"="In Progress"` Boşluk içeren anahtarlar ve değerler çift tırnak içine alınmalıdır.',
                         '`-.key` Özellik anahtarına sahip notları hariç tut.',
-                        '`-.key=value` Özellik değerine sahip notları hariç tut.',
+                        '`-.key=value` Özellik değeri `value` içeren notları hariç tut.',
                         'Cmd/Ctrl+Tıklayarak özelliği AND ile ekleyin. Cmd/Ctrl+Shift+Tıklayarak OR ile ekleyin.'
                     ]
                 },
