@@ -78,8 +78,8 @@ export interface ReleaseNote {
 const RELEASE_NOTES: ReleaseNote[] = [
     {
         version: '2.6.3',
-        date: '2026-04-30',
-        showOnUpdate: false,
+        date: '2026-05-01',
+        showOnUpdate: true,
         new: [
             '**Settings.** General > ==Show tooltips > Show word count==. Shows word counts in tooltips.',
             '**Commands.** ==Toggle tags by selection== and ==Toggle properties by selection==.'
