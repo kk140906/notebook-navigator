@@ -1423,6 +1423,7 @@ export const NotebookNavigatorComponent = React.memo(
         });
         const fileItemPillDecorationModel = useFileItemPillDecorationState({
             sourceState: navigationSourceState,
+            treeSections: navigationTreeSections,
             includeDescendantNotes: uxPreferences.includeDescendantNotes,
             navRainbowState
         });

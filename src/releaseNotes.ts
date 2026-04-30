@@ -95,6 +95,7 @@ const RELEASE_NOTES: ReleaseNote[] = [
             'API metadata icon fields now return the same icon format as stored in frontmatter.'
         ],
         fixed: [
+            'Fixed rainbow colors on file tags not showing in list pane when tags used uppercase letters.',
             'Fixed incorrect row heights in list pane (virtualizer breaking) after changing calendar settings or navigating certain folders.',
             'The two settings List > Notes > "File name icon map" and "File type icon map" now work correctly again. They broke after the icon format was introduced in 2.6.2.'
         ]

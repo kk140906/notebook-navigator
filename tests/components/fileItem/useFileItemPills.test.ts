@@ -171,7 +171,7 @@ describe('useFileItemPills', () => {
         const markup = renderPillRows({
             file: createTestTFile('Notes/Rainbow.md'),
             isCompactMode: false,
-            tags: ['alpha'],
+            tags: ['Alpha'],
             properties: null,
             wordCount: null,
             notePropertyType: DEFAULT_SETTINGS.notePropertyType,
