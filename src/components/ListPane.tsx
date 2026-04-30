@@ -443,7 +443,7 @@ export const ListPane = React.memo(
                 return;
             }
 
-            setTimeout(scheduleScroll, 0);
+            activeWindow.setTimeout(scheduleScroll, 0);
         }, [calendarWeekCount, filePathToIndex, rowVirtualizer, selectedFile, shouldRenderCalendarOverlay]);
 
         const listToolbar = useMemo(() => {

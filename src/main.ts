@@ -1172,7 +1172,7 @@ export default class NotebookNavigatorPlugin extends Plugin implements ISettings
             return false;
         }
 
-        return document.querySelector('.modal.mod-settings, .modal-container.mod-settings') !== null;
+        return activeDocument.querySelector('.modal.mod-settings, .modal-container.mod-settings') !== null;
     }
 
     private applyCalendarPlacementView(options: { force?: boolean; reveal?: boolean; activate?: boolean } = {}): void {
@@ -1451,7 +1451,7 @@ export default class NotebookNavigatorPlugin extends Plugin implements ISettings
             const releaseNotes = getLatestReleaseNotes();
             new WhatsNewModal(this.app, releaseNotes, () => {
                 // Save version after 1 second delay when user closes the modal
-                setTimeout(() => {
+                activeWindow.setTimeout(() => {
                     // Wrap in runAsyncAction to handle async without blocking callback
                     runAsyncAction(async () => {
                         this.settings.lastShownVersion = currentVersion;
@@ -1499,7 +1499,7 @@ export default class NotebookNavigatorPlugin extends Plugin implements ISettings
             // Show the info modal when version changes
             new WhatsNewModal(this.app, releaseNotes, () => {
                 // Save version after 1 second delay when user closes the modal
-                setTimeout(() => {
+                activeWindow.setTimeout(() => {
                     // Wrap in runAsyncAction to handle async without blocking callback
                     runAsyncAction(async () => {
                         this.settings.lastShownVersion = currentVersion;

@@ -676,7 +676,7 @@ export const NavigationPane = React.memo(
                 return;
             }
 
-            setTimeout(scheduleScroll, 0);
+            activeWindow.setTimeout(scheduleScroll, 0);
         }, [calendarWeekCount, handleTreeUpdateComplete, shouldRenderCalendarOverlay]);
 
         useEffect(() => {

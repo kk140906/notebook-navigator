@@ -31,6 +31,7 @@ export default tseslint.config(
             // Keep this rule enabled for `src/**` to avoid shipping Node-only imports in the plugin runtime.
             'import/no-nodejs-modules': 'off',
             'obsidianmd/no-nodejs-modules': 'off',
+            // Tests run in Node and may use test harness globals instead of Obsidian's active document.
             'obsidianmd/prefer-active-doc': 'off',
             'no-restricted-properties': [
                 'error',
@@ -99,13 +100,8 @@ export default tseslint.config(
                     message: 'Use showNotice(...) instead of new Notice(...).'
                 }
             ],
-            // Upgrade obsidianmd rules from warn to error
+            // Upgrade the Obsidian trash rule from warn to error.
             'obsidianmd/prefer-file-manager-trash-file': 'error',
-            'obsidianmd/prefer-active-doc': 'off',
-            'obsidianmd/prefer-active-window-timers': 'off',
-            'obsidianmd/prefer-create-el': 'off',
-            'obsidianmd/prefer-instanceof': 'off',
-            'obsidianmd/rule-custom-message': 'off',
 
             // Type assertions
             '@typescript-eslint/no-unnecessary-type-assertion': 'warn',

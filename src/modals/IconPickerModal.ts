@@ -172,7 +172,7 @@ export class IconPickerModal extends Modal {
             const removeButton = buttonContainer.createEl('button');
             const removeButtonLabel = strings.modals.iconPicker.removeIcon;
             removeButton.setText(removeButtonLabel);
-            if (removeButton instanceof HTMLButtonElement) {
+            if (removeButton.instanceOf(HTMLButtonElement)) {
                 this.removeButton = removeButton;
                 if (!this.currentIcon) {
                     removeButton.disabled = true;
@@ -779,7 +779,7 @@ export class IconPickerModal extends Modal {
     private setupKeyboardNavigation() {
         // Shift+Tab -> focus search input or provider tabs based on current focus
         this.scope.register(['Shift'], 'Tab', evt => {
-            const currentFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+            const currentFocused = activeDocument.activeElement instanceof HTMLElement ? activeDocument.activeElement : null;
 
             // Prevent default tab cycling when on provider tabs
             if (currentFocused?.classList.contains('nn-icon-provider-tab')) {
@@ -807,7 +807,7 @@ export class IconPickerModal extends Modal {
 
         // Tab -> focus first icon if not in grid
         this.scope.register([], 'Tab', evt => {
-            const activeElement = document.activeElement;
+            const activeElement = activeDocument.activeElement;
             const currentFocused = activeElement instanceof HTMLElement ? activeElement : null;
             if (currentFocused?.classList.contains('nn-icon-provider-tab')) {
                 evt.preventDefault();
@@ -830,7 +830,7 @@ export class IconPickerModal extends Modal {
         this.scope.register([], 'ArrowDown', evt => this.handleArrowKey(evt, 0, 1));
 
         this.scope.register([], 'Enter', evt => {
-            const currentFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+            const currentFocused = activeDocument.activeElement instanceof HTMLElement ? activeDocument.activeElement : null;
             if (currentFocused === this.searchInput) {
                 evt.preventDefault();
                 window.setTimeout(() => {
@@ -856,7 +856,7 @@ export class IconPickerModal extends Modal {
      * @param deltaY - Vertical movement (-1 for up, 1 for down)
      */
     private handleArrowKey(evt: KeyboardEvent, deltaX: number, deltaY: number) {
-        const activeElement = document.activeElement;
+        const activeElement = activeDocument.activeElement;
         if (!(activeElement instanceof HTMLElement)) {
             return;
         }

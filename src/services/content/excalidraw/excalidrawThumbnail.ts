@@ -74,7 +74,7 @@ function isDarkThemeActive(): boolean {
     if (typeof document === 'undefined') {
         return false;
     }
-    return document.body.classList.contains('theme-dark');
+    return activeDocument.body.classList.contains('theme-dark');
 }
 
 // Constrains a value to the specified range
@@ -200,7 +200,7 @@ export async function renderExcalidrawThumbnail(app: App, excalidrawFile: TFile,
     let excalidrawApi: ExcalidrawAutomateApi | null = null;
 
     try {
-        const automateValue: unknown = Reflect.get(globalThis, 'ExcalidrawAutomate');
+        const automateValue: unknown = Reflect.get(activeWindow, 'ExcalidrawAutomate');
         if (!isExcalidrawAutomateGlobal(automateValue)) {
             return null;
         }

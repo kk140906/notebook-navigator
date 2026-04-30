@@ -273,7 +273,7 @@ export function Calendar({
                 }
 
                 await new Promise<void>(resolve => {
-                    globalThis.setTimeout(resolve, 250);
+                    activeWindow.setTimeout(resolve, 250);
                 });
             }
         });

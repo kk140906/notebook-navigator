@@ -111,7 +111,7 @@ export function renderGeneralTab(context: SettingsTabContext): void {
                         const { getLatestReleaseNotes } = await import('../../releaseNotes');
                         const latestNotes = getLatestReleaseNotes();
                         new WhatsNewModal(context.app, latestNotes, () => {
-                            setTimeout(() => {
+                            activeWindow.setTimeout(() => {
                                 runAsyncAction(async () => {
                                     plugin.settings.lastShownVersion = pluginVersion;
                                     await plugin.saveSettingsAndUpdate();

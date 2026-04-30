@@ -710,7 +710,7 @@ export function renderCalendarTab(context: SettingsTabContext): void {
         const isCustom = plugin.settings.calendarIntegrationMode === 'notebook-navigator';
         const activeProfile = getActiveProfile();
 
-        if (calendarCustomRootFolderInputEl && document.activeElement !== calendarCustomRootFolderInputEl) {
+        if (calendarCustomRootFolderInputEl && activeDocument.activeElement !== calendarCustomRootFolderInputEl) {
             calendarCustomRootFolderInputEl.value = activeProfile.periodicNotesFolder;
         }
 

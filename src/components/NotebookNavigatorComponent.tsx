@@ -822,7 +822,7 @@ export const NotebookNavigatorComponent = React.memo(
                 return;
             }
 
-            setTimeout(scheduleScroll, 0);
+            activeWindow.setTimeout(scheduleScroll, 0);
         }, [ensureSelectedFileVisible, ensureSelectedNavigationItemVisible]);
 
         const prevSinglePaneCalendarWeekCountRef = useRef<number | null>(null);

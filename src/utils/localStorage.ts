@@ -55,6 +55,7 @@ export const localStorage = {
         try {
             if (!localStorage._app) {
                 // Return null if app not initialized to prevent mixing storage
+                // eslint-disable-next-line obsidianmd/rule-custom-message -- Intentional diagnostic logging.
                 console.log(`localStorage accessed before initialization for key "${key}"`);
                 return null;
             }
@@ -77,6 +78,7 @@ export const localStorage = {
         try {
             if (!localStorage._app) {
                 // Ignore writes if app not initialized to prevent mixing storage
+                // eslint-disable-next-line obsidianmd/rule-custom-message -- Intentional diagnostic logging.
                 console.log(`localStorage write attempted before initialization for key "${key}"`);
                 return false;
             }
@@ -98,6 +100,7 @@ export const localStorage = {
         try {
             if (!localStorage._app) {
                 // Ignore removes if app not initialized to prevent mixing storage
+                // eslint-disable-next-line obsidianmd/rule-custom-message -- Intentional diagnostic logging.
                 console.log(`localStorage remove attempted before initialization for key "${key}"`);
                 return false;
             }
