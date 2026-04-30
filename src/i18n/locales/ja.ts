@@ -811,7 +811,8 @@ export const STRINGS_JA = {
         file: 'ファイル',
         files: 'ファイル',
         folder: 'フォルダ',
-        folders: 'フォルダ'
+        folders: 'フォルダ',
+        wordCount: '単語数'
     },
 
     // Settings
@@ -1314,6 +1315,10 @@ export const STRINGS_JA = {
             showTooltipPath: {
                 name: 'パスを表示',
                 desc: 'ツールチップでノート名の下にフォルダパスを表示します。'
+            },
+            showTooltipWordCount: {
+                name: '単語数を表示',
+                desc: 'ツールチップにノートの単語数を表示します。'
             },
             resetPaneSeparator: {
                 name: 'ペインセパレーターの位置をリセット',

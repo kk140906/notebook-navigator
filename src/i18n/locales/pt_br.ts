@@ -814,7 +814,8 @@ export const STRINGS_PT_BR = {
         file: 'arquivo',
         files: 'arquivos',
         folder: 'pasta',
-        folders: 'pastas'
+        folders: 'pastas',
+        wordCount: 'Contagem de palavras'
     },
 
     // Settings
@@ -1318,6 +1319,10 @@ export const STRINGS_PT_BR = {
             showTooltipPath: {
                 name: 'Mostrar caminho',
                 desc: 'Exibir o caminho da pasta abaixo dos nomes de notas nas dicas de ferramentas.'
+            },
+            showTooltipWordCount: {
+                name: 'Mostrar contagem de palavras',
+                desc: 'Exibir a contagem de palavras das notas nas dicas de ferramentas.'
             },
             resetPaneSeparator: {
                 name: 'Redefinir posição do separador de painéis',

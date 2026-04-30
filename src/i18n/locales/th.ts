@@ -808,7 +808,8 @@ export const STRINGS_TH = {
         file: 'ไฟล์',
         files: 'ไฟล์',
         folder: 'โฟลเดอร์',
-        folders: 'โฟลเดอร์'
+        folders: 'โฟลเดอร์',
+        wordCount: 'จำนวนคำ'
     },
 
     // Settings
@@ -1311,6 +1312,10 @@ export const STRINGS_TH = {
             showTooltipPath: {
                 name: 'แสดงเส้นทาง',
                 desc: 'แสดงเส้นทางโฟลเดอร์ใต้ชื่อโน้ตใน tooltips'
+            },
+            showTooltipWordCount: {
+                name: 'แสดงจำนวนคำ',
+                desc: 'แสดงจำนวนคำของโน้ตใน tooltips'
             },
             resetPaneSeparator: {
                 name: 'รีเซ็ตตำแหน่งตัวคั่นแผง',

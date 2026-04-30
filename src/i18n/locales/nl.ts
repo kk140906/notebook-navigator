@@ -813,7 +813,8 @@ export const STRINGS_NL = {
         file: 'bestand',
         files: 'bestanden',
         folder: 'map',
-        folders: 'mappen'
+        folders: 'mappen',
+        wordCount: 'Aantal woorden'
     },
 
     // Settings
@@ -1316,6 +1317,10 @@ export const STRINGS_NL = {
             showTooltipPath: {
                 name: 'Pad tonen',
                 desc: 'Het mappad onder notitienamen in tooltips weergeven.'
+            },
+            showTooltipWordCount: {
+                name: 'Aantal woorden tonen',
+                desc: 'Het aantal woorden van notities in tooltips weergeven.'
             },
             resetPaneSeparator: {
                 name: 'Paneelscheidingspositie resetten',

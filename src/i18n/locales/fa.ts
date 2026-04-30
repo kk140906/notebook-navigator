@@ -812,7 +812,8 @@ export const STRINGS_FA = {
         file: 'فایل',
         files: 'فایل',
         folder: 'پوشه',
-        folders: 'پوشه'
+        folders: 'پوشه',
+        wordCount: 'تعداد کلمات'
     },
 
     // Settings
@@ -1315,6 +1316,10 @@ export const STRINGS_FA = {
             showTooltipPath: {
                 name: 'نمایش مسیر',
                 desc: 'مسیر پوشه را زیر نام یادداشت در راهنماها نمایش دهید.'
+            },
+            showTooltipWordCount: {
+                name: 'نمایش تعداد کلمات',
+                desc: 'تعداد کلمات یادداشت‌ها را در راهنماها نمایش دهید.'
             },
             resetPaneSeparator: {
                 name: 'بازنشانی موقعیت جداکننده پنل',

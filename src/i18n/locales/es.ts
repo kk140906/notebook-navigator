@@ -813,7 +813,8 @@ export const STRINGS_ES = {
         file: 'archivo',
         files: 'archivos',
         folder: 'carpeta',
-        folders: 'carpetas'
+        folders: 'carpetas',
+        wordCount: 'Recuento de palabras'
     },
 
     // Settings
@@ -1316,6 +1317,10 @@ export const STRINGS_ES = {
             showTooltipPath: {
                 name: 'Mostrar ruta',
                 desc: 'Muestra la ruta de la carpeta debajo del nombre de las notas en los tooltips.'
+            },
+            showTooltipWordCount: {
+                name: 'Mostrar recuento de palabras',
+                desc: 'Muestra el recuento de palabras de las notas en los tooltips.'
             },
             resetPaneSeparator: {
                 name: 'Restablecer posición del separador de paneles',

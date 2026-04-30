@@ -814,7 +814,8 @@ export const STRINGS_FR = {
         file: 'fichier',
         files: 'fichiers',
         folder: 'dossier',
-        folders: 'dossiers'
+        folders: 'dossiers',
+        wordCount: 'Nombre de mots'
     },
 
     // Settings
@@ -1318,6 +1319,10 @@ export const STRINGS_FR = {
             showTooltipPath: {
                 name: 'Afficher le chemin',
                 desc: 'Affiche le chemin du dossier sous le nom des notes dans les infobulles.'
+            },
+            showTooltipWordCount: {
+                name: 'Afficher le nombre de mots',
+                desc: 'Affiche le nombre de mots des notes dans les infobulles.'
             },
             resetPaneSeparator: {
                 name: 'Réinitialiser la position du séparateur de panneaux',

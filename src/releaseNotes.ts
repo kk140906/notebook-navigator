@@ -80,6 +80,7 @@ const RELEASE_NOTES: ReleaseNote[] = [
         version: '2.6.3',
         date: '2026-04-30',
         showOnUpdate: false,
+        new: ['New setting: General > Show tooltips > Show word count. Shows word counts in tooltips.'],
         improved: [
             'Calendar now keeps the displayed date when switching between the left and right sidebar.',
             'Sort and appearance menus in list pane now include options for "Change default settings".'

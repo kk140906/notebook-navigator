@@ -34,6 +34,7 @@ interface FileTooltipOptions {
     getFileTimestamps: (file: TFile) => { created: number; modified: number };
     sortOption?: string | null | undefined;
     unfinishedTaskTooltipText?: string | null | undefined;
+    wordCount?: number | null | undefined;
 }
 
 interface FolderTooltipOptions {
@@ -61,7 +62,8 @@ export function buildFileTooltip({
     settings,
     getFileTimestamps,
     sortOption,
-    unfinishedTaskTooltipText
+    unfinishedTaskTooltipText,
+    wordCount
 }: FileTooltipOptions): string {
     const dateTimeFormat = settings.timeFormat ? `${settings.dateFormat} ${settings.timeFormat}` : settings.dateFormat;
     const timestamps = getFileTimestamps(file);
@@ -76,6 +78,16 @@ export function buildFileTooltip({
 
     if (unfinishedTaskTooltipText) {
         tooltipLines.push(unfinishedTaskTooltipText);
+    }
+
+    if (
+        settings.showTooltipWordCount &&
+        file.extension === 'md' &&
+        typeof wordCount === 'number' &&
+        Number.isFinite(wordCount) &&
+        wordCount >= 0
+    ) {
+        tooltipLines.push(`${strings.tooltips.wordCount}: ${Math.trunc(wordCount).toLocaleString()}`);
     }
 
     tooltipLines.push('', formatDateLines(createdDate, modifiedDate, sortOption));

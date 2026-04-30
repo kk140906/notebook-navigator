@@ -808,7 +808,8 @@ export const STRINGS_EN = {
         file: 'file',
         files: 'files',
         folder: 'folder',
-        folders: 'folders'
+        folders: 'folders',
+        wordCount: 'Word count'
     },
 
     // Settings
@@ -1311,6 +1312,10 @@ export const STRINGS_EN = {
             showTooltipPath: {
                 name: 'Show path',
                 desc: 'Display the folder path below note names in tooltips.'
+            },
+            showTooltipWordCount: {
+                name: 'Show word count',
+                desc: 'Display note word counts in tooltips.'
             },
             resetPaneSeparator: {
                 name: 'Reset pane separator position',

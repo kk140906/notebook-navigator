@@ -170,6 +170,7 @@ export const DEFAULT_SETTINGS: NotebookNavigatorSettings = {
     dualPaneOrientation: 'horizontal',
     showTooltips: false,
     showTooltipPath: true,
+    showTooltipWordCount: false,
     desktopBackground: 'separate',
     desktopScale: DEFAULT_UI_SCALE,
 

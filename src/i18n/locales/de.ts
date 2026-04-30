@@ -813,7 +813,8 @@ export const STRINGS_DE = {
         file: 'Datei',
         files: 'Dateien',
         folder: 'Ordner',
-        folders: 'Ordner'
+        folders: 'Ordner',
+        wordCount: 'Wortanzahl'
     },
 
     // Settings
@@ -1317,6 +1318,10 @@ export const STRINGS_DE = {
             showTooltipPath: {
                 name: 'Pfad anzeigen',
                 desc: 'Zeigt den Ordnerpfad unter den Notiznamen in Tooltips an.'
+            },
+            showTooltipWordCount: {
+                name: 'Wortanzahl anzeigen',
+                desc: 'Zeigt die Wortanzahl von Notizen in Tooltips an.'
             },
             resetPaneSeparator: {
                 name: 'Position des Fenstertrennelements zurücksetzen',

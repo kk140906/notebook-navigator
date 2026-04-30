@@ -368,6 +368,7 @@ export interface NotebookNavigatorSettings {
     dualPaneOrientation: DualPaneOrientation;
     showTooltips: boolean;
     showTooltipPath: boolean;
+    showTooltipWordCount: boolean;
     desktopBackground: BackgroundMode;
     desktopScale: number;
     mobileScale: number;

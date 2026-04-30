@@ -798,7 +798,8 @@ export const FileItem = React.memo(function FileItem({
             settings,
             getFileTimestamps,
             sortOption,
-            unfinishedTaskTooltipText
+            unfinishedTaskTooltipText,
+            wordCount
         });
 
         setTooltip(fileRef.current, tooltip, {
@@ -816,7 +817,8 @@ export const FileItem = React.memo(function FileItem({
         sortOption,
         metadataVersion,
         file.name,
-        unfinishedTaskTooltipText
+        unfinishedTaskTooltipText,
+        wordCount
     ]);
 
     // Reveals the file by selecting its folder in navigation pane and showing the file in list pane

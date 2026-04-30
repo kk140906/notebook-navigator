@@ -812,7 +812,8 @@ export const STRINGS_TR = {
         file: 'dosya',
         files: 'dosya',
         folder: 'klasör',
-        folders: 'klasör'
+        folders: 'klasör',
+        wordCount: 'Kelime sayısı'
     },
 
     // Settings
@@ -1315,6 +1316,10 @@ export const STRINGS_TR = {
             showTooltipPath: {
                 name: 'Yolu göster',
                 desc: 'İpuçlarında not adlarının altında klasör yolunu görüntüle.'
+            },
+            showTooltipWordCount: {
+                name: 'Kelime sayısını göster',
+                desc: 'İpuçlarında not kelime sayılarını görüntüle.'
             },
             resetPaneSeparator: {
                 name: 'Bölme ayırıcı konumunu sıfırla',

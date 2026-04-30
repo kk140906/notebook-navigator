@@ -813,7 +813,8 @@ export const STRINGS_VI = {
         file: 'tệp',
         files: 'tệp',
         folder: 'thư mục',
-        folders: 'thư mục'
+        folders: 'thư mục',
+        wordCount: 'Số từ'
     },
 
     // Settings
@@ -1316,6 +1317,10 @@ export const STRINGS_VI = {
             showTooltipPath: {
                 name: 'Hiện đường dẫn',
                 desc: 'Hiển thị đường dẫn thư mục bên dưới tên ghi chú trong chú thích.'
+            },
+            showTooltipWordCount: {
+                name: 'Hiện số từ',
+                desc: 'Hiển thị số từ của ghi chú trong chú thích.'
             },
             resetPaneSeparator: {
                 name: 'Đặt lại vị trí thanh phân cách',

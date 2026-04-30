@@ -814,7 +814,8 @@ export const STRINGS_PL = {
         file: 'plik',
         files: 'pliki',
         folder: 'folder',
-        folders: 'foldery'
+        folders: 'foldery',
+        wordCount: 'Liczba słów'
     },
 
     // Settings
@@ -1317,6 +1318,10 @@ export const STRINGS_PL = {
             showTooltipPath: {
                 name: 'Pokaż ścieżkę',
                 desc: 'Po najechaniu kursorem wyświetla ścieżkę folderu pod nazwami notatek.'
+            },
+            showTooltipWordCount: {
+                name: 'Pokaż liczbę słów',
+                desc: 'Wyświetla liczbę słów notatek w podpowiedziach.'
             },
             resetPaneSeparator: {
                 name: 'Przywróć położenie separatora paneli',

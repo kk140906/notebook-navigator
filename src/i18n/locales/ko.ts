@@ -811,7 +811,8 @@ export const STRINGS_KO = {
         file: '파일',
         files: '파일',
         folder: '폴더',
-        folders: '폴더'
+        folders: '폴더',
+        wordCount: '단어 수'
     },
 
     // Settings
@@ -1314,6 +1315,10 @@ export const STRINGS_KO = {
             showTooltipPath: {
                 name: '경로 표시',
                 desc: '도구 설명에서 노트 이름 아래에 폴더 경로를 표시합니다.'
+            },
+            showTooltipWordCount: {
+                name: '단어 수 표시',
+                desc: '도구 설명에 노트의 단어 수를 표시합니다.'
             },
             resetPaneSeparator: {
                 name: '창 구분선 위치 초기화',

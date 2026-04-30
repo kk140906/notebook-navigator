@@ -808,7 +808,8 @@ export const STRINGS_IT = {
         file: 'file',
         files: 'file',
         folder: 'cartella',
-        folders: 'cartelle'
+        folders: 'cartelle',
+        wordCount: 'Conteggio parole'
     },
 
     // Settings
@@ -1312,6 +1313,10 @@ export const STRINGS_IT = {
             showTooltipPath: {
                 name: 'Mostra percorso',
                 desc: 'Visualizza il percorso cartella sotto i nomi note nei tooltip.'
+            },
+            showTooltipWordCount: {
+                name: 'Mostra conteggio parole',
+                desc: 'Visualizza il conteggio delle parole delle note nei tooltip.'
             },
             resetPaneSeparator: {
                 name: 'Ripristina posizione separatore pannelli',

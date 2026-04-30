@@ -847,6 +847,16 @@ export function renderGeneralTab(context: SettingsTabContext): void {
                     await plugin.saveSettingsAndUpdate();
                 })
             );
+
+        new Setting(showTooltipsSubSettings)
+            .setName(strings.settings.items.showTooltipWordCount.name)
+            .setDesc(strings.settings.items.showTooltipWordCount.desc)
+            .addToggle(toggle =>
+                toggle.setValue(plugin.settings.showTooltipWordCount).onChange(async value => {
+                    plugin.settings.showTooltipWordCount = value;
+                    await plugin.saveSettingsAndUpdate();
+                })
+            );
     }
 
     if (Platform.isMobile) {

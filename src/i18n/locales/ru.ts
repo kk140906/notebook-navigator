@@ -809,7 +809,8 @@ export const STRINGS_RU = {
         file: 'файл',
         files: 'файлов',
         folder: 'папка',
-        folders: 'папок'
+        folders: 'папок',
+        wordCount: 'Количество слов'
     },
 
     // Settings
@@ -1312,6 +1313,10 @@ export const STRINGS_RU = {
             showTooltipPath: {
                 name: 'Показывать путь',
                 desc: 'Отображать путь к папке под названиями заметок в подсказках.'
+            },
+            showTooltipWordCount: {
+                name: 'Показывать количество слов',
+                desc: 'Отображать количество слов в заметках в подсказках.'
             },
             resetPaneSeparator: {
                 name: 'Сбросить положение разделителя панелей',

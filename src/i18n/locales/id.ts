@@ -812,7 +812,8 @@ export const STRINGS_ID = {
         file: 'file',
         files: 'file',
         folder: 'folder',
-        folders: 'folder'
+        folders: 'folder',
+        wordCount: 'Jumlah kata'
     },
 
     // Settings
@@ -1315,6 +1316,10 @@ export const STRINGS_ID = {
             showTooltipPath: {
                 name: 'Tampilkan path',
                 desc: 'Tampilkan path folder di bawah nama catatan di tooltip.'
+            },
+            showTooltipWordCount: {
+                name: 'Tampilkan jumlah kata',
+                desc: 'Tampilkan jumlah kata catatan di tooltip.'
             },
             resetPaneSeparator: {
                 name: 'Atur ulang posisi pemisah panel',

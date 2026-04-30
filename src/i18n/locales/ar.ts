@@ -810,7 +810,8 @@ export const STRINGS_AR = {
         file: 'ملف',
         files: 'ملفات',
         folder: 'مجلد',
-        folders: 'مجلدات'
+        folders: 'مجلدات',
+        wordCount: 'عدد الكلمات'
     },
 
     // Settings
@@ -1313,6 +1314,10 @@ export const STRINGS_AR = {
             showTooltipPath: {
                 name: 'إظهار المسار',
                 desc: 'عرض مسار المجلد أسفل أسماء الملاحظات في التلميحات.'
+            },
+            showTooltipWordCount: {
+                name: 'إظهار عدد الكلمات',
+                desc: 'عرض عدد كلمات الملاحظات في التلميحات.'
             },
             resetPaneSeparator: {
                 name: 'إعادة تعيين موضع فاصل اللوحة',

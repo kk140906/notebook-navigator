@@ -805,7 +805,8 @@ export const STRINGS_ZH_TW = {
         file: '個檔案',
         files: '個檔案',
         folder: '個資料夾',
-        folders: '個資料夾'
+        folders: '個資料夾',
+        wordCount: '字數'
     },
 
     // Settings
@@ -1308,6 +1309,10 @@ export const STRINGS_ZH_TW = {
             showTooltipPath: {
                 name: '顯示路徑',
                 desc: '在工具提示中的筆記名稱下方顯示資料夾路徑。'
+            },
+            showTooltipWordCount: {
+                name: '顯示字數',
+                desc: '在工具提示中顯示筆記字數。'
             },
             resetPaneSeparator: {
                 name: '重設面板分隔符位置',

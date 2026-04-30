@@ -809,7 +809,8 @@ export const STRINGS_UK = {
         file: 'файл',
         files: 'файлів',
         folder: 'папка',
-        folders: 'папок'
+        folders: 'папок',
+        wordCount: 'Кількість слів'
     },
 
     // Settings
@@ -1312,6 +1313,10 @@ export const STRINGS_UK = {
             showTooltipPath: {
                 name: 'Показувати шлях',
                 desc: 'Відображати шлях папки під назвами нотаток у підказках.'
+            },
+            showTooltipWordCount: {
+                name: 'Показувати кількість слів',
+                desc: 'Відображати кількість слів у нотатках у підказках.'
             },
             resetPaneSeparator: {
                 name: 'Скинути позицію роздільника панелей',
