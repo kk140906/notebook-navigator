@@ -145,6 +145,34 @@ function commandAvailable(command) {
     }
 }
 
+function assertOnlyExpectedChanges(expectedFiles) {
+    const expectedFileSet = new Set(expectedFiles);
+    const status = gitExecString(['status', '--porcelain']);
+
+    if (!status) {
+        return;
+    }
+
+    const unexpectedChanges = status.split('\n').filter(line => {
+        const pathPart = line.slice(3);
+        const changedPath = pathPart.includes(' -> ') ? pathPart.split(' -> ').pop() : pathPart;
+        return !expectedFileSet.has(changedPath);
+    });
+
+    if (unexpectedChanges.length === 0) {
+        return;
+    }
+
+    throw new Error(
+        [
+            'Build changed files outside the release metadata:',
+            ...unexpectedChanges.map(line => `   ${line}`),
+            '',
+            'Commit or fix these generated changes before preparing the release.'
+        ].join('\n')
+    );
+}
+
 function updatePackageLockVersion(packageLock, newVersion) {
     if (!packageLock || typeof packageLock !== 'object') {
         throw new Error('package-lock.json is not a valid object');
@@ -701,6 +729,7 @@ function prepareRelease(releaseType, manifest, currentVersion, newVersion) {
         const filesToAdd = ['manifest.json', 'package.json', 'package-lock.json', 'versions.json'].filter(file =>
             fs.existsSync(path.join(projectRoot, file))
         );
+        assertOnlyExpectedChanges(filesToAdd);
 
         // Use array syntax to avoid shell injection
         gitExecArray(['add', ...filesToAdd], { stdio: 'inherit' });
