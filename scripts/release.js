@@ -147,7 +147,7 @@ function commandAvailable(command) {
 
 function assertOnlyExpectedChanges(expectedFiles) {
     const expectedFileSet = new Set(expectedFiles);
-    const status = gitExecString(['status', '--porcelain']);
+    const status = gitExecArray(['status', '--porcelain'], { encoding: 'utf8' }).trimEnd();
 
     if (!status) {
         return;
