@@ -21,17 +21,17 @@
  * ==============
  * This script automates the release process for Obsidian plugins by:
  * - Incrementing version numbers in manifest.json, package.json, and versions.json
- * - Committing the changes
- * - Creating a git tag
- * - Pushing everything to trigger GitHub Actions
+ * - Creating a release branch and pull request with the version bump
+ * - Publishing a merged release by creating and pushing a git tag
  *
  * Usage:
  *   node release.js                    # Interactive mode (choose between patch/minor/major)
- *   node release.js patch              # Direct patch release (no interaction)
- *   node release.js minor              # Direct minor release (no interaction)
- *   node release.js major              # Direct major release (no interaction)
+ *   node release.js patch              # Prepare a patch release PR
+ *   node release.js minor              # Prepare a minor release PR
+ *   node release.js major              # Prepare a major release PR
+ *   node release.js publish            # Tag the merged version on main
  *   node release.js patch --dry-run    # Preview changes without executing
- *   node release.js --dry-run          # Interactive mode with dry run
+ *   node release.js publish --dry-run  # Preview publish without executing
  *
  * Version numbering follows Semantic Versioning (semver):
  *   MAJOR.MINOR.PATCH (e.g., 1.2.3)
@@ -48,7 +48,8 @@
  *     Example: 1.2.3 → 2.0.0 (minor and patch reset to 0)
  *     Use when: You changed how settings work, removed features, or made changes that require users to reconfigure
  *
- * Make sure you have committed all your changes before running this script!
+ * Make sure you have committed all your changes before running this script.
+ * Release version changes must go through a pull request before publishing.
  */
 
 const fs = require('fs');
@@ -63,6 +64,7 @@ const os = require('os');
 
 const projectRoot = path.join(__dirname, '..');
 const validReleaseTypes = ['patch', 'minor', 'major'];
+const publishCommand = 'publish';
 const lockFilePath = path.join(projectRoot, '.release.lock');
 
 // ============================================================================
@@ -99,7 +101,7 @@ function writeJsonFile(filePath, data) {
 
 // Helper to execute git commands with array syntax (safe from injection)
 function gitExecArray(args, options = {}) {
-    if (isDryRun && ['add', 'commit', 'tag', 'push'].includes(args[0])) {
+    if (isDryRun && ['add', 'commit', 'tag', 'push', 'checkout', 'branch'].includes(args[0])) {
         console.log(`[DRY RUN] Would run: git ${args.join(' ')}`);
         return Buffer.from('');
     }
@@ -110,6 +112,15 @@ function gitExecArray(args, options = {}) {
 function gitExecString(args, options = {}) {
     const result = gitExecArray(args, { encoding: 'utf8', ...options }).trim();
     return result;
+}
+
+function commandAvailable(command) {
+    try {
+        execFileSync(command, ['--version'], { stdio: 'ignore' });
+        return true;
+    } catch (e) {
+        return false;
+    }
 }
 
 // ============================================================================
@@ -303,6 +314,34 @@ function checkExistingTag(version) {
     }
 }
 
+function checkReleaseBranchAvailable(version) {
+    const branchName = `release/${version}`;
+
+    try {
+        gitExecArray(['rev-parse', '--verify', branchName], { stdio: 'pipe' });
+        console.error(`❌ Local branch ${branchName} already exists`);
+        console.error(`   Delete it or choose a different version before retrying.`);
+        process.exit(1);
+    } catch (e) {
+        // Missing local branch is expected.
+    }
+
+    try {
+        const remoteBranch = gitExecString(['ls-remote', '--heads', 'origin', branchName]);
+        if (remoteBranch) {
+            console.error(`❌ Remote branch ${branchName} already exists`);
+            console.error(`   Close or remove the existing release branch before retrying.`);
+            process.exit(1);
+        }
+    } catch (error) {
+        console.error('❌ Failed to check existing release branches:', error.message);
+        process.exit(1);
+    }
+
+    console.log(`✓ Release branch ${branchName} is available`);
+    return branchName;
+}
+
 // ============================================================================
 // BUILD OPERATIONS
 // ============================================================================
@@ -415,18 +454,19 @@ function validateReleaseReadiness(manifest, currentVersion) {
 // RELEASE OPERATIONS
 // ============================================================================
 
-function performRelease(releaseType, manifest, currentVersion, newVersion) {
+function prepareRelease(releaseType, manifest, currentVersion, newVersion) {
     // Run all validations first
     validateReleaseReadiness(manifest, currentVersion);
     checkVersionOverflow(...currentVersion.split('.').map(Number), releaseType);
     preReleaseChecks();
     checkExistingTag(newVersion);
-    verifyBuild();
+    const releaseBranch = checkReleaseBranchAvailable(newVersion);
 
     // Create backups of files we're about to modify
     const filesToBackup = ['manifest.json', 'package.json', 'versions.json'];
     const backups = {};
     let currentCommit = null;
+    let releaseBranchCreated = false;
 
     try {
         // Get current commit for potential rollback
@@ -477,14 +517,28 @@ function performRelease(releaseType, manifest, currentVersion, newVersion) {
             }
         }
 
+        if (releaseBranchCreated) {
+            try {
+                gitExecArray(['checkout', 'main'], { stdio: 'ignore' });
+                gitExecArray(['branch', '-D', releaseBranch], { stdio: 'ignore' });
+                console.error(`   ✓ Removed local branch ${releaseBranch}`);
+            } catch (e) {
+                console.error(`   ⚠️  Could not remove local branch ${releaseBranch}:`, e.message);
+            }
+        }
+
         if (message) console.error(`\n❌ ${message}`);
         process.exit(1);
     };
 
-    console.log(`\nBumping version from ${currentVersion} to ${newVersion}\n`);
+    console.log(`\nPreparing release branch ${releaseBranch}`);
+    console.log(`Bumping version from ${currentVersion} to ${newVersion}\n`);
     needsCleanup = true;
 
     try {
+        gitExecArray(['checkout', '-b', releaseBranch], { stdio: 'inherit' });
+        releaseBranchCreated = true;
+
         // Update manifest.json
         const manifestPath = path.join(projectRoot, 'manifest.json');
         const updatedManifest = { ...manifest, version: newVersion };
@@ -526,6 +580,8 @@ function performRelease(releaseType, manifest, currentVersion, newVersion) {
         rollback(`Failed to update version files: ${error.message}`);
     }
 
+    verifyBuild();
+
     // Git operations
     try {
         // Add only files that exist
@@ -538,38 +594,85 @@ function performRelease(releaseType, manifest, currentVersion, newVersion) {
         gitExecArray(['commit', '-m', `Bump version to ${newVersion}`], { stdio: 'inherit' });
         console.log('✓ Committed version changes');
 
-        // Create annotated tag with atomic operation
-        try {
-            gitExecArray(['tag', '-a', newVersion, '-m', `Release ${newVersion}`], { stdio: 'inherit' });
-            console.log(`✓ Created tag ${newVersion}`);
-        } catch (e) {
-            // If tag creation fails, we've already committed, so note this in error
-            console.error('\n⚠️  Commit succeeded but tag creation failed.');
-            console.error('   The version bump has been committed.');
-            rollback(`Tag creation failed: ${e.message}`);
-        }
-
-        // Push commits and the new tag
-        gitExecArray(['push'], { stdio: 'inherit' });
-        gitExecArray(['push', 'origin', `refs/tags/${newVersion}`], { stdio: 'inherit' });
-        console.log('✓ Pushed to remote');
+        gitExecArray(['push', '-u', 'origin', releaseBranch], { stdio: 'inherit' });
+        console.log(`✓ Pushed ${releaseBranch} to remote`);
 
         needsCleanup = false;
 
         if (isDryRun) {
-            console.log(`\n🔍 DRY RUN COMPLETE - Version ${newVersion} would be released`);
+            console.log(`\n🔍 DRY RUN COMPLETE - Release branch ${releaseBranch} would be prepared`);
         } else {
-            console.log(`\n🎉 Successfully released version ${newVersion}`);
-            console.log('GitHub Actions will now build and publish the GitHub release.');
+            createReleasePullRequest(releaseBranch, newVersion);
+            gitExecArray(['checkout', 'main'], { stdio: 'inherit' });
+            console.log(`\n✓ Release PR prepared for version ${newVersion}`);
             console.log('\nNext steps:');
-            console.log('1. Wait for GitHub Actions to complete');
-            console.log('2. Verify the release on GitHub\n');
+            console.log('1. Wait for CI to pass on the release pull request');
+            console.log('2. Merge the pull request into main');
+            console.log('3. Pull main locally');
+            console.log('4. Run: node scripts/release.js publish\n');
         }
     } catch (error) {
         // If git operations fail, rollback file changes
         console.error('\n⚠️  Note: Git operations may have partially completed.');
         console.error('   Check git status and tags before retrying.');
         rollback(`Git operations failed: ${error.message}`);
+    }
+}
+
+function createReleasePullRequest(releaseBranch, newVersion) {
+    if (!commandAvailable('gh')) {
+        console.log('⚠️  GitHub CLI not found; create the release pull request manually.');
+        console.log(`   Branch: ${releaseBranch}`);
+        return;
+    }
+
+    try {
+        execFileSync(
+            'gh',
+            [
+                'pr',
+                'create',
+                '--base',
+                'main',
+                '--head',
+                releaseBranch,
+                '--title',
+                `Release ${newVersion}`,
+                '--body',
+                `Bumps release metadata to ${newVersion}.`
+            ],
+            { cwd: projectRoot, stdio: 'inherit' }
+        );
+        console.log('✓ Created release pull request');
+    } catch (error) {
+        console.log('⚠️  Could not create the release pull request automatically.');
+        console.log(`   Create it manually from branch: ${releaseBranch}`);
+    }
+}
+
+function publishRelease(manifest, currentVersion) {
+    validateReleaseReadiness(manifest, currentVersion);
+    preReleaseChecks();
+    checkExistingTag(currentVersion);
+    verifyBuild();
+
+    try {
+        gitExecArray(['tag', '-a', currentVersion, '-m', `Release ${currentVersion}`], { stdio: 'inherit' });
+        console.log(`✓ Created tag ${currentVersion}`);
+
+        gitExecArray(['push', 'origin', `refs/tags/${currentVersion}`], { stdio: 'inherit' });
+        console.log(`✓ Pushed tag ${currentVersion}`);
+
+        if (isDryRun) {
+            console.log(`\n🔍 DRY RUN COMPLETE - Version ${currentVersion} would be published`);
+        } else {
+            console.log(`\n🎉 Successfully published version ${currentVersion}`);
+            console.log('GitHub Actions will now build and publish the GitHub release.');
+        }
+    } catch (error) {
+        console.error('\n❌ Publish failed:', error.message);
+        console.error('   Check local tags and GitHub Actions before retrying.');
+        process.exit(1);
     }
 }
 
@@ -611,7 +714,7 @@ function showInteractivePrompt(currentVersion, versions) {
                 process.exit(1);
         }
 
-        performRelease(releaseType, manifest, currentVersion, versions[releaseType]);
+        prepareRelease(releaseType, manifest, currentVersion, versions[releaseType]);
     });
 }
 
@@ -715,11 +818,12 @@ if (args.length > 0) {
 }
 
 const hasValidArg = releaseTypeArg && validReleaseTypes.includes(releaseTypeArg);
+const isPublishCommand = releaseTypeArg === publishCommand;
 
-if (releaseTypeArg && !hasValidArg) {
+if (releaseTypeArg && !hasValidArg && !isPublishCommand) {
     console.error(`❌ Invalid release type: ${releaseTypeArg}`);
-    console.error('   Use one of: patch, minor, major');
-    console.error('\n   Usage: node release.js [patch|minor|major] [--dry-run]');
+    console.error('   Use one of: patch, minor, major, publish');
+    console.error('\n   Usage: node release.js [patch|minor|major|publish] [--dry-run]');
     process.exit(1);
 }
 
@@ -758,9 +862,11 @@ const versions = {
 };
 
 // Execute release
-if (hasValidArg) {
-    // Direct release mode
-    performRelease(releaseTypeArg, manifest, currentVersion, versions[releaseTypeArg]);
+if (isPublishCommand) {
+    publishRelease(manifest, currentVersion);
+} else if (hasValidArg) {
+    // Direct release preparation mode
+    prepareRelease(releaseTypeArg, manifest, currentVersion, versions[releaseTypeArg]);
 } else {
     // Interactive mode
     showInteractivePrompt(currentVersion, versions);
