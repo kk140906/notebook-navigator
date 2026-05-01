@@ -1,7 +1,7 @@
 Read in your language: [English](https://notebooknavigator.com/docs.html) • [العربية](https://notebooknavigator.com/ar/docs.html) • [Deutsch](https://notebooknavigator.com/de/docs.html) • [Español](https://notebooknavigator.com/es/docs.html) • [فارسی](https://notebooknavigator.com/fa/docs.html) • [Français](https://notebooknavigator.com/fr/docs.html) • [Bahasa Indonesia](https://notebooknavigator.com/id/docs.html) • [Italiano](https://notebooknavigator.com/it/docs.html) • [Nederlands](https://notebooknavigator.com/nl/docs.html) • [Polski](https://notebooknavigator.com/pl/docs.html) • [Português](https://notebooknavigator.com/pt/docs.html) • [Português (Brasil)](https://notebooknavigator.com/pt-br/docs.html) • [Русский](https://notebooknavigator.com/ru/docs.html) • [ไทย](https://notebooknavigator.com/th/docs.html) • [Türkçe](https://notebooknavigator.com/tr/docs.html) • [Українська](https://notebooknavigator.com/uk/docs.html) • [Tiếng Việt](https://notebooknavigator.com/vi/docs.html) • [日本語](https://notebooknavigator.com/ja/docs.html) • [한국어](https://notebooknavigator.com/ko/docs.html) • [中文简体](https://notebooknavigator.com/zh-cn/docs.html) • [中文繁體](https://notebooknavigator.com/zh-tw/docs.html)
 
 ![Obsidian Downloads](https://img.shields.io/badge/dynamic/json?logo=obsidian&color=%23483699&label=Downloads&query=%24%5B%22notebook-navigator%22%5D.downloads&url=https%3A%2F%2Fraw.githubusercontent.com%2Fobsidianmd%2Fobsidian-releases%2Fmaster%2Fcommunity-plugin-stats.json) ![Obsidian Compatibility](https://img.shields.io/badge/Obsidian-v1.11.0+-483699?logo=obsidian&style=flat-square) [![Discord](https://img.shields.io/discord/1405458145974943846?color=7289da&label=Discord&logo=discord&logoColor=white)](https://discord.gg/6eeSUvzEJr)<br/>
-[![Quality checks](https://github.com/johansan/notebook-navigator/actions/workflows/ci.yml/badge.svg)](https://github.com/johansan/notebook-navigator/actions/workflows/ci.yml) [![Security scan](https://github.com/johansan/notebook-navigator/actions/workflows/codeql.yml/badge.svg)](https://github.com/johansan/notebook-navigator/actions/workflows/codeql.yml) [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/johansan/notebook-navigator/badge)](https://securityscorecards.dev/viewer/?uri=github.com/johansan/notebook-navigator) [![OpenSSF Baseline](https://www.bestpractices.dev/projects/12715/baseline)](https://www.bestpractices.dev/projects/12715)
+[![Quality checks](https://github.com/johansan/notebook-navigator/actions/workflows/ci.yml/badge.svg)](https://github.com/johansan/notebook-navigator/actions/workflows/ci.yml) [![Security scan](https://github.com/johansan/notebook-navigator/actions/workflows/codeql.yml/badge.svg)](https://github.com/johansan/notebook-navigator/actions/workflows/codeql.yml) [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/johansan/notebook-navigator/badge)](https://securityscorecards.dev/viewer/?uri=github.com/johansan/notebook-navigator)
 
 ![Notebook Navigator Screenshot](https://github.com/johansan/notebook-navigator/blob/main/images/notebook-navigator.png?raw=true)
 
@@ -10,7 +10,7 @@ Visual previews. Full keyboard navigation. Dual-pane layout. Mobile optimized. W
 
 If you love using Notebook Navigator, please consider [☕️ Buying me a coffee](https://buymeacoffee.com/johansan) or [Sponsor on GitHub ❤️](https://github.com/sponsors/johansan).
 
-<br>
+<br/>
 
 <!-- DOCUMENTATION_START -->
 
@@ -21,7 +21,7 @@ If you love using Notebook Navigator, please consider [☕️ Buying me a coffee
 3. **Install Notebook Navigator** - Click "Browse" → Search for "Notebook Navigator" → Install
 4. **Install Style Settings (optional)** - For customizing colors and appearance, install [Style Settings](https://github.com/mgmeyers/obsidian-style-settings) plugin by searching for "Style Settings" in Community plugins
 
-<br>
+<br/>
 
 ## 2 Getting started
 
@@ -31,19 +31,19 @@ Here is the official tutorial for learning and mastering Notebook Navigator:
 
 The video has subtitles in 21 languages.
 
-<br>
+<br/>
 
 ## 3 Security and quality
 
-Notebook Navigator is checked with TypeScript, ESLint, Prettier, Vitest and a production build before changes are merged. The build must complete with zero errors and zero warnings.
+Notebook Navigator is checked with [TypeScript](https://www.typescriptlang.org/), [ESLint](https://eslint.org/) with the official [Obsidian ESLint plugin](https://github.com/obsidianmd/eslint-plugin), [Prettier](https://prettier.io/), [Vitest](https://vitest.dev/) and a production build before changes are merged. The build must complete with zero errors and zero warnings.
 
-Security checks run through CodeQL and the [OpenSSF Scorecard](https://securityscorecards.dev/viewer/?uri=github.com/johansan/notebook-navigator). Current status is shown in the badges at the top of this page.
+Security checks run through [CodeQL](https://codeql.github.com/), with scan history in the [CodeQL workflow runs](https://github.com/johansan/notebook-navigator/actions/workflows/codeql.yml), and the [OpenSSF Scorecard](https://securityscorecards.dev/viewer/?uri=github.com/johansan/notebook-navigator). Current status is shown in the badges at the top of this page.
 
 Notebook Navigator only connects to the network for documented optional features. See [section 11 - Network Usage Disclosure](#11-network-usage-disclosure) for the full list.
 
-<br>
+<br/>
 
-**Table of contents**
+## Table of contents
 
 - [4 Documentation](#4-documentation)
 - [5 Keyboard shortcuts](#5-keyboard-shortcuts)
@@ -58,7 +58,7 @@ Notebook Navigator only connects to the network for documented optional features
 - [14 Questions or issues?](#14-questions-or-issues)
 - [15 License](#15-license)
 
-<br>
+<br/>
 
 ## 4 Documentation
 
@@ -82,7 +82,7 @@ Notebook Navigator only connects to the network for documented optional features
 
 - [**Service Architecture**](docs/service-architecture.md) - Business logic layer: MetadataService, FileSystemOperations, ContentProviderRegistry. Dependency injection patterns and service data flow.
 
-<br>
+<br/>
 
 ## 5 Keyboard shortcuts
 
@@ -106,7 +106,7 @@ Notebook Navigator only connects to the network for documented optional features
 
 **Note:** All keyboard shortcuts can be customized. See [section 8 - Custom hotkeys](#8-custom-hotkeys) for details on adding VIM-style navigation (h,j,k,l), alternate keys, and modifier combinations.
 
-<br>
+<br/>
 
 ## 6 Synced and local settings
 
@@ -122,13 +122,13 @@ When sync is **enabled** (default) for a setting, the value is saved to `data.js
 
 <img width="608" height="49" alt="Screenshot 2026-02-18 at 22 58 14" src="https://github.com/user-attachments/assets/f6f4c839-f8b8-42b5-be43-1cb6c78abdb3" />
 
-<br>
+<br/>
 
 When sync is **disabled** for a setting, the value is saved to Obsidian's local storage instead. Local storage is device-specific and is not included in vault sync. The setting will have its own independent value on each device. When you disable sync for a setting, the current value is copied to local storage on the current device, and the value is removed from `data.json` to prevent it from overriding local values on other devices.
 
 If you do not use a sync service, the sync toggle has no practical effect since `data.json` is only stored locally.
 
-<br>
+<br/>
 
 ## 7 Search
 
@@ -215,7 +215,7 @@ Note previews show Omnisearch result excerpts instead of the default preview tex
 - **Limited results** - Omnisearch searches the entire vault and returns a limited number of results before filtering, so relevant files from the current folder may not appear if many matches exist elsewhere
 - **Preview text** - Note previews are replaced with Omnisearch result excerpts, which may not show the actual search match highlight if it appears elsewhere in the file
 
-<br>
+<br/>
 
 ## 8 Custom hotkeys
 
@@ -261,7 +261,7 @@ Add multiple bindings per action to support alternate keys, like the `ArrowUp` a
 | `search:focus-navigation`         | Shift+Tab            |
 | `search:close`                    | Escape               |
 
-<br>
+<br/>
 
 ## 9 Commands
 
@@ -396,7 +396,7 @@ Set custom hotkeys for these commands in Obsidian's Hotkeys settings:
 | `notebook-navigator:remove-all-tags`                | Notebook Navigator: Remove all tags from selected files                                              |
 | `notebook-navigator:rebuild-cache`                  | Notebook Navigator: Rebuild cache                                                                    |
 
-<br>
+<br/>
 
 ## 10 Features
 
@@ -457,7 +457,7 @@ Set custom hotkeys for these commands in Obsidian's Hotkeys settings:
 - **File operations** - Create, rename, duplicate, move, trash files and folders
 - **Filtering** - Folder/tag/note/file exclusions with patterns and frontmatter properties
 
-<br>
+<br/>
 
 ## 11 Network Usage Disclosure
 
@@ -489,13 +489,13 @@ Notebook Navigator runs locally, but some features make HTTP requests from Obsid
 - Requests to GitHub, YouTube, and any external image host are made directly from your device and include standard HTTP metadata (IP address, user-agent, and similar).
 - Downloaded icon packs and images are stored locally (IndexedDB). Recent notes/files and UI state are stored locally (Obsidian local storage).
 
-<br>
+<br/>
 
 ## 12 Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=johansan/notebook-navigator&type=date&legend=top-left)](https://www.star-history.com/#johansan/notebook-navigator&type=date&legend=top-left)
 
-<br>
+<br/>
 
 ## 13 Contact
 
@@ -503,14 +503,14 @@ Notebook Navigator is built and maintained by [Johan Sanneblad](https://www.link
 
 Feel free to connect with me on [LinkedIn](https://www.linkedin.com/in/johansan/).
 
-<br>
+<br/>
 
 ## 14 Questions or issues?
 
 **[Join our Discord](https://discord.gg/6eeSUvzEJr)** for support and discussions, or open an issue on the
 [GitHub repository](https://github.com/johansan/notebook-navigator).
 
-<br>
+<br/>
 
 ## 15 License
 
