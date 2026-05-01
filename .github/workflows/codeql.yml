@@ -30,7 +30,7 @@ jobs:
         uses: github/codeql-action/init@95e58e9a2cdfd71adc6e0353d5c52f41a045d225 # v4.35.2
         with:
           languages: javascript-typescript
-          queries: +security-extended,codeql/javascript-queries:AlertSuppression.ql
+          queries: +security-extended,github/codeql/javascript/ql/src/AlertSuppression.ql@codeql-cli/v2.25.3
 
       - name: Perform CodeQL analysis
         uses: github/codeql-action/analyze@95e58e9a2cdfd71adc6e0353d5c52f41a045d225 # v4.35.2
