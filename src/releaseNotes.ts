@@ -80,6 +80,7 @@ const RELEASE_NOTES: ReleaseNote[] = [
         version: '2.6.3',
         date: '2026-05-01',
         showOnUpdate: true,
+        bannerUrl: true,
         new: [
             '**Settings.** General > ==Show tooltips > Show word count==. Shows word counts in tooltips.',
             '**Commands.** ==Toggle tags by selection== and ==Toggle properties by selection==.'
