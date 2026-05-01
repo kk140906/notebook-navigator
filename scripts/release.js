@@ -396,7 +396,7 @@ function checkReleaseBranchAvailable(version) {
 // ============================================================================
 
 function verifyBuild() {
-    console.log('\n🔨 Running build to verify project integrity...');
+    console.log('\n🔨 Running full build verification...');
 
     try {
         // Check if package.json exists
@@ -407,7 +407,14 @@ function verifyBuild() {
             process.exit(1);
         }
 
-        // Check if build script exists
+        const buildScriptPath = path.join(projectRoot, 'scripts', 'build.sh');
+        if (!fs.existsSync(buildScriptPath)) {
+            console.error('❌ Build script not found');
+            console.error('   Expected: scripts/build.sh');
+            process.exit(1);
+        }
+
+        // Check if package build script exists because scripts/build.sh calls it
         const packageJson = parseJsonFile(packageJsonPath, 'package.json');
         if (!packageJson.scripts || !packageJson.scripts.build) {
             console.error('❌ No build script found in package.json');
@@ -419,16 +426,21 @@ function verifyBuild() {
         checkNpmAvailable();
 
         if (isDryRun) {
-            logDryRunCommand(os.platform() === 'win32' ? 'npm.cmd run build' : 'npm run build');
-            console.log('✓ Build command is available\n');
+            logDryRunCommand(os.platform() === 'win32' ? 'bash scripts/build.sh' : './scripts/build.sh');
+            console.log('✓ Full build command is available\n');
             return;
         }
 
-        // Run the build (Windows compatibility)
+        // Run the full build gate used by CI.
         if (os.platform() === 'win32') {
-            execSync('npm.cmd run build', { stdio: 'inherit', cwd: projectRoot, shell: true });
+            if (!commandAvailable('bash')) {
+                console.error('❌ bash is required to run scripts/build.sh on Windows');
+                console.error('   Install Git Bash or run release verification from a Unix-like shell');
+                process.exit(1);
+            }
+            execFileSync('bash', [buildScriptPath], { stdio: 'inherit', cwd: projectRoot });
         } else {
-            execSync('npm run build', { stdio: 'inherit', cwd: projectRoot });
+            execFileSync(buildScriptPath, [], { stdio: 'inherit', cwd: projectRoot });
         }
 
         // Verify build output exists
@@ -440,9 +452,9 @@ function verifyBuild() {
             process.exit(1);
         }
 
-        console.log('✓ Build completed successfully\n');
+        console.log('✓ Full build completed successfully\n');
     } catch (error) {
-        console.error('❌ Build failed:', error.message);
+        console.error('❌ Full build failed:', error.message);
         console.error('   Fix build errors before releasing');
         process.exit(1);
     }
@@ -485,8 +497,8 @@ function validateReleaseReadiness(manifest, currentVersion) {
         console.log('✓ package-lock.json version matches manifest.json');
     }
 
-    // Check required files exist
-    const requiredFiles = ['manifest.json', 'main.js', 'styles.css'];
+    // Check required source-controlled files exist. Build artifacts are checked after verifyBuild().
+    const requiredFiles = ['manifest.json', 'styles.css'];
     const missingRequiredFiles = requiredFiles.filter(file => !fs.existsSync(path.join(projectRoot, file)));
 
     if (missingRequiredFiles.length > 0) {
@@ -543,6 +555,7 @@ function validateReleaseNotes(version) {
 function prepareRelease(releaseType, manifest, currentVersion, newVersion) {
     // Run all validations first
     validateReleaseReadiness(manifest, currentVersion);
+    validateReleaseNotes(newVersion);
     checkVersionOverflow(...currentVersion.split('.').map(Number), releaseType);
     preReleaseChecks();
     checkExistingTag(newVersion);
