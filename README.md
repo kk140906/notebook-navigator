@@ -23,36 +23,40 @@ If you love using Notebook Navigator, please consider [☕️ Buying me a coffee
 
 <br>
 
-## 2 Security and quality
-
-Notebook Navigator handles your notes, so it is built and maintained with strict quality and security standards. Every pull request and every update to the main branch runs through an automated pipeline that must pass before changes can ship. Current status for all checks is visible in the badges at the top of this page.
-
-### 2.1 Quality checks
-
-Every change is verified by:
-
-- **[TypeScript](https://www.typescriptlang.org/)** — Type checking across the entire codebase catches errors at build time before they reach the plugin
-- **[ESLint](https://eslint.org/)** with the official **[Obsidian ESLint plugin](https://github.com/obsidianmd/eslint-plugin)** — Enforces Obsidian plugin best practices alongside project coding standards
-- **[Prettier](https://prettier.io/)** — Consistent code formatting across the codebase
-- **[Vitest](https://vitest.dev/)** — Unit tests covering core logic and edge cases
-- **Production build** — The plugin must compile with zero errors and zero warnings
-
-### 2.2 Security scans
-
-Security is reviewed continuously by:
-
-- **[CodeQL](https://codeql.github.com/)** — GitHub's static analysis engine scans every change for known vulnerability patterns (XSS, injection, unsafe APIs) using the security-extended query suite
-- **[OpenSSF Scorecard](https://securityscorecards.dev/)** — Independent supply-chain security review from the [Open Source Security Foundation](https://openssf.org/). Grades the repository on dependency pinning, branch protection, signed releases, workflow permissions, and more. The full report is public: [view the live scorecard](https://securityscorecards.dev/viewer/?uri=github.com/johansan/notebook-navigator)
-
-<br>
-
-## 3 Getting started
+## 2 Getting started
 
 Here is the official tutorial for learning and mastering Notebook Navigator:
 
 [![Mastering Notebook Navigator](https://raw.githubusercontent.com/johansan/notebook-navigator/main/images/youtube-thumbnail.jpg)](https://www.youtube.com/watch?v=BewIlG8wLAM)
 
 The video has subtitles in 21 languages.
+
+<br>
+
+## 3 Security and quality
+
+Notebook Navigator is checked with TypeScript, ESLint, Prettier, Vitest and a production build before changes are merged. The build must complete with zero errors and zero warnings.
+
+Security checks run through CodeQL and the [OpenSSF Scorecard](https://securityscorecards.dev/viewer/?uri=github.com/johansan/notebook-navigator). Current status is shown in the badges at the top of this page.
+
+Notebook Navigator only connects to the network for documented optional features. See [section 11 - Network Usage Disclosure](#11-network-usage-disclosure) for the full list.
+
+<br>
+
+**Table of contents**
+
+- [4 Documentation](#4-documentation)
+- [5 Keyboard shortcuts](#5-keyboard-shortcuts)
+- [6 Synced and local settings](#6-synced-and-local-settings)
+- [7 Search](#7-search)
+- [8 Custom hotkeys](#8-custom-hotkeys)
+- [9 Commands](#9-commands)
+- [10 Features](#10-features)
+- [11 Network Usage Disclosure](#11-network-usage-disclosure)
+- [12 Star History](#12-star-history)
+- [13 Contact](#13-contact)
+- [14 Questions or issues?](#14-questions-or-issues)
+- [15 License](#15-license)
 
 <br>
 
