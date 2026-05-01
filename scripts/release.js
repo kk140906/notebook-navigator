@@ -117,10 +117,14 @@ function getDryRunGitResult(options) {
     return options.encoding ? '' : Buffer.from('');
 }
 
+function logDryRunCommand(command) {
+    console.log(`[DRY RUN] Would run: ${command}`);
+}
+
 // Helper to execute git commands with array syntax (safe from injection)
 function gitExecArray(args, options = {}) {
     if (isDryRun && isDryRunGitMutation(args)) {
-        console.log(`[DRY RUN] Would run: git ${args.join(' ')}`);
+        logDryRunCommand(`git ${args.join(' ')}`);
         return getDryRunGitResult(options);
     }
     return execFileSync('git', args, { cwd: projectRoot, ...options });
@@ -138,6 +142,21 @@ function commandAvailable(command) {
         return true;
     } catch (e) {
         return false;
+    }
+}
+
+function updatePackageLockVersion(packageLock, newVersion) {
+    if (!packageLock || typeof packageLock !== 'object') {
+        throw new Error('package-lock.json is not a valid object');
+    }
+
+    if ('version' in packageLock) {
+        packageLock.version = newVersion;
+    }
+
+    const rootPackage = packageLock.packages?.[''];
+    if (rootPackage && typeof rootPackage === 'object') {
+        rootPackage.version = newVersion;
     }
 }
 
@@ -272,7 +291,11 @@ function preReleaseChecks() {
 
         // Check if branch is up to date with remote
         try {
-            gitExecArray(['fetch'], { stdio: 'pipe' });
+            if (isDryRun) {
+                logDryRunCommand('git fetch');
+            } else {
+                gitExecArray(['fetch'], { stdio: 'pipe' });
+            }
         } catch (e) {
             console.error('❌ Failed to fetch from remote:', e.message);
             process.exit(1);
@@ -313,7 +336,11 @@ function checkExistingTag(version) {
 
         // Check remote tags
         try {
-            gitExecArray(['fetch', '--tags'], { stdio: 'pipe' });
+            if (isDryRun) {
+                logDryRunCommand('git fetch --tags');
+            } else {
+                gitExecArray(['fetch', '--tags'], { stdio: 'pipe' });
+            }
         } catch (e) {
             console.error('⚠️  Warning: Could not fetch tags:', e.message);
         }
@@ -391,6 +418,12 @@ function verifyBuild() {
         // Check if npm is available
         checkNpmAvailable();
 
+        if (isDryRun) {
+            logDryRunCommand(os.platform() === 'win32' ? 'npm.cmd run build' : 'npm run build');
+            console.log('✓ Build command is available\n');
+            return;
+        }
+
         // Run the build (Windows compatibility)
         if (os.platform() === 'win32') {
             execSync('npm.cmd run build', { stdio: 'inherit', cwd: projectRoot, shell: true });
@@ -436,6 +469,22 @@ function validateReleaseReadiness(manifest, currentVersion) {
         console.log('✓ package.json version matches manifest.json');
     }
 
+    // Check package-lock.json version matches manifest.json
+    const packageLockPath = path.join(projectRoot, 'package-lock.json');
+    if (fs.existsSync(packageLockPath)) {
+        const packageLock = parseJsonFile(packageLockPath, 'package-lock.json');
+        const rootPackageVersion = packageLock.packages?.['']?.version;
+        if (packageLock.version !== currentVersion || rootPackageVersion !== currentVersion) {
+            console.error('❌ Version mismatch between manifest.json and package-lock.json');
+            console.error(`   manifest.json:            ${currentVersion}`);
+            console.error(`   package-lock.json:        ${packageLock.version}`);
+            console.error(`   package-lock root package: ${rootPackageVersion}`);
+            console.error('   Align versions before releasing');
+            process.exit(1);
+        }
+        console.log('✓ package-lock.json version matches manifest.json');
+    }
+
     // Check required files exist
     const requiredFiles = ['manifest.json', 'main.js', 'styles.css'];
     const missingRequiredFiles = requiredFiles.filter(file => !fs.existsSync(path.join(projectRoot, file)));
@@ -472,6 +521,21 @@ function validateReleaseReadiness(manifest, currentVersion) {
     console.log('\n✓ All pre-flight checks passed\n');
 }
 
+function validateReleaseNotes(version) {
+    try {
+        execFileSync(process.execPath, [path.join(projectRoot, 'scripts', 'mdReleaseNotes.js'), version], {
+            cwd: projectRoot,
+            stdio: 'ignore'
+        });
+    } catch (e) {
+        console.error(`❌ Release notes missing for version ${version}`);
+        console.error('   Add an entry to src/releaseNotes.ts before publishing');
+        process.exit(1);
+    }
+
+    console.log(`✓ Release notes found for ${version}`);
+}
+
 // ============================================================================
 // RELEASE OPERATIONS
 // ============================================================================
@@ -485,7 +549,7 @@ function prepareRelease(releaseType, manifest, currentVersion, newVersion) {
     const releaseBranch = checkReleaseBranchAvailable(newVersion);
 
     // Create backups of files we're about to modify
-    const filesToBackup = ['manifest.json', 'package.json', 'versions.json'];
+    const filesToBackup = ['manifest.json', 'package.json', 'package-lock.json', 'versions.json'];
     const backups = {};
     let currentCommit = null;
     let releaseBranchCreated = false;
@@ -584,6 +648,20 @@ function prepareRelease(releaseType, manifest, currentVersion, newVersion) {
             console.log('✓ Updated package.json');
         }
 
+        // Update package-lock.json if it exists
+        const packageLockPath = path.join(projectRoot, 'package-lock.json');
+        if (fs.existsSync(packageLockPath)) {
+            let packageLock;
+            try {
+                packageLock = parseJsonFile(packageLockPath, 'package-lock.json');
+                updatePackageLockVersion(packageLock, newVersion);
+            } catch (e) {
+                rollback(e.message);
+            }
+            writeJsonFile(packageLockPath, packageLock);
+            console.log('✓ Updated package-lock.json');
+        }
+
         // Update versions.json
         const versionsPath = path.join(projectRoot, 'versions.json');
         let versionsJson = {};
@@ -607,7 +685,9 @@ function prepareRelease(releaseType, manifest, currentVersion, newVersion) {
     // Git operations
     try {
         // Add only files that exist
-        const filesToAdd = ['manifest.json', 'package.json', 'versions.json'].filter(file => fs.existsSync(path.join(projectRoot, file)));
+        const filesToAdd = ['manifest.json', 'package.json', 'package-lock.json', 'versions.json'].filter(file =>
+            fs.existsSync(path.join(projectRoot, file))
+        );
 
         // Use array syntax to avoid shell injection
         gitExecArray(['add', ...filesToAdd], { stdio: 'inherit' });
@@ -674,6 +754,7 @@ function createReleasePullRequest(releaseBranch, newVersion) {
 
 function publishRelease(manifest, currentVersion) {
     validateReleaseReadiness(manifest, currentVersion);
+    validateReleaseNotes(currentVersion);
     preReleaseChecks();
     checkExistingTag(currentVersion);
     verifyBuild();
