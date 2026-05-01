@@ -35,13 +35,11 @@ Automates the release process for the Obsidian plugin.
 **Usage:**
 
 ```bash
-node scripts/release.js                    # Interactive mode
+node scripts/release.js                    # Publish an untagged merged version, or choose the next release
 node scripts/release.js patch              # Prepare a patch release PR
 node scripts/release.js minor              # Prepare a minor release PR
 node scripts/release.js major              # Prepare a major release PR
-node scripts/release.js publish            # Tag the merged version on main
 node scripts/release.js patch --dry-run    # Preview release PR preparation
-node scripts/release.js publish --dry-run  # Preview tag publishing
 ```
 
 **Features:**
@@ -64,7 +62,7 @@ node scripts/release.js publish --dry-run  # Preview tag publishing
 - Never manually modify version numbers in files
 - Always commit all changes before running
 - Must be on main branch and synced with remote
-- Merge the release pull request before running `node scripts/release.js publish`
+- Merge the release pull request before running `node scripts/release.js`
 
 ## gitdump.sh
 

@@ -25,13 +25,11 @@
  * - Publishing a merged release by creating and pushing a git tag
  *
  * Usage:
- *   node release.js                    # Interactive mode (choose between patch/minor/major)
+ *   node release.js                    # Publish an untagged merged version, or choose the next release
  *   node release.js patch              # Prepare a patch release PR
  *   node release.js minor              # Prepare a minor release PR
  *   node release.js major              # Prepare a major release PR
- *   node release.js publish            # Tag the merged version on main
  *   node release.js patch --dry-run    # Preview changes without executing
- *   node release.js publish --dry-run  # Preview publish without executing
  *
  * Version numbering follows Semantic Versioning (semver):
  *   MAJOR.MINOR.PATCH (e.g., 1.2.3)
@@ -64,7 +62,6 @@ const os = require('os');
 
 const projectRoot = path.join(__dirname, '..');
 const validReleaseTypes = ['patch', 'minor', 'major'];
-const publishCommand = 'publish';
 const lockFilePath = path.join(projectRoot, '.release.lock');
 
 // ============================================================================
@@ -353,31 +350,85 @@ function preReleaseChecks() {
     }
 }
 
+function syncMainForDefaultFlow(selectedReleaseType, dryRun) {
+    if (selectedReleaseType || dryRun) {
+        return;
+    }
+
+    let currentBranch;
+    try {
+        currentBranch = gitExecString(['rev-parse', '--abbrev-ref', 'HEAD']);
+    } catch (e) {
+        return;
+    }
+
+    if (currentBranch !== 'main') {
+        return;
+    }
+
+    try {
+        gitExecArray(['fetch', 'origin', 'main'], { stdio: 'pipe' });
+
+        const localCommit = gitExecString(['rev-parse', 'main']);
+        const remoteCommit = gitExecString(['rev-parse', 'origin/main']);
+        if (localCommit === remoteCommit) {
+            return;
+        }
+
+        const status = gitExecString(['status', '--porcelain']);
+        if (status) {
+            console.error('❌ Local main is behind origin/main, but the worktree has uncommitted changes.');
+            console.error('   Commit or stash the changes, then run: node scripts/release.js');
+            process.exit(1);
+        }
+
+        const mergeBase = gitExecString(['merge-base', 'main', 'origin/main']);
+        if (mergeBase !== localCommit) {
+            console.error('❌ Local main cannot be fast-forwarded from origin/main.');
+            console.error('   Resolve the branch state manually, then run: node scripts/release.js');
+            process.exit(1);
+        }
+
+        gitExecArray(['merge', '--ff-only', 'origin/main'], { stdio: 'inherit' });
+        console.log('✓ Updated local main from origin/main');
+    } catch (error) {
+        console.error('❌ Failed to update local main:', error.message);
+        process.exit(1);
+    }
+}
+
+function getTagStatus(version) {
+    const localTags = gitExecString(['tag', '-l', version]);
+    const localTagExists = Boolean(localTags);
+
+    try {
+        if (isDryRun) {
+            logDryRunCommand('git fetch --tags');
+        } else {
+            gitExecArray(['fetch', '--tags'], { stdio: 'pipe' });
+        }
+    } catch (e) {
+        console.error('⚠️  Warning: Could not fetch tags:', e.message);
+    }
+
+    const remoteTags = gitExecString(['ls-remote', '--tags', 'origin']);
+    const remoteTagExists = remoteTags.split('\n').some(line => {
+        const ref = line.trim().split(/\s+/)[1];
+        return ref === `refs/tags/${version}` || ref === `refs/tags/${version}^{}`;
+    });
+
+    return { localTagExists, remoteTagExists };
+}
+
 function checkExistingTag(version) {
     try {
-        // Check if tag already exists locally
-        const localTags = gitExecString(['tag', '-l', version]);
-        if (localTags) {
+        const { localTagExists, remoteTagExists } = getTagStatus(version);
+
+        if (localTagExists) {
             console.error(`❌ Tag ${version} already exists locally`);
             process.exit(1);
         }
 
-        // Check remote tags
-        try {
-            if (isDryRun) {
-                logDryRunCommand('git fetch --tags');
-            } else {
-                gitExecArray(['fetch', '--tags'], { stdio: 'pipe' });
-            }
-        } catch (e) {
-            console.error('⚠️  Warning: Could not fetch tags:', e.message);
-        }
-
-        const remoteTags = gitExecString(['ls-remote', '--tags', 'origin']);
-        const remoteTagExists = remoteTags.split('\n').some(line => {
-            const ref = line.trim().split(/\s+/)[1];
-            return ref === `refs/tags/${version}` || ref === `refs/tags/${version}^{}`;
-        });
         if (remoteTagExists) {
             console.error(`❌ Tag ${version} already exists on remote`);
             console.error('   This version has already been released');
@@ -752,8 +803,7 @@ function prepareRelease(releaseType, manifest, currentVersion, newVersion) {
             console.log('\nNext steps:');
             console.log('1. Wait for CI to pass on the release pull request');
             console.log('2. Merge the pull request into main');
-            console.log('3. Pull main locally');
-            console.log('4. Run: node scripts/release.js publish\n');
+            console.log('3. Run: node scripts/release.js\n');
         }
     } catch (error) {
         // If git operations fail, rollback file changes
@@ -963,19 +1013,13 @@ if (args.length > 0) {
 }
 
 const hasValidArg = releaseTypeArg && validReleaseTypes.includes(releaseTypeArg);
-const isPublishCommand = releaseTypeArg === publishCommand;
-
-if (releaseTypeArg && !hasValidArg && !isPublishCommand) {
-    console.error(`❌ Invalid release type: ${releaseTypeArg}`);
-    console.error('   Use one of: patch, minor, major, publish');
-    console.error('\n   Usage: node release.js [patch|minor|major|publish] [--dry-run]');
-    process.exit(1);
-}
 
 // Acquire lock before any operations (but never in --dry-run mode)
 if (!isDryRun) {
     acquireLock();
 }
+
+syncMainForDefaultFlow(releaseTypeArg, isDryRun);
 
 // Read and validate manifest
 const manifestPath = path.join(projectRoot, 'manifest.json');
@@ -1007,12 +1051,29 @@ const versions = {
 };
 
 // Execute release
-if (isPublishCommand) {
-    publishRelease(manifest, currentVersion);
-} else if (hasValidArg) {
+if (hasValidArg) {
     // Direct release preparation mode
     prepareRelease(releaseTypeArg, manifest, currentVersion, versions[releaseTypeArg]);
+} else if (releaseTypeArg) {
+    console.error(`❌ Invalid release type: ${releaseTypeArg}`);
+    console.error('   Use one of: patch, minor, major');
+    console.error('\n   Usage: node release.js [patch|minor|major] [--dry-run]');
+    process.exit(1);
 } else {
-    // Interactive mode
-    showInteractivePrompt(currentVersion, versions);
+    let tagStatus;
+    try {
+        tagStatus = getTagStatus(currentVersion);
+    } catch (error) {
+        console.error('❌ Failed to check whether the current version is already published:', error.message);
+        process.exit(1);
+    }
+
+    const { localTagExists, remoteTagExists } = tagStatus;
+
+    if (!localTagExists && !remoteTagExists) {
+        console.log(`\nCurrent version ${currentVersion} is not tagged. Publishing merged release.`);
+        publishRelease(manifest, currentVersion);
+    } else {
+        showInteractivePrompt(currentVersion, versions);
+    }
 }
