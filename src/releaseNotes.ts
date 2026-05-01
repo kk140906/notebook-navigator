@@ -77,6 +77,12 @@ export interface ReleaseNote {
  */
 const RELEASE_NOTES: ReleaseNote[] = [
     {
+        version: '2.6.4',
+        date: '2026-05-08',
+        showOnUpdate: true,
+        improved: ['**Internal.** Decreased the size of main.js by about 900 KB by switching to UTF-8.']
+    },
+    {
         version: '2.6.3',
         date: '2026-05-01',
         showOnUpdate: true,
