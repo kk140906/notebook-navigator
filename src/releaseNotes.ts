@@ -80,7 +80,10 @@ const RELEASE_NOTES: ReleaseNote[] = [
         version: '2.6.4',
         date: '2026-05-08',
         showOnUpdate: true,
-        improved: ['**Internal.** Decreased the size of main.js by about 900 KB by switching to UTF-8.']
+        improved: [
+            '**Internal.** Decreased the size of main.js by about 900 KB by switching to UTF-8.',
+            '**Icon packs.** Updated Simple Icons to 16.18.0.'
+        ]
     },
     {
         version: '2.6.3',
