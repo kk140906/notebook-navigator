@@ -99,11 +99,29 @@ function writeJsonFile(filePath, data) {
     fs.renameSync(tempPath, filePath);
 }
 
+function isDryRunGitMutation(args) {
+    const command = args[0];
+    if (['add', 'commit', 'push', 'checkout'].includes(command)) {
+        return true;
+    }
+    if (command === 'tag') {
+        return args.some(arg => ['-a', '--annotate', '-s', '--sign', '-d', '--delete', '-f', '--force'].includes(arg));
+    }
+    if (command === 'branch') {
+        return args.some(arg => ['-d', '-D', '--delete', '-m', '-M', '--move', '-c', '-C', '--copy'].includes(arg));
+    }
+    return false;
+}
+
+function getDryRunGitResult(options) {
+    return options.encoding ? '' : Buffer.from('');
+}
+
 // Helper to execute git commands with array syntax (safe from injection)
 function gitExecArray(args, options = {}) {
-    if (isDryRun && ['add', 'commit', 'tag', 'push', 'checkout', 'branch'].includes(args[0])) {
+    if (isDryRun && isDryRunGitMutation(args)) {
         console.log(`[DRY RUN] Would run: git ${args.join(' ')}`);
-        return Buffer.from('');
+        return getDryRunGitResult(options);
     }
     return execFileSync('git', args, { cwd: projectRoot, ...options });
 }
@@ -301,7 +319,11 @@ function checkExistingTag(version) {
         }
 
         const remoteTags = gitExecString(['ls-remote', '--tags', 'origin']);
-        if (remoteTags.includes(`refs/tags/${version}`)) {
+        const remoteTagExists = remoteTags.split('\n').some(line => {
+            const ref = line.trim().split(/\s+/)[1];
+            return ref === `refs/tags/${version}` || ref === `refs/tags/${version}^{}`;
+        });
+        if (remoteTagExists) {
             console.error(`❌ Tag ${version} already exists on remote`);
             console.error('   This version has already been released');
             process.exit(1);
