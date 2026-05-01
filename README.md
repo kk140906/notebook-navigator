@@ -39,7 +39,7 @@ Notebook Navigator is checked with [TypeScript](https://www.typescriptlang.org/)
 
 Security checks run through [CodeQL](https://codeql.github.com/), with scan history in the [CodeQL workflow runs](https://github.com/johansan/notebook-navigator/actions/workflows/codeql.yml), and the [OpenSSF Scorecard](https://securityscorecards.dev/viewer/?uri=github.com/johansan/notebook-navigator). Current status is shown in the badges at the top of this page.
 
-Notebook Navigator only connects to the network for documented optional features. See [section 11 - Network Usage Disclosure](#11-network-usage-disclosure) for the full list.
+Notebook Navigator runs locally, but some features make documented HTTP requests for updates, downloads, and remote content. See [section 11 - Network Usage Disclosure](#11-network-usage-disclosure) for the full list.
 
 <br/>
 
