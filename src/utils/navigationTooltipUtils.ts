@@ -26,11 +26,13 @@ import { createFrontmatterPropertyExclusionMatcher, shouldExcludeFileWithMatcher
 import type { FileVisibility } from './fileTypeUtils';
 import { shouldDisplayFile } from './fileTypeUtils';
 
+type FileTooltipSettings = Pick<NotebookNavigatorSettings, 'dateFormat' | 'timeFormat' | 'showTooltipPath' | 'showTooltipWordCount'>;
+
 interface FileTooltipOptions {
     file: TFile;
     displayName: string;
     extensionSuffix: string;
-    settings: NotebookNavigatorSettings;
+    settings: FileTooltipSettings;
     getFileTimestamps: (file: TFile) => { created: number; modified: number };
     sortOption?: string | null | undefined;
     unfinishedTaskTooltipText?: string | null | undefined;

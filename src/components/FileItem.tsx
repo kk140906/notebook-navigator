@@ -56,6 +56,7 @@ import { resolveFolderDecorationColors } from '../utils/folderDecoration';
 import { resolveFileDragIconId, resolveFileIconId } from '../utils/fileIconUtils';
 import { buildFileTooltip } from '../utils/navigationTooltipUtils';
 import {
+    FEATURE_IMAGE_MAX_ASPECT_RATIO,
     getFileItemLayoutState,
     isListPaneCompactMode,
     shouldShowFeatureImageArea,
@@ -74,8 +75,6 @@ import type { FileItemPillDecorationModel } from '../utils/fileItemPillDecoratio
 import type { HiddenTagVisibility } from '../utils/tagPrefixMatcher';
 import { useFileItemContentState, type FileItemContentDb } from './fileItem/useFileItemContentState';
 import { useFileItemPills } from './fileItem/useFileItemPills';
-
-const FEATURE_IMAGE_MAX_ASPECT_RATIO = 16 / 9;
 
 interface FileItemProps {
     file: TFile;
@@ -725,6 +724,16 @@ export const FileItem = React.memo(function FileItem({
         const clampedRatio = Math.min(ratio, FEATURE_IMAGE_MAX_ASPECT_RATIO);
         setFeatureImageAspectRatio(clampedRatio);
     }, [featureImageUrl, settings.forceSquareFeatureImage]);
+    const fileTooltipSettings = useMemo(
+        () => ({
+            dateFormat: settings.dateFormat,
+            timeFormat: settings.timeFormat,
+            showTooltipPath: settings.showTooltipPath,
+            showTooltipWordCount: settings.showTooltipWordCount
+        }),
+        [settings.dateFormat, settings.showTooltipPath, settings.showTooltipWordCount, settings.timeFormat]
+    );
+    const showTooltips = settings.showTooltips;
 
     // Memoize className to avoid string concatenation on every render
     const className = useMemo(() => {
@@ -786,7 +795,7 @@ export const FileItem = React.memo(function FileItem({
         if (isMobile) return;
 
         // Remove tooltip if disabled
-        if (!settings.showTooltips) {
+        if (!showTooltips) {
             setTooltip(fileRef.current, '');
             return;
         }
@@ -795,7 +804,7 @@ export const FileItem = React.memo(function FileItem({
             file,
             displayName,
             extensionSuffix,
-            settings,
+            settings: fileTooltipSettings,
             getFileTimestamps,
             sortOption,
             unfinishedTaskTooltipText,
@@ -810,7 +819,8 @@ export const FileItem = React.memo(function FileItem({
         file,
         file.stat.ctime,
         file.stat.mtime,
-        settings,
+        showTooltips,
+        fileTooltipSettings,
         displayName,
         extensionSuffix,
         getFileTimestamps,

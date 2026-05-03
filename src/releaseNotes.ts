@@ -78,11 +78,20 @@ export interface ReleaseNote {
 const RELEASE_NOTES: ReleaseNote[] = [
     {
         version: '2.6.4',
-        date: '2026-05-08',
+        date: '2026-05-05',
         showOnUpdate: true,
+        bannerUrl: true,
+        info: 'Notebook Navigator 2.6.4 now lets file tags and properties wrap onto multiple rows in the list pane. This is yet another feature many of you have requested for a long time, and I am glad to finally have the time to add it.',
+        new: [
+            '**Settings.** New setting: List > Notes > ==Show tags on multiple rows==. Automatically wrap tags so all tags are visible in the list pane. Default enabled.',
+            '**Settings.** New setting: List > Notes > ==Show properties on multiple rows==. Automatically wrap properties so all properties are visible in the list pane. Default enabled.'
+        ],
         improved: [
-            '**Internal.** Decreased the size of main.js by about 900 KB by switching to UTF-8.',
-            '**Icon packs.** Updated Simple Icons to 16.18.0.'
+            '**Icon packs.** Updated Simple Icons to 16.18.0.',
+            '**Internal.** Decreased the size of main.js by about 900 KB by changing packaging to UTF-8.'
+        ],
+        changed: [
+            '**Settings.** Removed the setting: List > Notes > ==Show properties on separate rows==. It became redundant with the new setting **Show properties on multiple rows**.'
         ]
     },
     {
