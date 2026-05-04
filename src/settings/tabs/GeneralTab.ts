@@ -585,6 +585,28 @@ export function renderGeneralTab(context: SettingsTabContext): void {
 
     addToggleSetting(
         behaviorGroup.addSetting,
+        strings.settings.items.customNavPaneClickBehavior.name,
+        strings.settings.items.customNavPaneClickBehavior.desc,
+        () => plugin.settings.customNavPaneClickBehavior,
+        value => {
+            plugin.settings.customNavPaneClickBehavior = value;
+            void plugin.saveSettingsAndUpdate();
+        }
+    );
+
+    addToggleSetting(
+        behaviorGroup.addSetting,
+        strings.settings.items.customNavDoubleClickBehavior.name,
+        strings.settings.items.customNavDoubleClickBehavior.desc,
+        () => plugin.settings.customNavDoubleClickBehavior,
+        value => {
+            plugin.settings.customNavDoubleClickBehavior = value;
+            void plugin.saveSettingsAndUpdate();
+        }
+    );
+
+    addToggleSetting(
+        behaviorGroup.addSetting,
         strings.settings.items.createNewNotesInNewTab.name,
         strings.settings.items.createNewNotesInNewTab.desc,
         () => plugin.settings.createNewNotesInNewTab,

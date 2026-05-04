@@ -414,8 +414,10 @@ export const NotebookNavigatorComponent = React.memo(
                 const raf = window.requestAnimationFrame(() => {
                     setSuppressPaneTransitions(false);
                 });
-                uiDispatch({ type: 'SET_SINGLE_PANE_VIEW', view: 'files' });
-                uiDispatch({ type: 'SET_FOCUSED_PANE', pane: 'files' });
+
+                const singlePaneView = settings.customNavPaneClickBehavior ? 'navigation' : 'files';
+                uiDispatch({ type: 'SET_SINGLE_PANE_VIEW', view: singlePaneView });
+                uiDispatch({ type: 'SET_FOCUSED_PANE', pane: singlePaneView });
                 return () => {
                     window.cancelAnimationFrame(raf);
                 };
@@ -424,7 +426,7 @@ export const NotebookNavigatorComponent = React.memo(
             const preferredView = preferredSinglePaneView.current;
             uiDispatch({ type: 'SET_SINGLE_PANE_VIEW', view: preferredView });
             uiDispatch({ type: 'SET_FOCUSED_PANE', pane: preferredView });
-        }, [isMobile, uiDispatch, uiState.dualPane]);
+        }, [isMobile, settings.customNavPaneClickBehavior, uiDispatch, uiState.dualPane]);
 
         useEffect(() => {
             if (!uiState.singlePane) {

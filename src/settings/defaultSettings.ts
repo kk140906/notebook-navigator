@@ -157,6 +157,8 @@ export const DEFAULT_SETTINGS: NotebookNavigatorSettings = {
     // General tab - View
     startView: 'files',
     showInfoButtons: true,
+    customNavPaneClickBehavior: false,
+    customNavDoubleClickBehavior: false,
 
     // General tab - Homepage
     homepage: {

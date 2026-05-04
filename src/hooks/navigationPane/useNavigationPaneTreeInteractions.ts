@@ -153,7 +153,7 @@ export function useNavigationPaneTreeInteractions({
             }
 
             if (uiState.singlePane) {
-                if (shouldExpandOnly) {
+                if (shouldExpandOnly || settings.customNavDoubleClickBehavior) {
                     uiDispatch({ type: 'SET_FOCUSED_PANE', pane: 'navigation' });
                 } else {
                     uiDispatch({ type: 'SET_SINGLE_PANE_VIEW', view: 'files' });
@@ -357,7 +357,7 @@ export function useNavigationPaneTreeInteractions({
     const focusAfterTreeSelection = useCallback(
         (keepNavigationFocus: boolean) => {
             if (uiState.singlePane) {
-                if (keepNavigationFocus) {
+                if (keepNavigationFocus || settings.customNavDoubleClickBehavior) {
                     uiDispatch({ type: 'SET_FOCUSED_PANE', pane: 'navigation' });
                 } else {
                     uiDispatch({ type: 'SET_SINGLE_PANE_VIEW', view: 'files' });
@@ -368,7 +368,7 @@ export function useNavigationPaneTreeInteractions({
 
             uiDispatch({ type: 'SET_FOCUSED_PANE', pane: 'navigation' });
         },
-        [uiDispatch, uiState.singlePane]
+        [settings.customNavDoubleClickBehavior, uiDispatch, uiState.singlePane]
     );
 
     const applyTreeSelection = useCallback(

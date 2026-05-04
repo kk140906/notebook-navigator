@@ -387,6 +387,8 @@ export interface NotebookNavigatorSettings {
     // General tab - View
     startView: 'navigation' | 'files';
     showInfoButtons: boolean;
+    customNavPaneClickBehavior: boolean;
+    customNavDoubleClickBehavior: boolean;
 
     // General tab - Homepage
     homepage: HomepageSetting;

@@ -228,7 +228,6 @@ export const FolderItem = React.memo(function FolderItem({
         return classes.join(' ');
     }, [applyColorToName, hasFolderNote]);
 
-    // Stable event handlers
     const handleDoubleClick = useCallback(() => {
         if (hasChildren) {
             onToggle();

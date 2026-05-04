@@ -260,7 +260,6 @@ export const VirtualFolderComponent = React.memo(function VirtualFolderComponent
         },
         [onSelect, onToggle]
     );
-
     useEffect(() => {
         const chevronEl = chevronRef.current;
         if (!chevronEl) {

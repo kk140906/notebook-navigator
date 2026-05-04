@@ -1071,6 +1071,14 @@ export const STRINGS_EN = {
                     files: 'List pane'
                 }
             },
+            customNavPaneClickBehavior: {
+                name: 'Pin navigation pane in single-pane mode',
+                desc: 'When enabled, clicking a navigation item in single-pane mode stays in the navigation pane instead of switching to the list pane.'
+            },
+            customNavDoubleClickBehavior: {
+                name: 'Disable click-to-list in single-pane mode',
+                desc: 'When enabled, clicking a folder in single-pane mode selects it without switching to the file list. Expand and collapse still work normally.'
+            },
             toolbarButtons: {
                 name: 'Toolbar buttons',
                 desc: 'Choose which buttons appear in the toolbar. Hidden buttons remain accessible via commands and menus.',

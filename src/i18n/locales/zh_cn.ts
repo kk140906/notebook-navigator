@@ -1068,6 +1068,14 @@ export const STRINGS_ZH_CN = {
                     files: '列表窗格'
                 }
             },
+            customNavPaneClickBehavior: {
+                name: '单窗格切换固定为目录导航',
+                desc: '启用后，单窗格模式下点击导航项时停留在导航栏，不会切换到文档列表。'
+            },
+            customNavDoubleClickBehavior: {
+                name: '单窗格禁用单击跳转文件列表',
+                desc: '启用后，单窗格模式下点击文件夹不会跳转到文件列表，仅选中文件夹并支持展开或折叠。'
+            },
             toolbarButtons: {
                 name: '工具栏按钮',
                 desc: '选择在工具栏中显示哪些按钮。隐藏的按钮仍可通过命令和菜单访问。',
